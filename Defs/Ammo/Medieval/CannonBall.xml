@@ -211,8 +211,7 @@
 			<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
 			<soundAmbient>MortarRound_Ambient</soundAmbient>
 			<flyOverhead>true</flyOverhead>
-			<dropsCasings>true</dropsCasings>
-			<casingMoteDefname>Mote_BigShell</casingMoteDefname>
+			<dropsCasings>false</dropsCasings>
 			<gravityFactor>5</gravityFactor>
 		</projectile>
 	</ThingDef>
