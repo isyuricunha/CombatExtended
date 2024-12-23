@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="OuterRim_JetpackBase"]/statBases</xpath>
+		<value>
+			<Bulk>8</Bulk>
+			<WornBulk>3</WornBulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/VFECore.Abilities.AbilityDef[@Name="OuterRimJetpackAbilityBase"]/range</xpath>
+		<value>
+			<range>30</range>
+		</value>
+	</Operation>
+
+</Patch>

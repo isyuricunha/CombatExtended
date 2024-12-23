@@ -9,7 +9,7 @@ namespace CombatExtended
         /// <summary>
         /// Multiplier used to scale the armor penetration of a given projectile's explosion
         /// </summary>
-        private const float ExplosiveArmorPenetrationMultiplier = 0.33f;
+        private const float ExplosiveArmorPenetrationMultiplier = 0.4f;
 
         /// <summary>
         ///     Generates a readout text for a projectile with the damage amount, type, secondary explosion and other CE stats for
@@ -23,12 +23,12 @@ namespace CombatExtended
             var props = projectileDef?.projectile as ProjectilePropertiesCE;
             if (props == null)
             {
-                Log.Error("CE tried getting projectile readout with null props");
-                return "";
+                Log.Warning("CE tried getting projectile readout with null props");
+                return "CE_UnpatchedWeaponShort".Translate();
             }
 
+            var multiplier = weapon?.GetStatValue(StatDefOf.RangedWeapon_DamageMultiplier) ?? 1f;
             var stringBuilder = new StringBuilder();
-
             // Damage type/amount
             var dmgList = "   " + "CE_DescDamage".Translate() + ": ";
             if (!props.secondaryDamage.NullOrEmpty())
@@ -51,23 +51,29 @@ namespace CombatExtended
             {
                 stringBuilder.AppendLine("   " + "CE_DescExplosionRadius".Translate() + ": " + props.explosionRadius.ToStringByStyle(ToStringStyle.FloatOne));
             }
-
-            // Sharp / blunt AP
-            if (props.explosionRadius > 0)
+            // Thermal/Electric Penetration
+            if ((props.damageDef.armorCategory == CE_DamageArmorCategoryDefOf.Heat
+                        || props.damageDef.armorCategory == CE_DamageArmorCategoryDefOf.Electric) && props.damageDef.defaultArmorPenetration > 0f)
             {
-                if (props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Heat
-                        && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
-                        && props.damageDef != DamageDefOf.Stun
-                        && props.damageDef != DamageDefOf.Extinguish
-                        && props.damageDef != DamageDefOf.Smoke)
+                stringBuilder.AppendLine("   " + "CE_DescAmbientPenetration".Translate() + ": " + (props.damageDef.defaultArmorPenetration).ToStringByStyle(ToStringStyle.PercentZero));
+            }
+            // Sharp / blunt AP
+            if (props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Heat
+                    && props.damageDef.armorCategory != CE_DamageArmorCategoryDefOf.Electric
+                    && props.damageDef != DamageDefOf.Stun
+                    && props.damageDef != DamageDefOf.Extinguish
+                    && props.damageDef != DamageDefOf.Smoke
+                    && props.GetDamageAmount(weapon) != 0)
+            {
+                if (props.explosionRadius > 0)
                 {
                     stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.GetExplosionArmorPenetration() + " " + "CE_MPa".Translate());
                 }
-            }
-            else
-            {
-                stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + props.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
-                stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + props.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+                else
+                {
+                    stringBuilder.AppendLine("   " + "CE_DescSharpPenetration".Translate() + ": " + (props.armorPenetrationSharp * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
+                    stringBuilder.AppendLine("   " + "CE_DescBluntPenetration".Translate() + ": " + (props.armorPenetrationBlunt * multiplier).ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
+                }
             }
 
             // Secondary explosion
@@ -101,6 +107,7 @@ namespace CombatExtended
                 {
                     var fragmentProps = fragmentDef?.thingDef?.projectile as ProjectilePropertiesCE;
                     stringBuilder.AppendLine("   " + "   " + fragmentDef.LabelCap);
+                    stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescDamage".Translate() + ": " + fragmentProps?.damageAmountBase.ToString() + " (" + fragmentProps?.damageDef.LabelCap.ToString() + ")");
                     stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescSharpPenetration".Translate() + ": " + fragmentProps?.armorPenetrationSharp.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_mmRHA".Translate());
                     stringBuilder.AppendLine("   " + "   " + "   " + "CE_DescBluntPenetration".Translate() + ": " + fragmentProps?.armorPenetrationBlunt.ToStringByStyle(ToStringStyle.FloatTwo) + " " + "CE_MPa".Translate());
                 }
@@ -118,12 +125,6 @@ namespace CombatExtended
         /// Determine the armor penetration value of a given explosive type's explosion.
         /// </summary>
         public static float GetExplosionArmorPenetration(this CompProperties_ExplosiveCE props) => props.damageAmountBase * ExplosiveArmorPenetrationMultiplier;
-
-        public static bool IsShell(ThingDef def)
-        {
-            var ammo = ThingDefOf.Turret_Mortar.building.turretGunDef.GetCompProperties<CompProperties_AmmoUser>();
-            return ammo?.ammoSet.ammoTypes.Any(l => l.ammo == def) ?? false;
-        }
 
         public static bool IsAmmoSystemActive(AmmoDef def)
         {

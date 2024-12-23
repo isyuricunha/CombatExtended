@@ -9,6 +9,7 @@ using RimWorld;
 using UnityEngine;
 
 using CombatExtended;
+using CombatExtended.Compatibility;
 using Verse.AI;
 
 namespace CombatExtended
@@ -172,6 +173,7 @@ namespace CombatExtended
             Current.Game.GetComponent<GameComponent_MechLoadoutDialogManger>()?.RegisterCompMechAmmo(this);
         }
 
+        [Compatibility.Multiplayer.SyncMethod]
         public void TakeAmmoNow()
         {
             this.TryMakeAmmoJob(true);
@@ -261,8 +263,9 @@ namespace CombatExtended
             {
                 ParentPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(MTAJobDefOf.MTA_UnloadAmmo, ParentPawn), 0, true);
 
-                if (!AmmoUser.FullMagazine)
+                if (!AmmoUser.FullMagazine && !ParentPawn.Drafted)
                 {
+                    AmmoUser.TryUnload(true);
                     ParentPawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(CE_JobDefOf.ReloadWeapon, ParentPawn, AmmoUser.parent), 0, true);
                 }
             }

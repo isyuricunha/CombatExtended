@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System;
 using System.Reflection;
 using System.Text;
+using UnityEngine;
 
 namespace CombatExtended.Compatibility
 {
-    class Patches
+    public class Patches
     {
         private List<IPatch> patches;
+
+        public static List<Func<IEnumerable<ThingDef>>> UsedAmmoCallbacks = new List<Func<IEnumerable<ThingDef>>>();
+        public static List<Func<Pawn, Tuple<bool, Vector2>>> CollisionBodyFactorCallbacks = new List<Func<Pawn, Tuple<bool, Vector2>>>();
+
         public Patches()
         {
             patches = new List<IPatch>();
@@ -66,18 +71,41 @@ namespace CombatExtended.Compatibility
             }
         }
 
-        public IEnumerable<string> GetCompatList()
+        public static IEnumerable<ThingDef> GetUsedAmmo()
         {
-            foreach (IPatch patch in patches)
+            foreach (var cb in UsedAmmoCallbacks)
             {
-                if (patch.CanInstall())
+                foreach (ThingDef td in cb())
                 {
-                    foreach (string s in patch.GetCompatList())
+                    yield return td;
+                }
+            }
+        }
+
+        private static bool _gcbfactive = false;
+
+        public static void RegisterCollisionBodyFactorCallback(Func<Pawn, Tuple<bool, Vector2>> f)
+        {
+            CollisionBodyFactorCallbacks.Add(f);
+            _gcbfactive = true;
+        }
+
+        public static bool GetCollisionBodyFactors(Pawn pawn, out Vector2 ret)
+        {
+            ret = new Vector2();
+            if (_gcbfactive)
+            {
+                foreach (Func<Pawn, Tuple<bool, Vector2>> f in CollisionBodyFactorCallbacks)
+                {
+                    var r = f(pawn);
+                    if (r.Item1)
                     {
-                        yield return s;
+                        ret = r.Item2;
+                        return true;
                     }
                 }
             }
+            return false;
         }
     }
 }

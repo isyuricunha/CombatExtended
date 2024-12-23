@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using CombatExtended.CombatExtended.LoggerUtils;
 using RimWorld;
 using UnityEngine;
@@ -74,17 +75,12 @@ namespace CombatExtended
         public override string GetReport()
         {
             string text = CE_JobDefOf.ReloadTurret.reportString;
-            string turretType = (turret.def.hasInteractionCell ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
+            string turretType = (turret.TryGetComp<CompMannable>() != null ? "CE_MannedTurret" : "CE_AutoTurret").Translate();
             text = text.Replace("TurretType", turretType);
             text = text.Replace("TargetA", TargetThingA.def.label);
-            if (compReloader.UseAmmo)
-            {
-                text = text.Replace("TargetB", TargetThingB.def.label);
-            }
-            else
-            {
-                text = text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
-            }
+            text = compReloader.UseAmmo
+                ? text.Replace("TargetB", TargetThingB.def.label)
+                : text.Replace("TargetB", "CE_ReloadingGenericAmmo".Translate());
             return text;
         }
 
@@ -165,7 +161,14 @@ namespace CombatExtended
             }
 
             // If ammo system is turned off we just need to go to the turret.
-            yield return Toils_Goto.GotoCell(turret.Position, PathEndMode.Touch);
+            if (turret.InteractionCell != null)
+            {
+                yield return Toils_Goto.GotoCell(turret.InteractionCell, PathEndMode.OnCell);
+            }
+            else
+            {
+                yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+            }
 
             //If pawn fails reloading from this point, reset isReloading
             this.AddFinishAction(delegate
@@ -211,8 +214,32 @@ namespace CombatExtended
                 compReloader.LoadAmmo(ammo);
                 turret.SetReloading(false);
             };
+
+            Func<bool> jumpCondition =
+                () => compReloader.Props.reloadOneAtATime &&
+                compReloader.CurMagCount < compReloader.MagSize &&
+                (!compReloader.UseAmmo || TryFindAmmo(pawn, compReloader, ammo));
+            Toil jumpToil = Toils_Jump.JumpIf(waitToil, jumpCondition);
             //if (compReloader.useAmmo) reloadToil.EndOnDespawnedOrNull(TargetIndex.B);
             yield return reloadToil;
+            yield return jumpToil;
+        }
+
+        bool TryFindAmmo(Pawn byPawn, CompAmmoUser comp, Thing ammoThing)
+        {
+            //Find both inventory & carried thing, prefer inventory
+            Thing thing = byPawn.carryTracker.CarriedThing?.def == ammoThing.def ? byPawn.carryTracker.CarriedThing : null;
+            if (byPawn.TryGetComp<CompInventory>() is CompInventory inv && inv.ammoList.Find(x => x.def == ammoThing.def) is Thing ans)
+            {
+                var Tempthing = ans;
+                inv.ammoList.Remove(ans);
+                byPawn.TryGetComp<CompInventory>().UpdateInventory();
+                byPawn.carryTracker.TryStartCarry(ans);
+                thing = ans;
+            }
+            if (thing == null) { return false; }
+            ammoThing = thing;
+            return true;
         }
         #endregion Methods
     }

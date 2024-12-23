@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ===== V1 ===== -->
+
+	<!-- Anima War Arm -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AnimaWarArm"]/comps/li[@Class="HediffCompProperties_VerbGiver"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>Claw</label>
+					<capacities>
+						<li>ToxinScratch</li>
+					</capacities>
+					<power>21</power>
+					<cooldownTime>1.29</cooldownTime>
+					<armorPenetrationBlunt>3.75</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.76</armorPenetrationSharp>
+					<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- Anima Leg -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AnimaLeg"]/stages/li/statOffsets/CarryingCapacity</xpath>
+		<value>
+			<CarryWeight>30</CarryWeight>
+		</value>
+	</Operation>
+
+	<!-- ===== V2 ===== -->
+
+	<!-- ===== V3 ===== -->
+
+	<!-- Anima Plate -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AnimaPlate"]/stages/li/statOffsets/ArmorRating_Sharp</xpath>
+		<value>
+			<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/HediffDef[defName="AnimaPlate"]/stages/li/statOffsets/ArmorRating_Blunt</xpath>
+		<value>
+			<ArmorRating_Blunt>1.3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
+</Patch>

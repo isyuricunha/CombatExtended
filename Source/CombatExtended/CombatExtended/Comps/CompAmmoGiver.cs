@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CombatExtended.Compatibility;
 using Verse;
 using Verse.AI;
 using RimWorld;
@@ -29,7 +30,7 @@ namespace CombatExtended
                             selPawn.inventory.innerContainer.Where(x => x is AmmoThing).Any(x => ((AmmoDef)x.def).AmmoSetDefs.Contains(user.Props.ammoSet))
                        )
                     {
-                        yield return new FloatMenuOption("CE_GiveAmmoToThing".Translate() + (dad.Name?.ToStringShort ?? dad.def.label),
+                        yield return new FloatMenuOption("CE_GiveAmmoToThing".Translate(dad.Name?.ToStringShort ?? dad.def.label),
                                                          delegate
                         {
                             List<FloatMenuOption> options = new List<FloatMenuOption>();
@@ -39,17 +40,11 @@ namespace CombatExtended
                                 if (ammo.AmmoDef.AmmoSetDefs.Contains(user.Props.ammoSet))
                                 {
                                     int outAmmoCount = 0;
-                                    if (dad.TryGetComp<CompInventory>()?.CanFitInInventory(ammo, out outAmmoCount) ?? false && outAmmoCount >= ammo.stackCount)
+                                    if ((dad.TryGetComp<CompInventory>()?.CanFitInInventory(ammo, out outAmmoCount) ?? false) && outAmmoCount >= ammo.stackCount)
                                     {
                                         options.Add(new FloatMenuOption("CE_Give".Translate() + " " + ammo.Label + " (" + "All".Translate() + ")", delegate
                                         {
-                                            ammoAmountToGive = ammo.stackCount;
-
-                                            var jobdef = CE_JobDefOf.GiveAmmo;
-
-                                            var job = new Job { def = jobdef, targetA = dad, targetB = ammo };
-
-                                            selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
+                                            GiveAmmo(selPawn, ammo, ammo.stackCount);
                                         }));
                                     }
 
@@ -82,6 +77,20 @@ namespace CombatExtended
                 }
             }
 
+        }
+
+        // Needs to be a sync method for 2 reasons - MP only auto synchronizes jobs through TryTakeOrderedJob/TryTakeOrderedJobPrioritizedWork,
+        // and ammoAmountToGive field is set before ordering the job - which means only 1 player would have the value set.
+        [Compatibility.Multiplayer.SyncMethod]
+        public void GiveAmmo(Pawn selPawn, Thing ammo, int amount)
+        {
+            ammoAmountToGive = amount;
+
+            var jobdef = CE_JobDefOf.GiveAmmo;
+
+            var job = new Job { def = jobdef, targetA = dad, targetB = ammo };
+
+            selPawn.jobs.StartJob(job, JobCondition.InterruptForced);
         }
     }
 }

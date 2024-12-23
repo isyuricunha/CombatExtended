@@ -8,6 +8,7 @@ using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
+using CombatExtended.HarmonyCE;
 
 namespace CombatExtended
 {
@@ -242,7 +243,7 @@ namespace CombatExtended
             Rect rect = new Rect(0f, y, width, _thingRowHeight);
             Widgets.InfoCardButton(rect.width - 24f, y, thing.GetInnerIfMinified());
             rect.width -= 24f;
-            if (CanControl || (SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal) || (showDropButtonIfPrisoner && SelPawnForGear.IsPrisonerOfColony))
+            if ((CanControl || (SelPawnForGear.Faction == Faction.OfPlayer && SelPawnForGear.RaceProps.packAnimal) || (showDropButtonIfPrisoner && SelPawnForGear.IsPrisonerOfColony)) && !SelPawnForGear.IsItemMechanoidWeapon(thing))
             {
                 var dropForbidden = SelPawnForGear.IsItemQuestLocked(thing);
                 Color color = dropForbidden ? Color.grey : Color.white;
@@ -258,7 +259,7 @@ namespace CombatExtended
             }
             if (CanControlColonist)
             {
-                if ((thing.def.IsNutritionGivingIngestible || thing.def.IsNonMedicalDrug) && thing.IngestibleNow && base.SelPawn.WillEat_NewTemp(thing) && (!SelPawnForGear.IsTeetotaler() || !thing.def.IsNonMedicalDrug))
+                if (FoodUtility.WillIngestFromInventoryNow(base.SelPawn, thing))
                 {
                     Rect rect3 = new Rect(rect.width - 24f, y, 24f, 24f);
                     TooltipHandler.TipRegion(rect3, "ConsumeThing".Translate(thing.LabelNoCount, thing));
@@ -401,7 +402,7 @@ namespace CombatExtended
                     var worn_apparel = SelPawnForGear?.apparel?.WornApparel;
                     foreach (var apparel in worn_apparel)
                     {
-                        var compReloadable = apparel.TryGetComp<CompReloadable>();
+                        var compReloadable = apparel.TryGetComp<CompApparelReloadable>();
                         if (compReloadable != null && compReloadable.AmmoDef == thing.def && compReloadable.NeedsReload(true))
                         {
                             if (!SelPawnForGear.Drafted)    //TODO-1.2 This should be doable for drafted pawns as well, but the job does nothing. Figure out what's wrong and remove this condition.
@@ -429,14 +430,49 @@ namespace CombatExtended
                             SoundDefOf.Tick_High.PlayOneShotOnCamera();
                             SyncedInterfaceIngest(thing);
                         };
+
                         string label = thing.def.ingestible.ingestCommandString.NullOrEmpty() ? (string)"ConsumeThing".Translate(thing.LabelShort, thing) : string.Format(thing.def.ingestible.ingestCommandString, thing.LabelShort);
-                        if (SelPawnForGear.IsTeetotaler() && thing.def.IsNonMedicalDrug)
+                        // Display a warning if the food will lower pawn's mood
+                        if (FoodUtility.MoodFromIngesting(SelPawnForGear, thing, thing.def) < 0)
                         {
-                            floatOptionList.Add(new FloatMenuOption(label + ": " + TraitDefOf.DrugDesire.degreeDatas.Where(x => x.degree == -1).First()?.label, null));
+                            label = $"{label}: ({"WarningFoodDisliked".Translate()})";
                         }
-                        else
+
+                        FloatMenuOption floatMenuOption = null;
+
+                        // Handle drug related ideology stuff
+                        if (ModsConfig.IdeologyActive && thing.def.IsDrug)
                         {
-                            floatOptionList.Add(new FloatMenuOption(label, eatFood));
+                            if (!new HistoryEvent(HistoryEventDefOf.IngestedDrug, SelPawnForGear.Named(HistoryEventArgsNames.Doer)).Notify_PawnAboutToDo(out floatMenuOption, label) && !PawnUtility.CanTakeDrugForDependency(SelPawnForGear, thing.def))
+                            {
+                                floatOptionList.Add(floatMenuOption);
+                            }
+                            else if (thing.def.ingestible.drugCategory == DrugCategory.Medical && !new HistoryEvent(HistoryEventDefOf.IngestedRecreationalDrug, SelPawnForGear.Named(HistoryEventArgsNames.Doer)).Notify_PawnAboutToDo(out floatMenuOption, label) && !PawnUtility.CanTakeDrugForDependency(SelPawnForGear, thing.def))
+                            {
+                                floatOptionList.Add(floatMenuOption);
+                            }
+                            else if (thing.def.ingestible.drugCategory == DrugCategory.Hard && !new HistoryEvent(HistoryEventDefOf.IngestedHardDrug, SelPawnForGear.Named(HistoryEventArgsNames.Doer)).Notify_PawnAboutToDo(out floatMenuOption, label))
+                            {
+                                floatOptionList.Add(floatMenuOption);
+                            }
+                        }
+
+                        if (floatMenuOption == null)
+                        {
+                            // Handle teetotaler trait with drugs, considering dependency genes
+                            if (thing.def.IsNonMedicalDrug && !SelPawnForGear.CanTakeDrug(thing.def))
+                            {
+                                floatOptionList.Add(new FloatMenuOption(label + ": " + TraitDefOf.DrugDesire.DataAtDegree(-1).GetLabelCapFor(SelPawnForGear), null));
+                            }
+                            // Royal traits and inappropriate food, always allowed if pawn is starving, ascetic, or will gain joy from ingesting
+                            else if (FoodUtility.InappropriateForTitle(thing.def, SelPawnForGear, true))
+                            {
+                                floatOptionList.Add(new FloatMenuOption(label + ": " + "FoodBelowTitleRequirements".Translate(SelPawnForGear.royalty.MostSeniorTitle.def.GetLabelFor(SelPawnForGear).CapitalizeFirst()).CapitalizeFirst(), null));
+                            }
+                            else
+                            {
+                                floatOptionList.Add(new FloatMenuOption(label, eatFood));
+                            }
                         }
                     }
                     // Drop, and drop&haul options
@@ -445,7 +481,8 @@ namespace CombatExtended
                         floatOptionList.Add(new FloatMenuOption("CE_CannotDropThing".Translate() + ": " + "DropThingLocked".Translate(), null));
                         floatOptionList.Add(new FloatMenuOption("CE_CannotDropThingHaul".Translate() + ": " + "DropThingLocked".Translate(), null));
                     }
-                    else
+                    // Don't display drop option for mechanoids
+                    else if (!SelPawnForGear.IsItemMechanoidWeapon(eq))
                     {
                         floatOptionList.Add(new FloatMenuOption("DropThing".Translate(), new Action(delegate
                         {
@@ -479,20 +516,30 @@ namespace CombatExtended
         private void RebuildArmorCache(Dictionary<BodyPartRecord, float> armorCache, StatDef stat)
         {
             armorCache.Clear();
-            float naturalArmor = SelPawnForGear.GetStatValue(stat);
             List<Apparel> wornApparel = SelPawnForGear.apparel?.WornApparel;
+            Apparel shield = wornApparel?.FirstOrDefault(x => x is Apparel_Shield);
+
             foreach (BodyPartRecord part in SelPawnForGear.RaceProps.body.AllParts)
             {
-                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def == BodyPartDefOf.Eye || part.def == BodyPartDefOf.Neck)))
+                if (part.depth == BodyPartDepth.Outside && (part.coverage >= 0.1 || (part.def.tags.Contains(BodyPartTagDefOf.BreathingPathway) || part.def.tags.Contains(BodyPartTagDefOf.SightSource))))
                 {
-                    float armorValue = part.IsInGroup(CE_BodyPartGroupDefOf.CoveredByNaturalArmor) ? naturalArmor : 0f;
+                    var armorValue = SelPawnForGear.PartialStat(stat, part);
+
                     if (wornApparel != null)
                     {
-                        foreach (var apparel in wornApparel)
+                        foreach (Apparel apparel in wornApparel)
                         {
-                            if (apparel.def.apparel.CoversBodyPart(part))
+                            armorValue += apparel.PartialStat(stat, part);
+                        }
+                        if (shield != null)
+                        {
+                            if (!shield.def.apparel.CoversBodyPart(part))
                             {
-                                armorValue += apparel.PartialStat(stat, part);
+                                var shieldCoverage = shield.def?.GetModExtension<ShieldDefExtension>()?.PartIsCoveredByShield(part, SelPawnForGear);
+                                if (shieldCoverage == true)
+                                {
+                                    armorValue += shield.GetStatValue(stat);
+                                }
                             }
                         }
                     }

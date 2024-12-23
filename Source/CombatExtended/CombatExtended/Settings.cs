@@ -19,6 +19,7 @@ namespace CombatExtended
         private bool autosetup = true;
         private bool showCasings = true;
         private bool createCasingsFilth = true;
+        private bool recoilAnim = true;
         private bool showTaunts = true;
         private bool allowMeleeHunting = false;
         private bool smokeEffects = true;
@@ -28,6 +29,7 @@ namespace CombatExtended
         private bool showTacticalVests = true;
         private bool genericammo = false;
         private bool partialstats = true;
+        private bool enableExtraEffects = true;
 
         private bool showExtraTooltips = false;
 
@@ -35,7 +37,7 @@ namespace CombatExtended
 
         private bool fragmentsFromWalls = false;
 
-        private bool fasterRepeatShots = false;
+        private bool fasterRepeatShots = true;
 
         public bool ShowCasings => showCasings;
 
@@ -52,6 +54,7 @@ namespace CombatExtended
         public bool ShowTacticalVests => showTacticalVests;
 
         public bool PartialStat => partialstats;
+        public bool EnableExtraEffects => enableExtraEffects;
         public bool ShowExtraTooltips => showExtraTooltips;
 
         public bool ShowExtraStats => showExtraStats;
@@ -88,6 +91,7 @@ namespace CombatExtended
         private bool debugDrawInterceptChecks = false;
         private bool debugDisplayDangerBuildup = false;
         private bool debugDisplayCellCoverRating = false;
+        private bool debugDisplayAttritionInfo = false;
 
         public bool DebuggingMode => debuggingMode;
         public bool DebugVerbose => debugVerbose;
@@ -101,6 +105,7 @@ namespace CombatExtended
         public bool DebugGenClosetPawn => debugGenClosetPawn && debuggingMode;
         public bool DebugDisplayDangerBuildup => debugDisplayDangerBuildup && debuggingMode;
         public bool DebugDisplayCellCoverRating => debugDisplayCellCoverRating && debuggingMode;
+        public bool DebugDisplayAttritionInfo => debugDisplayAttritionInfo && debuggingMode;
         #endregion
 
         #region Autopatcher
@@ -126,9 +131,16 @@ namespace CombatExtended
 
         public bool CreateCasingsFilth => createCasingsFilth;
 
+        public bool RecoilAnim => recoilAnim;
+
         #endregion
 
         private bool lastAmmoSystemStatus;
+
+        #region Compatibility Modsettings
+        public bool patchArmorDamage = true;
+
+        #endregion
 
         #region Methods
 
@@ -137,6 +149,7 @@ namespace CombatExtended
             base.ExposeData();
             Scribe_Values.Look(ref showCasings, "showCasings", true);
             Scribe_Values.Look(ref createCasingsFilth, "createCasingsFilth", true);
+            Scribe_Values.Look(ref recoilAnim, "recoilAnim", true);
             Scribe_Values.Look(ref showTaunts, "showTaunts", true);
             Scribe_Values.Look(ref allowMeleeHunting, "allowMeleeHunting", false);
             Scribe_Values.Look(ref smokeEffects, "smokeEffects", true);
@@ -145,7 +158,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref showBackpacks, "showBackpacks", true);
             Scribe_Values.Look(ref showTacticalVests, "showTacticalVests", true);
             Scribe_Values.Look(ref partialstats, "PartialArmor", true);
-
+            Scribe_Values.Look(ref enableExtraEffects, "enableExtraEffects", true);
             Scribe_Values.Look(ref showExtraTooltips, "showExtraTooltips", false);
 
             Scribe_Values.Look(ref showExtraStats, "showExtraStats", false);
@@ -154,7 +167,7 @@ namespace CombatExtended
 #if DEBUG
             // Debug settings
             Scribe_Values.Look(ref debuggingMode, "debuggingMode", false);
-            Scribe_Values.Look(ref debugDrawInterceptChecks, "drawPartialLoSChecks", false);
+            Scribe_Values.Look(ref debugDrawInterceptChecks, "drawInterceptChecks", false);
             Scribe_Values.Look(ref debugDrawPartialLoSChecks, "drawPartialLoSChecks", false);
             Scribe_Values.Look(ref debugEnableInventoryValidation, "enableInventoryValidation", false);
             Scribe_Values.Look(ref debugDrawTargetCoverChecks, "debugDrawTargetCoverChecks", false);
@@ -162,6 +175,7 @@ namespace CombatExtended
             Scribe_Values.Look(ref debugShowSuppressionBuildup, "debugShowSuppressionBuildup", false);
             Scribe_Values.Look(ref debugDisplayDangerBuildup, "debugDisplayDangerBuildup", false);
             Scribe_Values.Look(ref debugDisplayCellCoverRating, "debugDisplayCellCoverRating", false);
+            Scribe_Values.Look(ref debugDisplayAttritionInfo, "debugDisplayAttritionInfo", false);
 #endif
             Scribe_Values.Look(ref debugAutopatcherLogger, "debugAutopatcherLogger", false);
 
@@ -193,12 +207,8 @@ namespace CombatExtended
             lastAmmoSystemStatus = enableAmmoSystem;    // Store this now so we can monitor for changes
         }
 
-        public void DoWindowContents(Rect canvas, ref int offset)
+        public void DoWindowContents(Listing_Standard list)
         {
-            Listing_Standard list = new Listing_Standard();
-            list.ColumnWidth = (canvas.width - 17) / 2; // Subtract 17 for gap between columns
-            list.Begin(canvas);
-
             // Do general settings
             Text.Font = GameFont.Medium;
             list.Label("CE_Settings_HeaderGeneral".Translate());
@@ -207,6 +217,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_PartialStats_Title".Translate(), ref partialstats, "CE_Settings_PartialStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowCasings_Title".Translate(), ref showCasings, "CE_Settings_ShowCasings_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_СreateCasingsFilth_Title".Translate(), ref createCasingsFilth, "CE_Settings_СreateCasingsFilth_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_RecoilAnim_Title".Translate(), ref recoilAnim, "CE_Settings_RecoilAnim_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowTaunts_Title".Translate(), ref showTaunts, "CE_Settings_ShowTaunts_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_AllowMeleeHunting_Title".Translate(), ref allowMeleeHunting, "CE_Settings_AllowMeleeHunting_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_SmokeEffects_Title".Translate(), ref smokeEffects, "CE_Settings_SmokeEffects_Desc".Translate());
@@ -215,7 +226,7 @@ namespace CombatExtended
             list.CheckboxLabeled("CE_Settings_ShowExtraTooltips_Title".Translate(), ref showExtraTooltips, "CE_Settings_ShowExtraTooltips_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_ShowExtraStats_Title".Translate(), ref showExtraStats, "CE_Settings_ShowExtraStats_Desc".Translate());
             list.CheckboxLabeled("CE_Settings_FasterRepeatShots_Title".Translate(), ref fasterRepeatShots, "CE_Settings_FasterRepeatShots_Desc".Translate());
-
+            list.CheckboxLabeled("CE_Settings_EnableExtraEffects_Title".Translate(), ref enableExtraEffects, "CE_Settings_EnableExtraEffects_Desc".Translate());
             // Only Allow these settings to be changed in the main menu since doing while a
             // map is loaded will result in rendering issues.
             if (Current.Game == null)
@@ -244,13 +255,13 @@ namespace CombatExtended
             Text.Font = GameFont.Small;
             list.Gap();
 
-            list.CheckboxLabeled("Enable autopatcher verbose logging", ref debugAutopatcherLogger, "This will enable verbose logging of the autopatcher.");
+            list.CheckboxLabeled("CE_Settings_VerboseAutopatcher_Title".Translate(), ref debugAutopatcherLogger, "CE_Settings_VerboseAutopatcher_Desc".Translate());
 
-            list.CheckboxLabeled("Enable apparel autopatcher", ref enableApparelAutopatcher, "This will enable the apparel autopatcher.");
-            list.CheckboxLabeled("Enable race autopatcher", ref enableRaceAutopatcher, "This will enable the race autopatcher.");
-            list.CheckboxLabeled("Enable weapon autopatcher", ref enableWeaponAutopatcher, "This will enable the weapon autopatcher.");
-            list.CheckboxLabeled("Enable weapon toughness autopatcher", ref enableWeaponToughnessAutopatcher, "This will enable the weapon toughness autopatcher.");
-            list.CheckboxLabeled("Enable PawnKind autopatcher", ref enablePawnKindAutopatcher, "This will enable the PawnKind autopatcher.");
+            list.CheckboxLabeled("CE_Settings_ApparelAutopatcher_Title".Translate(), ref enableApparelAutopatcher, "CE_Settings_ApparelAutopatcher_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_RaceAutopatcher_Title".Translate(), ref enableRaceAutopatcher, "CE_Settings_RaceAutopatcher_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_WeaponAutopatcher_Title".Translate(), ref enableWeaponAutopatcher, "CE_Settings_WeaponAutopatcher_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_ToughnessAutopatcher_Title".Translate(), ref enableWeaponToughnessAutopatcher, "CE_Settings_ToughnessAutopatcher_Desc".Translate());
+            list.CheckboxLabeled("CE_Settings_PawnkindAutopatcher_Title".Translate(), ref enablePawnKindAutopatcher, "CE_Settings_PawnkindAutopatcher_Desc".Translate());
 
             // Do ammo settings
             list.NewColumn();
@@ -302,6 +313,7 @@ namespace CombatExtended
             {
                 list.GapLine();
                 list.CheckboxLabeled("Verbose", ref debugVerbose, "Enable logging for internel states and many other things.");
+                list.CheckboxLabeled("Display result of GenStep_Attrition", ref debugDisplayAttritionInfo);
                 list.CheckboxLabeled("Draw intercept checks", ref debugDrawInterceptChecks, "Displays projectile checks for intercept.");
                 list.CheckboxLabeled("Draw partial LoS checks", ref debugDrawPartialLoSChecks, "Displays line of sight checks against partial cover.");
                 list.CheckboxLabeled("Draw debug things in range", ref debugGenClosetPawn);
@@ -318,7 +330,6 @@ namespace CombatExtended
             //    list.Gap();
             //}
 #endif
-            list.End();
 
             // Update ammo if setting changes
             if (lastAmmoSystemStatus != enableAmmoSystem)
@@ -332,7 +343,6 @@ namespace CombatExtended
             {
                 AmmoInjector.AddRemoveCaliberFromGunRecipes();
             }
-
         }
 
         #endregion

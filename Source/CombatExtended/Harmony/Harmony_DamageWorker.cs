@@ -14,26 +14,17 @@ namespace CombatExtended.HarmonyCE
     [HarmonyPatch(typeof(DamageWorker), nameof(DamageWorker.Apply))]
     internal static class Harmony_DamageWorker_Apply
     {
-        private static ThingDef smallFragment = null;
-        private static ThingDef largeFragment = null;
-        private static DamageDef demolish = null;
         public static bool Prefix(DamageWorker __instance, DamageInfo dinfo, Thing victim)
         {
             if (!Controller.settings.FragmentsFromWalls)
             {
                 return true;
             }
-            if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.Def != DamageDefOf.Mining)
+            if (victim.def.useHitPoints && dinfo.Def.harmsHealth && dinfo.tool == null && dinfo.Def != DamageDefOf.Mining)
             {
                 if (victim.def.category == ThingCategory.Building)
                 {
-                    if (smallFragment == null)
-                    {
-                        smallFragment = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.defName == "Fragment_Small").First();
-                        largeFragment = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.defName == "Fragment_Large").First();
-                        demolish = DefDatabase<DamageDef>.AllDefsListForReading.Where(d => d.defName == "Demolish").First();
-                    }
-                    if (dinfo.Def == demolish)
+                    if (dinfo.Def == CE_DamageDefOf.Demolish)
                     {
                         return true;
                     }
@@ -90,7 +81,7 @@ namespace CombatExtended.HarmonyCE
                                                                map,
                                                                height,
                                                                victim,
-                                                               new ThingDefCountClass(smallFragment, smallFragments),
+                                                               new ThingDefCountClass(CE_ThingDefOf.Fragment_Small, smallFragments),
                                                                1,
                                                                0.2f,
                                                                new FloatRange(0.5f, 5),
@@ -104,7 +95,7 @@ namespace CombatExtended.HarmonyCE
                                                                map,
                                                                height,
                                                                victim,
-                                                               new ThingDefCountClass(smallFragment, smallFragments),
+                                                               new ThingDefCountClass(CE_ThingDefOf.Fragment_Small, smallFragments),
                                                                1,
                                                                0.2f,
                                                                new FloatRange(0.5f, 5),
@@ -121,7 +112,7 @@ namespace CombatExtended.HarmonyCE
                                                            map,
                                                            height,
                                                            victim,
-                                                           new ThingDefCountClass(largeFragment, largeFragments),
+                                                           new ThingDefCountClass(CE_ThingDefOf.Fragment_Large, largeFragments),
                                                            1,
                                                            0.2f,
                                                            new FloatRange(0.5f, 5),

@@ -29,6 +29,8 @@ namespace CombatExtended
 
         private bool _isAiming;
 
+        public Vector3 drawPos;
+
         #endregion
 
         #region Properties
@@ -103,16 +105,30 @@ namespace CombatExtended
             }
         }
 
-        public float SpreadDegrees
+        public float AimAngle
         {
             get
             {
-                return (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * (projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f);
+                if (this.CurrentTarget == null)
+                {
+                    return 143f;
+                }
+                Vector3 vector = (CurrentTarget.Thing == null ? CurrentTarget.Cell.ToVector3Shifted() : CurrentTarget.Thing.DrawPos);
+                float num = 143f;
+                if ((vector - caster.DrawPos).MagnitudeHorizontalSquared() > 0.001f)
+                {
+                    num = (vector - caster.DrawPos).AngleFlat();
+                }
+                return num;
             }
         }
 
         // Whether our shooter is currently under suppressive fire
         private bool IsSuppressed => ShooterPawn?.TryGetComp<CompSuppressable>()?.isSuppressed ?? false;
+
+        public override CompAmmoUser CompAmmo => base.CompAmmo;
+
+        public override ThingDef Projectile => CompAmmo?.CurrentAmmo != null ? CompAmmo.CurAmmoProjectile : base.Projectile;
 
         #endregion
 
@@ -176,7 +192,7 @@ namespace CombatExtended
                 }
             }
             float burstShotCount = VerbPropsCE.burstShotCount;
-            if (EquipmentSource != null)
+            if (EquipmentSource != null && (!EquipmentSource.TryGetComp<CompUnderBarrel>()?.usingUnderBarrel ?? false))
             {
                 float modified = EquipmentSource.GetStatValue(CE_StatDefOf.BurstShotCount);
                 if (modified > 0)
@@ -206,6 +222,7 @@ namespace CombatExtended
                 {
                     ShooterPawn.stances.SetStance(new Stance_Warmup(aimTicks, currentTarget, this));
                     _isAiming = true;
+                    RecalculateWarmupTicks();
                     return;
                 }
             }
@@ -227,6 +244,25 @@ namespace CombatExtended
             }
         }
 
+        public override bool Available()
+        {
+            if (!base.Available())
+            {
+                return false;
+            }
+
+            // Add check for reload
+            bool isAttacking = ShooterPawn?.CurJobDef == JobDefOf.AttackStatic || WarmingUp;
+            if (isAttacking && !(CompAmmo?.CanBeFiredNow ?? true))
+            {
+                CompAmmo?.TryStartReload();
+                resetRetarget();
+                return false;
+            }
+
+            return true;
+        }
+
         public override void VerbTickCE()
         {
             if (_isAiming)
@@ -245,33 +281,6 @@ namespace CombatExtended
             {
                 EquipmentSource.TryGetComp<BipodComp>().SetUpStart(CasterPawn);
             }
-        }
-
-        public virtual ShiftVecReport SimulateShiftVecReportFor(LocalTargetInfo target, AimMode aimMode)
-        {
-            IntVec3 targetCell = target.Cell;
-            ShiftVecReport report = new ShiftVecReport();
-
-            report.target = target;
-            report.aimingAccuracy = AimingAccuracy;
-            report.sightsEfficiency = SightsEfficiency;
-            if (ShooterPawn != null && !ShooterPawn.health.capacities.CapableOf(PawnCapacityDefOf.Sight))
-            {
-                report.sightsEfficiency = 0;
-            }
-            report.shotDist = (targetCell - caster.Position).LengthHorizontal;
-            report.maxRange = EffectiveRange;
-            report.lightingShift = CE_Utility.GetLightingShift(Shooter, LightingTracker.CombatGlowAtFor(caster.Position, targetCell));
-
-            if (!caster.Position.Roofed(caster.Map) || !targetCell.Roofed(caster.Map))  //Change to more accurate algorithm?
-            {
-                report.weatherShift = 1 - caster.Map.weatherManager.CurWeatherAccuracyMultiplier;
-            }
-            report.shotSpeed = ShotSpeed;
-            report.swayDegrees = SwayAmplitudeFor(aimMode);
-            float spreadmult = projectilePropsCE != null ? projectilePropsCE.spreadMult : 0f;
-            report.spreadDegrees = (EquipmentSource?.GetStatValue(StatDef.Named("ShotSpread")) ?? 0) * spreadmult;
-            return report;
         }
 
         /// <summary>
@@ -305,6 +314,10 @@ namespace CombatExtended
 
         public override void RecalculateWarmupTicks()
         {
+            if (!Controller.settings.FasterRepeatShots)
+            {
+                return;
+            }
             Vector3 u = caster.TrueCenter();
             Vector3 v = currentTarget.Thing?.TrueCenter() ?? currentTarget.Cell.ToVector3Shifted();
             if (currentTarget.Pawn is Pawn dtPawn)
@@ -313,19 +326,20 @@ namespace CombatExtended
             }
 
             var d = v - u;
-            var w = new Vector2();
-            w.Set(d.x, d.z);
-            var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(w.y, w.x)) % 360;
+            var newShotRotation = (-90 + Mathf.Rad2Deg * Mathf.Atan2(d.z, d.x)) % 360;
             var delta = Mathf.Abs(newShotRotation - lastShotRotation) + lastRecoilDeg;
             lastRecoilDeg = 0;
-            var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ? 0.1f : 0.25f);
+            var maxReduction = storedShotReduction ?? (CompFireModes?.CurrentAimMode == AimMode.SuppressFire ?
+                                                       0.1f :
+                                                       (_isAiming ? 0.5f : 0.25f));
             var reduction = Mathf.Max(maxReduction, delta / 45f);
             storedShotReduction = reduction;
+
             if (reduction < 1.0f)
             {
                 if (caster is Building_TurretGunCE turret)
                 {
-                    if (!_isAiming && turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
+                    if (turret.burstWarmupTicksLeft > 0)  //Turrets call beginBurst() when starting to fire a burst, and when starting the final aiming part of an aimed shot.  We only want apply changes to warmup.
                     {
                         turret.burstWarmupTicksLeft = (int)(turret.burstWarmupTicksLeft * reduction);
                     }
@@ -338,59 +352,90 @@ namespace CombatExtended
 
         }
 
+        //For revolvers and break actions. Intended to be called by compammouser on reload
+        public void ExternalCallDropCasing(int randomSeedOffset = -1)
+        {
+            bool fromPawn = false;
+            GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
+            if (ShooterPawn != null)
+            {
+                fromPawn = drawPos != Vector3.zero;
+            }
+            //No aim angle because casing eject happens when pawn lowers its gun to reload
+            CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, 0, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext, randomSeedOffset);
+        }
+
         public override bool TryCastShot()
         {
-            //Reduce ammunition
-            if (CompAmmo != null)
+            if (!CompAmmo?.TryPrepareShot() ?? false)
             {
-                if (!CompAmmo.TryReduceAmmoCount(VerbPropsCE.ammoConsumedPerShotCount))
-                {
-                    return false;
-                }
+                return false;
             }
             if (base.TryCastShot())
             {
-                //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
-                if (ShooterPawn != null)
-                {
-                    ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
-                }
-                //Drop casings
-                if (VerbPropsCE.ejectsCasings && projectilePropsCE.dropsCasings)
-                {
-                    CE_Utility.ThrowEmptyCasing(caster.DrawPos, caster.Map, DefDatabase<FleckDef>.GetNamed(projectilePropsCE.casingMoteDefname));
-                    CE_Utility.MakeCasingFilth(caster.Position, caster.Map, DefDatabase<ThingDef>.GetNamed(projectilePropsCE.casingFilthDefname));
-                }
-                // This needs to here for weapons without magazine to ensure their last shot plays sounds
-                if (CompAmmo != null && !CompAmmo.HasMagazine && CompAmmo.UseAmmo)
-                {
-                    if (!CompAmmo.Notify_ShotFired())
-                    {
-                        if (VerbPropsCE.muzzleFlashScale > 0.01f)
-                        {
-                            FleckMakerCE.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
-                        }
-                        if (VerbPropsCE.soundCast != null)
-                        {
-                            VerbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
-                        }
-                        if (VerbPropsCE.soundCastTail != null)
-                        {
-                            VerbPropsCE.soundCastTail.PlayOneShotOnCamera();
-                        }
-                        if (ShooterPawn != null)
-                        {
-                            if (ShooterPawn.thinker != null)
-                            {
-                                ShooterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
-                            }
-                        }
-                    }
-                    return CompAmmo.Notify_PostShotFired();
-                }
-                return true;
+                return OnCastSuccessful();
             }
             return false;
+        }
+        protected virtual bool OnCastSuccessful()
+        {
+            bool fromPawn = false;
+            GunDrawExtension ext = EquipmentSource?.def.GetModExtension<GunDrawExtension>();
+            //Required since Verb_Shoot does this but Verb_LaunchProjectileCE doesn't when calling base.TryCastShot() because Shoot isn't its base
+            if (ShooterPawn != null)
+            {
+                ShooterPawn.records.Increment(RecordDefOf.ShotsFired);
+                fromPawn = drawPos != Vector3.zero;
+            }
+
+            //Drop casings
+            if (VerbPropsCE.ejectsCasings && (!ext?.DropCasingWhenReload ?? true))
+            {
+                CE_Utility.GenerateAmmoCasings(projectilePropsCE, fromPawn ? drawPos : caster.DrawPos, caster.Map, AimAngle, VerbPropsCE.recoilAmount, fromPawn: fromPawn, extension: ext);
+            }
+
+            if (CompAmmo == null)
+            {
+                return true;
+            }
+
+            int ammoConsumedPerShot = (CompAmmo.Props.ammoSet?.ammoConsumedPerShot ?? 1) * VerbPropsCE.ammoConsumedPerShotCount;
+            CompAmmo.Notify_ShotFired(ammoConsumedPerShot);
+
+            if (ShooterPawn != null && !CompAmmo.CanBeFiredNow)
+            {
+                CompAmmo.TryStartReload();
+                resetRetarget();
+            }
+
+            // This needs to here for weapons without magazine to ensure their last shot plays sounds
+            if (!CompAmmo.HasMagazine && CompAmmo.UseAmmo)
+            {
+                if (!CompAmmo.HasAmmoOrMagazine)
+                {
+                    if (VerbPropsCE.muzzleFlashScale > 0.01f)
+                    {
+                        FleckMakerCE.Static(caster.Position, caster.Map, FleckDefOf.ShotFlash, VerbPropsCE.muzzleFlashScale);
+                    }
+                    if (VerbPropsCE.soundCast != null)
+                    {
+                        VerbPropsCE.soundCast.PlayOneShot(new TargetInfo(caster.Position, caster.Map));
+                    }
+                    if (VerbPropsCE.soundCastTail != null)
+                    {
+                        VerbPropsCE.soundCastTail.PlayOneShotOnCamera();
+                    }
+                    if (ShooterPawn != null)
+                    {
+                        if (ShooterPawn.thinker != null)
+                        {
+                            ShooterPawn.mindState.lastEngageTargetTick = Find.TickManager.TicksGame;
+                        }
+                    }
+                }
+                return CompAmmo.Notify_PostShotFired();
+            }
+            return true;
         }
         #endregion
     }

@@ -6,11 +6,18 @@ from xml.dom.minidom import parse as XMLOpen
 import tempfile
 import time
 from dataclasses import dataclass
+import subprocess
 
 tdir = tempfile.gettempdir()
 
 args = ["csc", "-unsafe", "-warnaserror", "-nostdlib", "-target:library"]
 
+
+def system(*cmd):
+    sp = subprocess.Popen(cmd)
+    sp.wait()
+    return sp.poll()
+    
 
 @dataclass
 class PackageReference(object):
@@ -18,15 +25,18 @@ class PackageReference(object):
     version: str
     destination: str
 
+
 @dataclass
 class LibraryReference(object):
     name: str
     hintPath: str
 
+
 @dataclass
 class PublicizeTarget(object):
     inputName: str
     outputName: str
+
 
 def parseArgs(argv):
     argParser = argparse.ArgumentParser(description="Automate compiling C# projects on Linux, using Mono")
@@ -39,6 +49,7 @@ def parseArgs(argv):
     argParser.add_argument("--publicizer", type=str, metavar="PATH", help="Location of AssemblyPublicizer source code or parent directory of AssemblyPublicizer.exe")
     argParser.add_argument("--debug", action="store_true", default=False, help="Define `DEBUG` when calling csc")
     argParser.add_argument("--refout", metavar="PATH", default=None, help="Specify where to save a reference library")
+    argParser.add_argument("--csc", metavar="CSC", default=None, help="Specify directory containing updated csc.exe")
 
     options = argParser.parse_args(argv[1:])
     if not options.download_libs and options.reference is None:
@@ -51,20 +62,26 @@ def parseArgs(argv):
     if options.reference is None:
         options.reference = f"{tdir}/rwreference"
 
+    if options.csc is not None:
+        args[0] = options.csc + "/csc.exe"
+        args.insert(0, "mono")
+        
     return options
 
 
 def downloadLib(name, version, dest, verbose):
     if verbose:
         print(f"Downloading {version} of {name} from nuget")
-    quiet = "-q" if verbose < 5 else ""
-    if os.system(f"wget {quiet} https://www.nuget.org/api/v2/package/{name}/{version} -O {dest}"):
+    quiet = ["-q"] if verbose < 5 else []
+    args = ["wget", *quiet, f"https://www.nuget.org/api/v2/package/{name}/{version}", "-O", dest]
+    if system(*args):
         raise Exception(f"Can't find version {version} of {name} on nuget")
+
 
 def unpackLib(path, dest, verbose):
     cwd = os.getcwd()
-    quiet = "-q" if verbose < 6 else ""
-    os.system(f"unzip {quiet} -o {path} -d {dest}")
+    quiet = ["-q"] if verbose < 6 else []
+    system("unzip", *quiet, "-o", path, "-d", dest)
     
 
 def resolveLibrary(library, reference, csproj, verbose):
@@ -81,14 +98,16 @@ def resolveLibrary(library, reference, csproj, verbose):
         print("Searching for library named {library.name}.dll")
     return os.path.join(reference, library.name+'.dll')
     
+
 def publicize(p, publicizer, verbose):
     if verbose:
         print(f"Publicizing Assembly: {p}")
     cwd = os.getcwd()
     os.chdir(p.rsplit('/',1)[0])
-    os.system(f"mono {publicizer} --exit -i {p} -o {p[:-4]}_publicized.dll")
+    system(f"mono", publicizer, "--exit", "-i", p, "-o", f"{p[:-4]}_publicized.dll")
     os.chdir(cwd)
     return p[:-4]+'_publicized.dll'
+
 
 def makePublicizer(p, verbose):
     ap_path = os.path.join(p, "AssemblyPublicizer.exe")
@@ -99,18 +118,19 @@ def makePublicizer(p, verbose):
     else:
         if verbose:
             print("Making AssemblyPublicizer")
-        quiet = "-q" if verbose < 5 else ""
+        quiet = ["-q"] if verbose < 5 else []
         cwd = os.getcwd()
         os.chdir(p)
         downloadLib("Mono.Options", "6.6.0.161",f"{tdir}/downloads/mono.options.zip", verbose=verbose)
         downloadLib("Mono.Cecil", "0.11.4",f"{tdir}/downloads/mono.cecil.zip", verbose=verbose)
-        os.system(f"unzip {quiet} -o {tdir}/downloads/mono.cecil.zip -d .")
-        os.system(f"unzip {quiet} -o {tdir}/downloads/mono.options.zip -d .")
+        system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.cecil.zip", "-d", ".")
+        system(f"unzip", *quiet, "-o", f"{tdir}/downloads/mono.options.zip", "-d", ".")
         os.system("cp lib/net40/*dll .")
-        os.system("csc -out:AssemblyPublicizer.exe ./AssemblyPublicizer/AssemblyPublicizer.cs ./AssemblyPublicizer/Properties/AssemblyInfo.cs -r:Mono.Options.dll -r:Mono.Cecil.dll")
-        os.system("mono --aot AssemblyPublicizer.exe")
+        system("csc", "-out:AssemblyPublicizer.exe", "./AssemblyPublicizer/AssemblyPublicizer.cs", "./AssemblyPublicizer/Properties/AssemblyInfo.cs", "-r:Mono.Options.dll", "-r:Mono.Cecil.dll")
+        system("mono", "--aot", "AssemblyPublicizer.exe")
         os.chdir(cwd)
     return ap_path
+
 
 def parse_packages(csproj):
     packages = []
@@ -120,6 +140,7 @@ def parse_packages(csproj):
         dest = f"{tdir}/downloads/rwref-{idx}.zip"
         packages.append(PackageReference(name, version, dest))
     return packages
+
 
 def parse_libraries(csproj):
     libraries = []
@@ -136,6 +157,7 @@ def parse_libraries(csproj):
             hintPath = hintPath.replace("\\", "/")
         libraries.append(LibraryReference(reference.attributes['Include'].value, hintPath))
     return libraries, removed_libraries
+
 
 def parse_sources(csproj, base_dir, verbose):
     sources = []
@@ -164,6 +186,7 @@ def parse_sources(csproj, base_dir, verbose):
                 else:
                     print("Directive to exclude non-existent file:", v)
     return [os.path.join(base_dir, i) for i in sources]
+
 
 def parse_publicize(csproj):
     publicized_libraries = []
@@ -204,6 +227,7 @@ def parse_publicize(csproj):
     
     return publicized_libraries, removed_libraries
 
+
 def parse_csproj(csproj_path, verbose):
     
     base_dir = os.path.split(csproj_path)[0]
@@ -220,10 +244,9 @@ def parse_csproj(csproj_path, verbose):
 
         publicized_libraries, removed_libraries_2 = parse_publicize(csproj)
         removed_libraries.extend(removed_libraries_2)
-
-        
-
+    
     return packages, libraries, removed_libraries, publicized_libraries, sources
+
 
 def main(argv=sys.argv):
     rest = []
@@ -233,10 +256,9 @@ def main(argv=sys.argv):
     options = parseArgs(argv)
     verbose = options.verbose
 
-    os.system(f"mkdir -p {tdir}/downloads/unpack")
-    os.system(f"mkdir -p {options.reference}")
-    
-    
+    system(f"mkdir", "-p", f"{tdir}/downloads/unpack")
+    system(f"mkdir", "-p", options.reference)
+        
     packages, libraries, removed_libraries, publicized_libraries, sources = parse_csproj(options.csproj, options.verbose)
     if publicized_libraries:
         if not options.publicizer:
@@ -245,13 +267,12 @@ def main(argv=sys.argv):
 
         publicizer = makePublicizer(options.publicizer, verbose)
               
-
     if options.download_libs:
         for package in packages:
             downloadLib(package.name, package.version, package.destination, verbose=verbose)
             unpackLib(package.destination, f"{tdir}/downloads/unpack", verbose=verbose)
             time.sleep(1)
-        os.system(f"chmod -R +r {tdir}/downloads/unpack")
+        system(f"chmod", "-R", "+r", f"{tdir}/downloads/unpack")
         os.system(f"cp -r {tdir}/downloads/unpack/ref/net472/* {options.reference}")
         os.system(f"cp -r {tdir}/downloads/unpack/lib/net472/* {options.reference}")
 
@@ -268,7 +289,6 @@ def main(argv=sys.argv):
                 libraries.append(publicize(l, publicizer, verbose))
                 break
                 
-
     libraries = [l for l in set(libraries) if not os.path.basename(l) in removed_libraries]
     args.extend([f'-out:{options.output}', *sources, *[f'-r:{r}' for r in libraries]])
     args.extend(rest)

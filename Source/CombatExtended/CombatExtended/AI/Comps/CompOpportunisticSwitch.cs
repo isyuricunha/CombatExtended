@@ -33,6 +33,11 @@ namespace CombatExtended.AI
 
         private static Dictionary<Faction, int> factionLastFlare = new Dictionary<Faction, int>();
 
+        static CompOpportunisticSwitch()
+        {
+            CacheClearComponent.AddClearCacheAction(() => factionLastFlare.Clear());
+        }
+
         public override int Priority => 500;
 
         public LightingTracker LightingTracker
@@ -129,10 +134,11 @@ namespace CombatExtended.AI
             {
                 return false;
             }
-            if (TryUseAOE(verb, castTarg, destTarg))
-            {
-                return false;
-            }
+            //TODO 1.5
+            //if (TryUseAOE(verb, castTarg, destTarg))
+            //{
+            //return false;
+            //}
             return true;
         }
 

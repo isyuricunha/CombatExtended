@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CombatExtended.AI;
+using CombatExtended.Compatibility;
 using CombatExtended.Utilities;
 using RimWorld;
 using UnityEngine;
@@ -13,17 +14,23 @@ namespace CombatExtended
     {
         private const float maxCoverDist = 10f; // Maximum distance to run for cover to;
 
-        public const float dangerAmountFactor = 0.25f; // Multiplier for danger amount at a cell while calculating how safe the cell is;
-        private const float pathCostMultiplier = 2f;
+        public const float linearDangerAmountFactor = 0.2f; // The coefficient for linear danger amount when calculating cell cover attractiveness
+        public const float squaredDangerAmountFactor = 0.01f; // The coefficient for squared danger amount when calculating cell cover attractiveness
+        private const float pathCostFactor = 2f; // How important is the distance to travel
+        private const float obstaclePathCostFactor = 2f; // How important is travelling over a path that has mantling or doors involved
+        private const float distanceFromThreatFactor = 0.5f; // How important is the distance change from the new cell to the shooter position versus the current cell to the shooter position
 
         private static LightingTracker lightingTracker;
 
         private static DangerTracker dangerTracker;
 
-        private static List<CompProjectileInterceptor> interceptors;
-
         public static bool TryRequestHelp(Pawn pawn)
         {
+            //TODO: 1.5
+            if (pawn != null)
+            {
+                return false;
+            }
             Map map = pawn.Map;
             float curLevel = pawn.TryGetComp<CompSuppressable>().CurrentSuppression;
             ThingWithComps grenade = null;
@@ -67,19 +74,16 @@ namespace CombatExtended
                 return null;
             }
             IntVec3 coverPosition;
-
             //Try to find cover position to move up to
             if (!GetCoverPositionFrom(pawn, comp.SuppressorLoc, maxCoverDist, out coverPosition))
             {
                 return null;
             }
-
             //Sanity check
             if (pawn.Position.Equals(coverPosition))
             {
                 return null;
             }
-
             //Tell pawn to move to position
             var job = JobMaker.MakeJob(CE_JobDefOf.RunForCover, coverPosition);
             job.locomotionUrgency = LocomotionUrgency.Sprint;
@@ -91,11 +95,10 @@ namespace CombatExtended
         {
             List<IntVec3> cellList = new List<IntVec3>(GenRadial.RadialCellsAround(pawn.Position, maxDist, true));
             IntVec3 bestPos = pawn.Position;
-            interceptors = pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor).Select(t => t.TryGetComp<CompProjectileInterceptor>()).ToList();
             lightingTracker = pawn.Map.GetLightingTracker();
             dangerTracker = pawn.Map.GetDangerTracker();
-            float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
 
+            float bestRating = GetCellCoverRatingForPawn(pawn, pawn.Position, fromPosition);
             if (bestRating <= 0)
             {
                 // Go through each cell in radius around the pawn
@@ -135,7 +138,17 @@ namespace CombatExtended
             {
                 return -1000f;
             }
-            float cellRating = 0f, bonusCellRating = 1f, distToSuppressor = (pawn.Position - shooterPos).LengthHorizontal,
+
+            //Ignore cells that aren't directly reachable
+            foreach (var pathCell in GenSight.PointsOnLineOfSight(pawn.Position, cell))
+            {
+                if (!pathCell.Walkable(pawn.Map))
+                {
+                    return -1000f;
+                }
+            }
+
+            float cellRating = 0f, bonusCellRating = 1f,
                   pawnHeightFactor = CE_Utility.GetCollisionBodyFactors(pawn).y,
                   pawnVisibleOverCoverFillPercent = pawnHeightFactor * (1f - CollisionVertical.BodyRegionMiddleHeight) + 0.01f,
                   pawnLowestCrouchFillPercent = pawnHeightFactor * CollisionVertical.BodyRegionBottomHeight + pawnVisibleOverCoverFillPercent,
@@ -164,7 +177,7 @@ namespace CombatExtended
                 {
                     pawnCrouchFillPercent = Mathf.Clamp(cover.def.fillPercent + pawnVisibleOverCoverFillPercent, pawnLowestCrouchFillPercent, pawnHeightFactor);
                     var coverRating = 1f - ((pawnCrouchFillPercent - cover.def.fillPercent) / pawnHeightFactor);
-                    cellRating = Mathf.Min(coverRating, 1.25f) * 10f;
+                    cellRating = Mathf.Min(coverRating, 1f) * 10f;
                 }
             }
 
@@ -182,7 +195,7 @@ namespace CombatExtended
                     var distancedCoverRating = cover.def.fillPercent / pawnCrouchFillPercent;
                     if (distancedCoverRating * 10f > cellRating)
                     {
-                        cellRating = Mathf.Min(distancedCoverRating, 1.25f) * 10f;
+                        cellRating = Mathf.Min(distancedCoverRating, 1f) * 10f;
                     }
                 }
                 else
@@ -193,17 +206,13 @@ namespace CombatExtended
 
             cellRating += 10f - (bonusCellRating * 10f);
 
-            for (int i = 0; i < interceptors.Count; i++)
-            {
-                CompProjectileInterceptor interceptor = interceptors[i];
-                if (interceptor.Active && interceptor.parent.Position.DistanceTo(cell) < interceptor.Props.radius)
-                {
-                    cellRating += 15f;
-                }
-            }
+            // If the cell is covered by a shield and there are no enemies inside, then increases by 15 (for each such shield)
+            cellRating += CalculateShieldRating(cell, pawn);
 
-            // Avoid bullets and other danger sources.
-            cellRating -= dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX * dangerAmountFactor;
+            // Avoid bullets and other danger sources;
+            // Yet do not discard cover that is extremely good, even if it may be dangerous
+            float dangerAmount = dangerTracker.DangerAt(cell) * DangerTracker.DANGER_TICKS_MAX;
+            cellRating -= (dangerAmount * linearDangerAmountFactor + dangerAmount * dangerAmount * squaredDangerAmountFactor) / (cellRating + 1);
 
             //Check time to path to that location
             if (!pawn.Position.Equals(cell))
@@ -211,16 +220,22 @@ namespace CombatExtended
                 cellRating -= lightingTracker.CombatGlowAtFor(shooterPos, cell) * 5f;
                 //float pathCost = pawn.Map.pathFinder.FindPath(pawn.Position, cell, TraverseMode.PassDoors).TotalCost;
                 float pathCost = (pawn.Position - cell).LengthHorizontal;
+                // Reduce the chances of mantling over cover when running from danger
                 foreach (var pathCell in GenSight.PointsOnLineOfSight(pawn.Position, cell))
                 {
-                    if (!pathCell.Standable(pawn.Map))
+                    if (!pathCell.Standable(pawn.Map) || pathCell.GetDoor(pawn.Map) != null)
                     {
-                        pathCost *= 2f;
+                        pathCost *= obstaclePathCostFactor;
                         break;
                     }
                 }
-                cellRating = cellRating - (pathCost * pathCostMultiplier);
+
+                cellRating -= pathCost * pathCostFactor;
+
+                // Moving away from the threat is preferred.
+                cellRating += ((cell - shooterPos).LengthHorizontal - (pawn.Position - shooterPos).LengthHorizontal) * distanceFromThreatFactor;
             }
+
 
             if (Controller.settings.DebugDisplayCellCoverRating)
             {
@@ -229,6 +244,78 @@ namespace CombatExtended
             return cellRating;
         }
 
+        /// <summary>
+        /// Calculate the additional cover rating from shields covering the given cell.
+        /// </summary>
+        /// <param name="cell">The cell to compute the cover rating for.</param>
+        /// <param name="pawn">The pawn seeking cover.</param>
+        /// <returns>The computed cover rating (15 for each shield covering the cell).</returns>
+        private static int CalculateShieldRating(IntVec3 cell, Pawn pawn)
+        {
+            int rating = 0;
+            foreach (var zone in InterceptorZonesFor(pawn))
+            {
+                foreach (var zoneCell in zone)
+                {
+                    if (zoneCell == cell)
+                    {
+                        if (!IsOccupiedByEnemies(zone, pawn))
+                        {
+                            rating += 15;
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            return rating;
+        }
+
+        /// <summary>
+        /// Get areas covered by a shield that may be suitable for protecting the given pawn.
+        /// </summary>
+        /// <param name="pawn">The pawn seeking cover.</param>
+        /// <returns>An enumerator of areas covered by shields on the map that may protect the pawn.</returns>
+        public static IEnumerable<IEnumerable<IntVec3>> InterceptorZonesFor(Pawn pawn)
+        {
+            foreach (var interceptor in pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor))
+            {
+                var comp = interceptor.TryGetComp<CompProjectileInterceptor>();
+                if (comp.Active && (comp.Props.interceptNonHostileProjectiles || !interceptor.HostileTo(pawn)))
+                {
+                    yield return GenRadial.RadialCellsAround(interceptor.Position, comp.Props.radius, true);
+                }
+            }
+
+            foreach (var zone in BlockerRegistry.ShieldZonesCallback(pawn))
+            {
+                yield return zone;
+            }
+        }
+
+        /// <summary>
+        /// Check whether the given area contains any objects hostile to the given pawn.
+        /// </summary>
+        /// <param name="cells">The area to scan for hostile objects.</param>
+        /// <param name="pawn">The pawn.</param>
+        /// <returns>true if the area contained any hostile objects, false otherwise.</returns>
+        private static bool IsOccupiedByEnemies(IEnumerable<IntVec3> cells, Pawn pawn)
+        {
+            foreach (var cell in cells)
+            {
+                var things = pawn.Map.thingGrid.ThingsListAt(cell);
+                foreach (var thing in things)
+                {
+                    if (thing.HostileTo(pawn))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
         private static float GetCoverRating(Thing cover)
         {
             // Higher values mean more effective at being considered cover.
@@ -282,7 +369,6 @@ namespace CombatExtended
 
             // Panic break
             if (!(traits.HasTrait(TraitDefOf.Bloodlust)
-                    || traits.DegreeOfTrait(TraitDefOf.Nerves) > 0
                     || traits.DegreeOfTrait((CE_TraitDefOf.Bravery)) > 1))
             {
                 breaks.Add(pawn.IsColonist ? MentalStateDefOf.Wander_OwnRoom : MentalStateDefOf.PanicFlee);
@@ -291,7 +377,6 @@ namespace CombatExtended
 
             // Attack break
             if (!(pawn.WorkTagIsDisabled(WorkTags.Violent)
-                    || traits.DegreeOfTrait(TraitDefOf.Nerves) < 0
                     || traits.DegreeOfTrait(CE_TraitDefOf.Bravery) < 0))
             {
                 breaks.Add(CE_MentalStateDefOf.CombatFrenzy);

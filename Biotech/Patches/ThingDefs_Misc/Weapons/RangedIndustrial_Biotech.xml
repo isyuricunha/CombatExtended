@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
-  
+
 	<!-- ========== Remove the Toxbomb launcher ========== -->
 
 	<Operation Class="PatchOperationRemove">
@@ -13,6 +13,13 @@
 		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_40x46mmGrenade"]/ammoTypes</xpath>
 		<value>
 			<Ammo_40x46mmGrenade_Tox>Bullet_40x46mmGrenade_Tox</Ammo_40x46mmGrenade_Tox>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/CombatExtended.AmmoSetDef[defName="AmmoSet_LauncherGrenade"]/ammoTypes</xpath>
+		<value>
+			<Ammo_LauncherGrenade_Tox>Bullet_40x46mmGrenade_Tox</Ammo_LauncherGrenade_Tox>
 		</value>
 	</Operation>
 
@@ -36,16 +43,16 @@
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeTox"]</xpath>
 		<value>
 			<tools>
-			  <li Class="CombatExtended.ToolCE">
-				<label>Body</label>
-				<capacities>
-				  <li>Blunt</li>
-				</capacities>
-				<power>2</power>
-				<cooldownTime>1.75</cooldownTime>
-				<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
-			  </li>
+				<li Class="CombatExtended.ToolCE">
+					<label>Body</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.75</cooldownTime>
+					<armorPenetrationBlunt>1.0</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
+				</li>
 			</tools>
 		</value>
 	</Operation>
@@ -75,7 +82,7 @@
 				<explosionDelay>100</explosionDelay>
 				<postExplosionGasType>ToxGas</postExplosionGasType>
 				<dropsCasings>true</dropsCasings>
-				<casingMoteDefname>Mote_GrenadePin</casingMoteDefname>
+				<casingMoteDefname>Fleck_GrenadePin</casingMoteDefname>
 				<casingFilthDefname>Filth_GrenadeAmmoCasings</casingFilthDefname>
 				<speed>12</speed>
 				<screenShakeFactor>0</screenShakeFactor>
@@ -139,11 +146,11 @@
 		<xpath>Defs/ThingDef[defName="Weapon_GrenadeTox"]/comps</xpath>
 		<value>
 			<comps>
-			  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-				<explosiveRadius>2.9</explosiveRadius>
-				<explosiveDamageType>ToxGas</explosiveDamageType>
-				<postExplosionGasType>ToxGas</postExplosionGasType>
-			  </li>
+				<li Class="CombatExtended.CompProperties_ExplosiveCE">
+					<explosiveRadius>2.9</explosiveRadius>
+					<explosiveDamageType>ToxGas</explosiveDamageType>
+					<postExplosionGasType>ToxGas</postExplosionGasType>
+				</li>
 			</comps>
 		</value>
 	</Operation>
@@ -155,14 +162,13 @@
 			<Bulk>1.05</Bulk>
 			<MarketValue>10.15</MarketValue>
 			<RangedWeapon_Cooldown>1</RangedWeapon_Cooldown>
-			<SightsEfficiency>0.65</SightsEfficiency>
+			<SightsEfficiency>1.0</SightsEfficiency>
 		</statBases>
 		<Properties>
 			<label>throw tox grenade</label>
 			<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
 			<range>10</range>
-			<minRange>3</minRange>
 			<warmupTime>0.8</warmupTime>
 			<noiseRadius>4</noiseRadius>
 			<ai_IsBuildingDestroyer>false</ai_IsBuildingDestroyer>

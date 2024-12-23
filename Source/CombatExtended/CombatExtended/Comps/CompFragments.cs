@@ -30,6 +30,10 @@ namespace CombatExtended
 
         public static IEnumerator FragRoutine(Vector3 pos, Map map, float height, Thing instigator, ThingDefCountClass frag, float fragSpeedFactor, float fragShadowChance, FloatRange fragAngleRange, FloatRange fragXZAngleRange, float minCollisionDistance = 0f, bool canTargetSelf = true)
         {
+            if (height < 0.001f)
+            {
+                height = 0.001f;
+            }
             var cell = pos.ToIntVec3();
             var exactOrigin = new Vector2(pos.x, pos.z);
 
@@ -48,7 +52,6 @@ namespace CombatExtended
 
                 projectile.canTargetSelf = canTargetSelf;
                 projectile.minCollisionDistance = minCollisionDistance;
-                projectile.castShadow = (Rand.Value < fragShadowChance);
                 projectile.logMisses = false;
                 float elevAngle = Mathf.Asin(fragAngleSinRange.RandomInRange);
 
@@ -62,6 +65,8 @@ namespace CombatExtended
                     fragSpeedFactor * projectile.def.projectile.speed,
                     projectile
                 );
+
+                projectile.castShadow = (Rand.Value < fragShadowChance); // moved after Launch due to it assigning shadow
 
                 fragSpawnedInTick++;
                 if (fragSpawnedInTick >= fragPerTick)
@@ -95,7 +100,7 @@ namespace CombatExtended
                 FloatRange fragXZAngleRange;
                 if (parent is ProjectileCE projCE)
                 {
-                    height = projCE.Height;
+                    height = projCE.ExactPosition.y;
                     fragXZAngleRange = new FloatRange(projCE.shotRotation + PropsCE.fragXZAngleRange.min, projCE.shotRotation + PropsCE.fragXZAngleRange.max);
                 }
                 else

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -14,7 +14,7 @@
 		<defName>AmmoSet_30x113mmB</defName>
 		<label>30x113mmB</label>
 		<ammoTypes>
-			<Ammo_30x113mmB_AP>Bullet_30x113mmB_AP</Ammo_30x113mmB_AP>	
+			<Ammo_30x113mmB_AP>Bullet_30x113mmB_AP</Ammo_30x113mmB_AP>
 			<Ammo_30x113mmB_Incendiary>Bullet_30x113mmB_Incendiary</Ammo_30x113mmB_Incendiary>
 			<Ammo_30x113mmB_HE>Bullet_30x113mmB_HE</Ammo_30x113mmB_HE>
 			<Ammo_30x113mmB_Sabot>Bullet_30x113mmB_Sabot</Ammo_30x113mmB_Sabot>
@@ -42,7 +42,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
 		<defName>Ammo_30x113mmB_AP</defName>
-		<label>30x113mmB cartridge (AP)</label>
+		<label>30x113mmB (AP)</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -56,7 +56,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
 		<defName>Ammo_30x113mmB_Incendiary</defName>
-		<label>30x113mmB cartridge (AP-I)</label>
+		<label>30x113mmB (AP-I)</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/Incendiary</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -70,13 +70,13 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo30x113mmBBase">
 		<defName>Ammo_30x113mmB_HE</defName>
-		<label>30x113mmB cartridge (AP-HE)</label>
+		<label>30x113mmB (AP-HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>4.61</MarketValue>
+			<MarketValue>3.97</MarketValue>
 		</statBases>
 		<ammoClass>ExplosiveAP</ammoClass>
 		<cookOffProjectile>Bullet_30x113mmB_HE</cookOffProjectile>
@@ -84,7 +84,7 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Ammo20x102mmNATOBase">
 		<defName>Ammo_30x113mmB_Sabot</defName>
-		<label>30x113mmB cartridge (Sabot)</label>
+		<label>30x113mmB (Sabot)</label>
 		<graphicData>
 			<texPath>Things/Ammo/HighCaliber/Sabot</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
@@ -106,8 +106,10 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageDef>Bullet</damageDef>
-			<speed>155</speed>
+			<speed>147</speed>
 			<dropsCasings>true</dropsCasings>
+			<casingMoteDefname>Fleck_RifleAmmoCasings_HighCal</casingMoteDefname>
+			<casingFilthDefname>Filth_RifleAmmoCasings_HighCal</casingFilthDefname>
 		</projectile>
 	</ThingDef>
 
@@ -131,7 +133,7 @@
 			<secondaryDamage>
 				<li>
 					<def>Flame_Secondary</def>
-					<amount>37</amount>
+					<amount>42</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -147,7 +149,7 @@
 			<secondaryDamage>
 				<li>
 					<def>Bomb_Secondary</def>
-					<amount>57</amount>
+					<amount>58</amount>
 				</li>
 			</secondaryDamage>
 		</projectile>
@@ -160,7 +162,7 @@
 			<damageAmountBase>57</damageAmountBase>
 			<armorPenetrationSharp>70</armorPenetrationSharp>
 			<armorPenetrationBlunt>2125.56</armorPenetrationBlunt>
-			<speed>233</speed>
+			<speed>200</speed>
 		</projectile>
 	</ThingDef>
 

@@ -23,11 +23,6 @@ namespace CombatExtended.Compatibility
             isMultiplayerActive = true;
         }
 
-        public IEnumerable<string> GetCompatList()
-        {
-            yield return "MultiplayerCompat";
-        }
-
         public static bool InMultiplayer
         {
             get
@@ -36,6 +31,19 @@ namespace CombatExtended.Compatibility
                 {
                     return _inMultiplayer();
                 }
+                return false;
+            }
+        }
+
+        public static bool IsExecutingCommands
+        {
+            get
+            {
+                if (isMultiplayerActive)
+                {
+                    return _isExecutingCommands();
+                }
+
                 return false;
             }
         }
@@ -52,13 +60,16 @@ namespace CombatExtended.Compatibility
             }
         }
 
-        public static void registerCallbacks(Func<bool> inMP, Func<bool> iecibs)
+        public static void registerCallbacks(Func<bool> inMP, Func<bool> iec, Func<bool> iecibs)
         {
             _inMultiplayer = inMP;
+            _isExecutingCommands = iec;
             _isExecutingCommandsIssuedBySelf = iecibs;
         }
 
         private static Func<bool> _inMultiplayer = null;
+
+        private static Func<bool> _isExecutingCommands = null;
 
         private static Func<bool> _isExecutingCommandsIssuedBySelf = null;
 

@@ -13,6 +13,11 @@ namespace CombatExtended
         private const int SCAN_COOLDOWN = 300;
         private const int MAX_SCAN_RADIUS = 150;
 
+        static WorkGiver_ModifyWeapon()
+        {
+            CacheClearComponent.AddClearCacheAction(() => _throttleByPawn.Clear());
+        }
+
         /// <summary>
         /// Return the priority for a potential weapon to modify.
         /// </summary>
@@ -128,7 +133,7 @@ namespace CombatExtended
             }
             AttachmentDef attachmentDef;
             // get the crafting bench we are going to use for crafting
-            Building bench = pawn.Map.listerBuildings.AllBuildingsColonistOfDef(CE_BuildingDefOf.GunsmithingBench)
+            Building bench = pawn.Map.listerBuildings.AllBuildingsColonistOfDef(CE_ThingDefOf.GunsmithingBench)
                              .FirstOrFallback(b => pawn.CanReserveAndReach(b, PathEndMode.InteractionCell, Danger.Deadly, 1, 1), null);
             if (bench == null)
             {
@@ -168,7 +173,7 @@ namespace CombatExtended
         /// <returns>Wether any benches exists in this map</returns>
         private static bool ShouldSkipMap(Map map)
         {
-            return map != null && map.listerThings.ThingsOfDef(CE_BuildingDefOf.GunsmithingBench).Count == 0;
+            return map != null && map.listerThings.ThingsOfDef(CE_ThingDefOf.GunsmithingBench).Count == 0;
         }
 
         /// <summary>

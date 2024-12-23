@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
 	<!-- ========== Base Insect ========== -->
@@ -8,6 +8,28 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>QuadrupedLow</bodyShape>
+			</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[@Name="BaseInsect"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.25</ArmorRating_Sharp>
+						<parts>
+							<li>InsectLeg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.25</ArmorRating_Blunt>
+						<parts>
+							<li>InsectLeg</li>
+						</parts>
+					</li>
+				</stats>
 			</li>
 		</value>
 	</Operation>
@@ -67,10 +89,26 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Megascarab"]/race/baseHealthScale</xpath>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Megascarab"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Megascarab"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Megascarab"]/comps</xpath>
 		<value>
-			<baseHealthScale>0.3</baseHealthScale>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>150</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
@@ -141,10 +179,26 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Spelopede"]/race/baseHealthScale</xpath>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Spelopede"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Spelopede"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Spelopede"]/comps</xpath>
 		<value>
-			<baseHealthScale>1.2</baseHealthScale>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>625</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
@@ -215,12 +269,27 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Megaspider"]/race/baseHealthScale</xpath>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="Megaspider"]/comps</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="Megaspider"]</xpath>
+			<value>
+				<comps />
+			</value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Megaspider"]/comps</xpath>
 		<value>
-			<baseHealthScale>1.8</baseHealthScale>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>925</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>5</RegenValue>
+				<MinArmorPct>0.25</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
 </Patch>
-

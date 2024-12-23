@@ -69,31 +69,6 @@ namespace CombatExtended
         {
             get
             {
-                if (_targetedByTick != GenTicks.TicksGame || _targetedByTick == -1)
-                {
-                    _targetedByTick = GenTicks.TicksGame;
-                    _targetedByCache.Clear();
-
-                    Job job;
-                    for (int i = 0; i < targetedBy.Count; i++)
-                    {
-                        try
-                        {
-                            Verse.WeakReference<Pawn> reference = targetedBy[i];
-                            Pawn pawn;
-                            if (reference.SafeGetIsAlive() && (job = (pawn = (Pawn)reference.SafeGetTarget())?.jobs.curJob) != null && (pawn?.Spawned ?? false))
-                            {
-                                if (job.AnyTargetIs(parent))
-                                {
-                                    _targetedByCache.Add(pawn);
-                                }
-                            }
-                        }
-                        catch
-                        {
-                        }
-                    }
-                }
                 return _targetedByCache;
             }
         }
@@ -131,6 +106,8 @@ namespace CombatExtended
             }
         }
 
+        public bool Active => (!SelPawn.mutant?.HasTurned ?? true) && !SelPawn.Crawling;
+
         private readonly TargetIndex[] _targetIndices = new TargetIndex[]
         {
             TargetIndex.A,
@@ -141,7 +118,7 @@ namespace CombatExtended
         public override void CompTick()
         {
             base.CompTick();
-            if (parent.IsHashIntervalTick(120))
+            if (parent.IsHashIntervalTick(120) && Active)
             {
                 /*
                  * Clear the cache if it's very outdated to allow GC to take over
@@ -221,6 +198,10 @@ namespace CombatExtended
         public override void CompTickRare()
         {
             base.CompTickRare();
+            if (!Active)
+            {
+                return;
+            }
             TryGiveTacticalJobs();
             if (_counter++ % 2 == 0)
             {
@@ -284,15 +265,18 @@ namespace CombatExtended
 
         public void Notify_BulletImpactNearby()
         {
-            foreach (ICompTactics comp in TacticalComps)
+            if (Active)
             {
-                try
+                foreach (ICompTactics comp in TacticalComps)
                 {
-                    comp.Notify_BulletImpactNearBy();
-                }
-                catch (Exception er)
-                {
-                    Log.Error($"CE: Error running Notify_BulletImpactNearBy {comp.GetType()} with error {er}");
+                    try
+                    {
+                        comp.Notify_BulletImpactNearBy();
+                    }
+                    catch (Exception er)
+                    {
+                        Log.Error($"CE: Error running Notify_BulletImpactNearBy {comp.GetType()} with error {er}");
+                    }
                 }
             }
         }

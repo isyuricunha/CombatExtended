@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -40,13 +40,13 @@
 
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="15cmNebelwerferBase">
 		<defName>Ammo_15cmNebelwerfer_HE</defName>
-		<label>15cm Nebelwerfer Rocket (HE)</label>
+		<label>15cm Nebelwerfer rocket (HE)</label>
 		<graphicData>
 			<texPath>Things/Ammo/Cannon/15cmNbW</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>298.27</MarketValue>
+			<MarketValue>283.35</MarketValue>
 			<Mass>31.8</Mass>
 			<Bulk>57.59</Bulk>
 		</statBases>
@@ -59,7 +59,7 @@
 	<ThingDef Class="CombatExtended.AmmoDef" ParentName="Base130mmType63">
 		<defName>Bullet_15cmNebelwerfer_HE</defName>
 		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		<label>15cm Nebelwerfer Rocket (HE)</label>
+		<label>15cm Nebelwerfer rocket (HE)</label>
 		<graphicData>
 			<texPath>Things/Projectile/Rocket/15cm_NbW</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
@@ -70,6 +70,11 @@
 			<damageAmountBase>228</damageAmountBase>
 			<explosionRadius>3.5</explosionRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<shellingProps>
+				<tilesPerTick>0.07</tilesPerTick>
+				<range>16</range>
+				<damage>0.045</damage>
+			</shellingProps>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
@@ -83,11 +88,11 @@
 
 	<!-- ==================== Recipes ========================== -->
 
-	<RecipeDef ParentName="AmmoRecipeBase">
+	<RecipeDef ParentName="CannonAmmoRecipeBase">
 		<defName>MakeAmmo_15cmNebelwerfer_HE</defName>
-		<label>make 15cm Nebelwerfer HE rocket</label>
-		<description>Craft a 15cm Nebelwerfer HE rockets.</description>
-		<jobString>Making 15cm Nebelwerfer HE rockets.</jobString>
+		<label>make 15cm Nebelwerfer (HE) rockets x6</label>
+		<description>Craft 6 15cm Nebelwerfer (HE) rockets.</description>
+		<jobString>Making 15cm Nebelwerfer (HE) rockets.</jobString>
 		<workAmount>44600</workAmount>
 		<ingredients>
 			<li>

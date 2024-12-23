@@ -29,6 +29,7 @@ namespace CombatExtended
             if (def.projectile is ProjectilePropertiesCE props)
             {
                 armingDelay = props.armingDelay;
+                this.castShadow = props.castShadow;
             }
             if (distance > 0)
             {
@@ -54,8 +55,8 @@ namespace CombatExtended
             this.shotHeight = shotHeight;
             this.shotRotation = shotRotation;
             this.shotSpeed = Math.Max(shotSpeed, def.projectile.speed);
+            this.ticksToTruePosition = (def.projectile as ProjectilePropertiesCE).TickToTruePos;
             Launch(launcher, origin, equipment);
-            this.ticksToImpact = IntTicksToImpact;
         }
 
         public override void Tick()

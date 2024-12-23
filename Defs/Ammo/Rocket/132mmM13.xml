@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -46,7 +46,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>250</MarketValue>
+			<MarketValue>237.5</MarketValue>
 			<Mass>43</Mass>
 			<Bulk>59.53</Bulk>
 		</statBases>
@@ -65,11 +65,17 @@
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>70</speed>
+			<speed>81</speed>
 			<damageDef>Bomb</damageDef>
 			<damageAmountBase>337</damageAmountBase>
 			<explosionRadius>4</explosionRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			<shellingProps>
+				<iconPath>Things/WorldObjects/Munitions/Rocket</iconPath>
+				<tilesPerTick>0.35</tilesPerTick>
+				<range>20</range>
+				<damage>0.23</damage>
+			</shellingProps>
 		</projectile>
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
@@ -78,6 +84,33 @@
 					<Fragment_Small>80</Fragment_Small>
 				</fragments>
 			</li>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<scale>1.5</scale>
+						<cutoffTickRange>25~60</cutoffTickRange>
+						<originOffset>0.4</originOffset>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>1</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>3</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<scale>2</scale>
+						<flecksPerEmission>1</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
 		</comps>
 	</ThingDef>
 
@@ -85,9 +118,9 @@
 
 	<RecipeDef ParentName="AmmoRecipeBase">
 		<defName>MakeAmmo_132mmM13_HE</defName>
-		<label>make 4x 132mm M13 HE rocket</label>
-		<description>Craft 4x 132mm M13 HE rockets.</description>
-		<jobString>Making 132mm M13 HE rockets.</jobString>
+		<label>make 4x 132mm M13 (HE) rocket</label>
+		<description>Craft 4x 132mm M13 (HE) rockets.</description>
+		<jobString>Making 132mm M13 (HE) rockets.</jobString>
 		<workAmount>48400</workAmount>
 		<ingredients>
 			<li>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/VFECore.Abilities.AbilityDef[defName="OuterRim_DroidJetpackJump"]</xpath>
+		<value>
+			<range>20</range>
+		</value>
+	</Operation>
+
+</Patch>

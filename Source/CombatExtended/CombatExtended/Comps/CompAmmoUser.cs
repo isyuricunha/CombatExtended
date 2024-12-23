@@ -62,6 +62,23 @@ namespace CombatExtended
                 return (int)parent.GetStatValue(CE_StatDefOf.MagazineCapacity);
             }
         }
+
+        public int CurAmmoCount
+        {
+            get
+            {
+                return currentAmmoInt.ammoCount;
+            }
+        }
+
+        public int MagAmmoCount
+        {
+            get
+            {
+                return MagSize / CurAmmoCount;
+            }
+        }
+
         public int MagSizeOverride
         {
             get
@@ -109,11 +126,13 @@ namespace CombatExtended
             }
         }
         public bool IsEquippedGun => Wielder != null;
+
+        GunDrawExtension gunDrawExt => parent.def.GetModExtension<GunDrawExtension>();
         public Pawn Holder
         {
             get
             {
-                return Wielder ?? (CompEquippable.parent.ParentHolder as Pawn_InventoryTracker)?.pawn;
+                return Wielder ?? (CompEquippable?.parent.ParentHolder as Pawn_InventoryTracker)?.pawn;
             }
         }
         public bool UseAmmo
@@ -318,19 +337,39 @@ namespace CombatExtended
             }
         }
 
-        public bool Notify_ShotFired()
+
+        /// <summary>
+        /// <para>Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam). </para>
+        /// <para>Has an optional argument for the amount of ammo to consume per shot, which defaults to 1; this caters for special cases such as different sci-fi weapons using up different amounts of the same energy cell ammo type per shot, or a double-barrelled shotgun that fires both cartridges at the same time (projectile treated as a single, more powerful bullet)</para>
+        /// </summary>
+        public void Notify_ShotFired(int ammoConsumedPerShot = 1)
         {
-            if (ammoToBeDeleted != null)
+            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
+
+            if (!IsEquippedGun && turret == null)
             {
-                ammoToBeDeleted.Destroy();
-                ammoToBeDeleted = null;
-                CompInventory.UpdateInventory();
-                if (!HasAmmoOrMagazine)
-                {
-                    return false;
-                }
+                Log.Error(parent.ToString() + " tried reducing its ammo count without a wielder");
             }
-            return true;
+
+            // Mag-less weapons feed directly from inventory
+            if (!HasMagazine)
+            {
+                if (ammoToBeDeleted != null)
+                {
+                    ammoToBeDeleted.Destroy();
+                    ammoToBeDeleted = null;
+                    CompInventory.UpdateInventory();
+                }
+
+                return;
+            }
+
+            if (curMagCountInt <= 0)
+            {
+                Log.Error($"{parent} tried reducing its ammo count when already empty");
+            }
+            // Reduce ammo count and update inventory
+            CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
         }
 
         public bool Notify_PostShotFired()
@@ -344,64 +383,45 @@ namespace CombatExtended
         }
 
         /// <summary>
-        /// <para>Reduces ammo count and updates inventory if necessary, call this whenever ammo is consumed by the gun (e.g. firing a shot, clearing a jam). </para>
-        /// <para>Has an optional argument for the amount of ammo to consume per shot, which defaults to 1; this caters for special cases such as different sci-fi weapons using up different amounts of the same energy cell ammo type per shot, or a double-barrelled shotgun that fires both cartridges at the same time (projectile treated as a single, more powerful bullet)</para>
+        /// Check whether ammo is available for firing a shot.
         /// </summary>
-        public bool TryReduceAmmoCount(int ammoConsumedPerShot = 1)
+        /// <remarks>
+        /// For weapons without a magazine, this may update the currently selected ammo type
+        /// if we ran out of the currently selected ammo type but have different, compatible, types
+        /// available in the inventory.
+        /// </remarks>
+        /// <returns></returns>
+        public bool TryPrepareShot()
         {
-            ammoConsumedPerShot = (ammoConsumedPerShot > 0) ? ammoConsumedPerShot : 1;
-
-            if (!IsEquippedGun && turret == null)
+            if (HasMagazine)
             {
-                Log.Error(parent.ToString() + " tried reducing its ammo count without a wielder");
-            }
-
-            // Mag-less weapons feed directly from inventory
-            if (!HasMagazine)
-            {
-                if (UseAmmo)
+                // If magazine is empty, return false
+                if (curMagCountInt <= 0)
                 {
-                    if (!TryFindAmmoInInventory(out ammoToBeDeleted))
-                    {
-                        return false;
-                    }
-                    if (ammoToBeDeleted.def != CurrentAmmo)
-                    {
-                        currentAmmoInt = ammoToBeDeleted.def as AmmoDef;
-                    }
-
-                    if (ammoToBeDeleted.stackCount > 1)
-                    {
-                        ammoToBeDeleted = ammoToBeDeleted.SplitOff(1);
-                    }
+                    CurMagCount = 0;
+                    return false;
                 }
+
                 return true;
             }
-            // If magazine is empty, return false
-            if (curMagCountInt <= 0)
+
+            if (UseAmmo)
             {
-                CurMagCount = 0;
-                return false;
+                if (!TryFindAmmoInInventory(out ammoToBeDeleted))
+                {
+                    return false;
+                }
+                if (ammoToBeDeleted.def != CurrentAmmo)
+                {
+                    currentAmmoInt = ammoToBeDeleted.def as AmmoDef;
+                }
+
+                if (ammoToBeDeleted.stackCount > 1)
+                {
+                    ammoToBeDeleted = ammoToBeDeleted.SplitOff(1);
+                }
             }
-            // Reduce ammo count and update inventory
-            CurMagCount = (curMagCountInt - ammoConsumedPerShot < 0) ? 0 : curMagCountInt - ammoConsumedPerShot;
 
-
-            /*if (curMagCountInt - ammoConsumedPerShot < 0)
-            {
-                curMagCountInt = 0;
-            } else
-            {
-                curMagCountInt = curMagCountInt - ammoConsumedPerShot;
-            }*/
-
-
-            // Original: curMagCountInt--;
-
-            if (curMagCountInt < 0)
-            {
-                TryStartReload();
-            }
             return true;
         }
 
@@ -497,6 +517,18 @@ namespace CombatExtended
             }
         }
 
+        public void DropCasing(int count)
+        {
+            //For revolvers and break actions
+            if (gunDrawExt != null && gunDrawExt.DropCasingWhenReload && CompEquippable?.PrimaryVerb is Verb_ShootCE verbCE && verbCE.VerbPropsCE.ejectsCasings)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    verbCE.ExternalCallDropCasing(i);
+                }
+            }
+        }
+
         // used by both turrets (JobDriver_ReloadTurret) and pawns (JobDriver_Reload).
         /// <summary>
         /// Used to unload the weapon.  Ammo will be dumped to the unloading Pawn's inventory or the ground if insufficient space.  Any ammo that can't be dropped
@@ -534,32 +566,57 @@ namespace CombatExtended
 
             // Add remaining ammo back to inventory
             Thing ammoThing = ThingMaker.MakeThing(currentAmmoInt);
-            ammoThing.stackCount = curMagCountInt;
-            bool doDrop = false;
+            ammoThing.stackCount = curMagCountInt / CurAmmoCount;
 
+            Thing remainderThing = null;
+            int remainder = curMagCountInt % CurAmmoCount;
+            if (remainder > 0)
+            {
+                if (currentAmmoInt.HasComp(typeof(CompApparelReloadable)))
+                {
+                    remainderThing = ThingMaker.MakeThing(currentAmmoInt);
+                    remainderThing.TryGetComp<CompApparelReloadable>().remainingCharges = remainder;
+                }
+                else if (currentAmmoInt.partialUnloadAmmoDef != null)
+                {
+                    remainderThing = ThingMaker.MakeThing(currentAmmoInt.partialUnloadAmmoDef);
+                    remainderThing.stackCount = remainder;
+                }
+            }
+
+            bool doDrop = false;
             if (CompInventory != null)
             {
-                doDrop = (curMagCountInt != CompInventory.container.TryAdd(ammoThing, ammoThing.stackCount));    // TryAdd should report how many ammoThing.stackCount it stored.
+                doDrop = (curMagCountInt / CurAmmoCount) != CompInventory.container.TryAdd(ammoThing, ammoThing.stackCount);    // TryAdd should report how many ammoThing.stackCount it stored.
+                if (remainderThing != null)
+                {
+                    CompInventory.container.TryAdd(remainderThing, remainder);
+                }
             }
             else
             {
                 doDrop = true;    // Inventory was null so no place to shift the ammo besides the ground.
             }
-
             if (doDrop)
             {
                 // NOTE: If we get here from ThingContainer.TryAdd() it will have modified the ammoThing.stackCount to what it couldn't take.
-                //Thing outThing;
+
                 if (!GenThing.TryDropAndSetForbidden(ammoThing, Position, Map, ThingPlaceMode.Near, out droppedAmmo, turret.Faction != Faction.OfPlayer))
                 {
                     Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
                                               "Unable to drop ", ammoThing.LabelCap, " on the ground, thing was destroyed."));
                 }
+                if (remainderThing != null)
+                {
+                    if (!GenThing.TryDropAndSetForbidden(remainderThing, Position, Map, ThingPlaceMode.Near, out _, turret.Faction != Faction.OfPlayer))
+                    {
+                        Log.Warning(String.Concat(this.GetType().Assembly.GetName().Name + " :: " + this.GetType().Name + " :: ",
+                                                  "Unable to drop ", remainderThing.LabelCap, " on the ground, thing was destroyed."));
+                    }
+                }
             }
-
             // don't forget to set the clip to empty...
             CurMagCount = 0;
-
             return true;
         }
 
@@ -605,6 +662,17 @@ namespace CombatExtended
                 }
             }
             CompInventory?.SwitchToNextViableWeapon(!this.parent.def.weaponTags.Contains("NoSwitch"), !Holder.IsColonist, stopJob: false);
+            CompAffectedByFacilities compAffectedByFacilities = turret?.TryGetComp<CompAffectedByFacilities>();
+            if (compAffectedByFacilities != null)
+            {
+                foreach (Thing building in compAffectedByFacilities.linkedFacilities)
+                {
+                    if (building is Building_AutoloaderCE container && container.StartReload(this))
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         public bool TryPickupAmmo()
@@ -654,12 +722,17 @@ namespace CombatExtended
 
         public void LoadAmmo(Thing ammo = null)
         {
-            if (Holder == null && turret == null)
+            Building_AutoloaderCE AutoLoader = null;
+            if (parent is Building_AutoloaderCE)
+            {
+                AutoLoader = parent as Building_AutoloaderCE;
+            }
+
+            if (Holder == null && turret == null && AutoLoader == null)
             {
                 Log.Error(parent.ToString() + " tried loading ammo with no owner");
                 return;
             }
-
             int newMagCount;
             if (UseAmmo)
             {
@@ -680,30 +753,30 @@ namespace CombatExtended
                 }
                 currentAmmoInt = (AmmoDef)ammoThing.def;
 
+                CompApparelReloadable compReloadable = ammoThing.TryGetComp<CompApparelReloadable>();
                 // If there's more ammo in inventory than the weapon can hold, or if there's greater than 1 bullet in inventory if reloading one at a time
-                if ((Props.reloadOneAtATime ? 1 : MagSize) < ammoThing.stackCount)
+                if ((Props.reloadOneAtATime ? 1 : MagAmmoCount) < ammoThing.stackCount)
                 {
                     if (Props.reloadOneAtATime)
                     {
-                        newMagCount = curMagCountInt + 1;
+                        newMagCount = curMagCountInt + (compReloadable?.remainingCharges ?? CurAmmoCount);
                         ammoThing.stackCount--;
                     }
                     else
                     {
                         newMagCount = MagSize;
-                        ammoThing.stackCount -= MagSize;
+                        ammoThing.stackCount -= MagAmmoCount;
                     }
                 }
-
                 // If there's less ammo in inventory than the weapon can hold, or if there's only one bullet left if reloading one at a time
                 else
                 {
                     int newAmmoCount = ammoThing.stackCount;
-                    if (turret != null)     //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
+                    if (turret != null || AutoLoader != null)   //Turrets are reloaded without unloading the mag first (if using same ammo type), to support very high capacity magazines
                     {
                         newAmmoCount += curMagCountInt;
                     }
-                    newMagCount = Props.reloadOneAtATime ? curMagCountInt + 1 : newAmmoCount;
+                    newMagCount = Props.reloadOneAtATime ? curMagCountInt + (compReloadable?.remainingCharges ?? CurAmmoCount) : newAmmoCount;
                     if (ammoFromInventory)
                     {
                         CompInventory.container.Remove(ammoThing);
@@ -722,6 +795,10 @@ namespace CombatExtended
             if (turret != null)
             {
                 turret.SetReloading(false);
+            }
+            if (AutoLoader != null)
+            {
+                AutoLoader.isReloading = false;
             }
             if (parent.def.soundInteract != null)
             {

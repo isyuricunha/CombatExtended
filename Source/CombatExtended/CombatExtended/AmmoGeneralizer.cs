@@ -5,7 +5,6 @@ using System.Text;
 using RimWorld;
 using Verse;
 using UnityEngine;
-
 namespace CombatExtended
 {
     [StaticConstructorOnStartup]
@@ -31,7 +30,8 @@ namespace CombatExtended
                         var sameClass = ammoSource.ammoTypes.Find(x => x.ammo.ammoClass == link.ammo.ammoClass);
                         if (sameClass != null)
                         {
-                            link.projectile.label = ammoSource.label + " bullet " + "(" + link.ammo.ammoClass.labelShort + ")";
+                            string labelNew = (link.projectile.projectile is ProjectilePropertiesCE projPropCE && projPropCE.genericLabelOverride != null) ? projPropCE.genericLabelOverride : ammoSource.label;
+                            link.projectile.label = labelNew + " " + "CE_GenericBullet".Translate() + " (" + link.ammo.ammoClass.labelShort + ")";
                             newAmmos.Add(new AmmoLink { ammo = sameClass.ammo, projectile = link.projectile });
                         }
 
@@ -64,7 +64,7 @@ namespace CombatExtended
 
                 }
 
-                var toFixScenarios = DefDatabase<ScenarioDef>.AllDefs.Where(x => x.scenario.AllParts.Any(y => y.def == ScenPartDefOf.ScatterThingsAnywhere | y.def == ScenPartDefOf.ScatterThingsNearPlayerStart | y.def == ScenPartDefOf.StartingThing_Defined));
+                var toFixScenarios = DefDatabase<ScenarioDef>.AllDefs.Where(x => x.scenario.AllParts.Any(y => y is ScenPart_ScatterThings || y is ScenPart_StartingThing_Defined));
                 foreach (ScenarioDef def in toFixScenarios)
                 {
                     var PartAmmos = def.scenario.AllParts.Where(y => y is ScenPart_StartingThing_Defined
@@ -85,12 +85,12 @@ namespace CombatExtended
                     }
                 }
 
-                var toFixComps = DefDatabase<ThingDef>.AllDefs.Where(x => x.comps?.Any(x => x is CompProperties_Reloadable) ?? false);
+                var toFixComps = DefDatabase<ThingDef>.AllDefs.Where(x => x.comps?.Any(x => x is CompProperties_ApparelReloadable) ?? false);
 
                 foreach (var def in toFixComps)
                 {
 
-                    var compProps = def.GetCompProperties<CompProperties_Reloadable>();
+                    var compProps = def.GetCompProperties<CompProperties_ApparelReloadable>();
                     if (compProps.ammoDef is AmmoDef am)
                     {
                         if (am.AmmoSetDefs.NullOrEmpty())

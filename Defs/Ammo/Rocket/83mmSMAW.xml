@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
 	<ThingCategoryDef>
@@ -15,7 +15,7 @@
 		<label>83mm SMAW Rockets</label>
 		<ammoTypes>
 			<Ammo_83mmSMAW_HEAT>Bullet_83mmSMAW_HEAT</Ammo_83mmSMAW_HEAT>
-			<Ammo_83mmSMAW_HE>Bullet_83mmSMAW_HE</Ammo_83mmSMAW_HE>			
+			<Ammo_83mmSMAW_HE>Bullet_83mmSMAW_HE</Ammo_83mmSMAW_HE>
 			<Ammo_83mmSMAW_Thermobaric>Bullet_83mmSMAW_Thermobaric</Ammo_83mmSMAW_Thermobaric>
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
@@ -47,7 +47,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>67.92</MarketValue>
+			<MarketValue>63.92</MarketValue>
 			<Mass>6.3</Mass>
 			<Bulk>17.91</Bulk>
 		</statBases>
@@ -63,7 +63,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>70.47</MarketValue>
+			<MarketValue>65.47</MarketValue>
 			<Mass>5.9</Mass>
 			<Bulk>15.87</Bulk>
 		</statBases>
@@ -79,7 +79,7 @@
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
-			<MarketValue>119.28</MarketValue>
+			<MarketValue>102.28</MarketValue>
 			<Mass>5.76</Mass>
 			<Bulk>17.27</Bulk>
 		</statBases>
@@ -94,10 +94,37 @@
 			<shaderType>TransparentPostLight</shaderType>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<speed>44</speed>
+			<speed>58</speed>
 			<soundAmbient>RocketPropelledLoop_Small</soundAmbient>
 		</projectile>
-	</ThingDef>	
+		<comps>
+			<li Class="CombatExtended.CompProperties_ProjectileFleck">
+				<FleckDatas>
+					<li>
+						<fleck>Fleck_CERocketFlame</fleck>
+						<emissionsPerTick>7</emissionsPerTick>
+						<flecksPerEmission>3</flecksPerEmission>
+						<scale>1</scale>
+						<cutoffTickRange>25~30</cutoffTickRange>
+						<originOffset>0.4</originOffset>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmokeTrail</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>1</flecksPerEmission>
+					</li>
+					<li>
+						<fleck>Fleck_CERocketSmoke</fleck>
+						<emissionsPerTick>2</emissionsPerTick>
+						<rotation>0~360</rotation>
+						<flecksPerEmission>2</flecksPerEmission>
+						<cutoffTickRange>25~60</cutoffTickRange>
+					</li>
+				</FleckDatas>
+			</li>
+		</comps>
+	</ThingDef>
 
 	<ThingDef ParentName="Base83mmSMAW">
 		<defName>Bullet_83mmSMAW_HEAT</defName>
@@ -113,19 +140,19 @@
 			<armorPenetrationBlunt>39.494</armorPenetrationBlunt>
 		</projectile>
 		<comps>
-		  <li Class="CombatExtended.CompProperties_ExplosiveCE">
-			<damageAmountBase>132</damageAmountBase>
-			<explosiveDamageType>Bomb</explosiveDamageType>
-			<explosiveRadius>1</explosiveRadius>
-			<explosionSound>MortarBomb_Explode</explosionSound>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>132</damageAmountBase>
+				<explosiveDamageType>Bomb</explosiveDamageType>
+				<explosiveRadius>1</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
 				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-		  </li>
-		  <li Class="CombatExtended.CompProperties_Fragments">
-			<fragments>
-				<Fragment_Large>7</Fragment_Large>
-			  <Fragment_Small>38</Fragment_Small>
-			</fragments>
-		  </li>
+			</li>
+			<li Class="CombatExtended.CompProperties_Fragments">
+				<fragments>
+					<Fragment_Large>7</Fragment_Large>
+					<Fragment_Small>10</Fragment_Small>
+				</fragments>
+			</li>
 		</comps>
 	</ThingDef>
 
@@ -146,8 +173,8 @@
 		<comps>
 			<li Class="CombatExtended.CompProperties_Fragments">
 				<fragments>
-				<Fragment_Large>12</Fragment_Large>
-				<Fragment_Small>98</Fragment_Small>
+					<Fragment_Large>12</Fragment_Large>
+					<Fragment_Small>25</Fragment_Small>
 				</fragments>
 			</li>
 		</comps>
@@ -156,15 +183,15 @@
 	<ThingDef ParentName="Base83mmSMAW">
 		<defName>Bullet_83mmSMAW_Thermobaric</defName>
 		<label>83mm SMAW rocket (Thermobaric)</label>
-		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>    
+		<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
 		<graphicData>
 			<texPath>Things/Projectile/Rocket/SMAW_Thermobaric</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
-			<explosionRadius>5</explosionRadius>
 			<damageDef>Thermobaric</damageDef>
 			<damageAmountBase>260</damageAmountBase>
+			<explosionRadius>5</explosionRadius>
 			<soundExplode>MortarBomb_Explode</soundExplode>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
 		</projectile>
@@ -174,9 +201,9 @@
 
 	<RecipeDef ParentName="LauncherAmmoRecipeBase">
 		<defName>MakeAmmo_83mmSMAW_HEAT</defName>
-		<label>make 83mm SMAW HEAT rockets x5</label>
-		<description>Craft 5 83mm SMAW HEAT rockets.</description>
-		<jobString>Making 83mm SMAW HEAT rockets.</jobString>
+		<label>make 83mm SMAW (HEAT) rockets x5</label>
+		<description>Craft 5 83mm SMAW (HEAT) rockets.</description>
+		<jobString>Making 83mm SMAW (HEAT) rockets.</jobString>
 		<workAmount>12000</workAmount>
 		<ingredients>
 			<li>
@@ -218,9 +245,9 @@
 
 	<RecipeDef ParentName="LauncherAmmoRecipeBase">
 		<defName>MakeAmmo_83mmSMAW_HE</defName>
-		<label>make 83mm SMAW HE rockets x5</label>
-		<description>Craft 5 83mm SMAW HE rockets.</description>
-		<jobString>Making 83mm SMAW HE rockets.</jobString>
+		<label>make 83mm SMAW (HE) rockets x5</label>
+		<description>Craft 5 83mm SMAW (HE) rockets.</description>
+		<jobString>Making 83mm SMAW (HE) rockets.</jobString>
 		<workAmount>12400</workAmount>
 		<ingredients>
 			<li>
@@ -262,9 +289,9 @@
 
 	<RecipeDef ParentName="LauncherAmmoRecipeBase">
 		<defName>MakeAmmo_83mmSMAW_Thermobaric</defName>
-		<label>make 83mm SMAW Thermobaric rockets x5</label>
-		<description>Craft 5 83mm SMAW Thermobaric rockets.</description>
-		<jobString>Making 83mm SMAW Thermobaric rockets.</jobString>
+		<label>make 83mm SMAW (Thermobaric) rockets x5</label>
+		<description>Craft 5 83mm SMAW (Thermobaric) rockets.</description>
+		<jobString>Making 83mm SMAW (Thermobaric) rockets.</jobString>
 		<workAmount>21800</workAmount>
 		<ingredients>
 			<li>

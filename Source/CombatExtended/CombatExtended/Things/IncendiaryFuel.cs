@@ -34,14 +34,14 @@ namespace CombatExtended
                 }
                 else
                 {
-                    thing.TryAttachFire(maxFireSize);
+                    thing.TryAttachFire(maxFireSize, null);
                 }
             }
         }
 
         public override void Tick()
         {
-            if (Position.GetThingList(base.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam))
+            if (Position.GetThingList(base.Map).Any(x => x.def == ThingDefOf.Filth_FireFoam) || Position.GetTerrain(base.Map).IsWater)
             {
                 if (!Destroyed)
                 {
@@ -50,7 +50,7 @@ namespace CombatExtended
             }
             else
             {
-                FireUtility.TryStartFireIn(Position, base.Map, maxFireSize);
+                FireUtility.TryStartFireIn(Position, base.Map, maxFireSize, this);
             }
         }
     }
