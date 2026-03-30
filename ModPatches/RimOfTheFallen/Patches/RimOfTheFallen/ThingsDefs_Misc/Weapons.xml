@@ -2,7 +2,7 @@
 <Patch>
 
 	<!-- ========================= -->
-	<!-- One-handed sidearms       -->
+	<!-- One-handed			       -->
 	<!-- ========================= -->
 
 	<!-- Piercer Sword -->
@@ -203,7 +203,7 @@
 
 
 	<!-- ========================= -->
-	<!-- Long and special tier 1   -->
+	<!-- Long and special ;D tier 1   -->
 	<!-- ========================= -->
 
 	<!-- Dutys Chime -->
@@ -270,7 +270,7 @@
 
 
 	<!-- ========================= -->
-	<!-- Mid-tier swords/polearms  -->
+	<!-- Mid swords/polearms  -->
 	<!-- ========================= -->
 
 	<!-- Captains Sword -->
@@ -540,7 +540,7 @@
 
 
 	<!-- ========================= -->
-	<!-- Elite blades              -->
+	<!-- bery good blades              -->
 	<!-- ========================= -->
 
 	<!-- El Destripador Sword -->
@@ -739,12 +739,9 @@
 		</value>
 	</Operation>
 
-
 	<!-- ========================= -->
-	<!-- Ranged                    -->
+	<!--Ranged (I forgot about the dif between MO and CE bolts lols -->
 	<!-- ========================= -->
-
-	<!-- Replace melee tools first -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_SentinelsCrossbow"]/tools</xpath>
@@ -782,8 +779,6 @@
 		</value>
 	</Operation>
 
-	<!-- Remove vanilla accuracy bonus blocks -->
-
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="RofF_SentinelsCrossbow"]/equippedStatOffsets</xpath>
 	</Operation>
@@ -809,7 +804,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Projectile_DankPyonCrossbowBolt_Steel</defaultProjectile>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
 			<warmupTime>0.85</warmupTime>
 			<range>20</range>
 			<soundCast>Bow_Recurve</soundCast>
@@ -817,7 +812,7 @@
 		<AmmoUser>
 			<magazineSize>2</magazineSize>
 			<reloadTime>4.20</reloadTime>
-			<ammoSet>AmmoSet_DankPyonCrossbowBolt</ammoSet>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
@@ -845,7 +840,7 @@
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Projectile_DankPyonCrossbowBolt_Steel</defaultProjectile>
+			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
 			<warmupTime>0.45</warmupTime>
 			<range>18</range>
 			<soundCast>Bow_Recurve</soundCast>
@@ -853,7 +848,7 @@
 		<AmmoUser>
 			<magazineSize>4</magazineSize>
 			<reloadTime>6.20</reloadTime>
-			<ammoSet>AmmoSet_DankPyonCrossbowBolt</ammoSet>
+			<ammoSet>AmmoSet_CrossbowBolt</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>Snapshot</aiAimMode>
@@ -862,5 +857,4 @@
 			<li>CE_XBow</li>
 		</weaponTags>
 	</Operation>
-
 </Patch>
