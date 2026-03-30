@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========================= -->
+	<!-- Infantry Armor            -->
+	<!-- ========================= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/WorkToMake</xpath>
+		<value><WorkToMake>7000</WorkToMake></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/MaxHitPoints</xpath>
+		<value><MaxHitPoints>180</MaxHitPoints></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/Mass</xpath>
+		<value><Mass>5.5</Mass></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/ArmorRating_Sharp</xpath>
+		<value><ArmorRating_Sharp>0.20</ArmorRating_Sharp></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/ArmorRating_Blunt</xpath>
+		<value><ArmorRating_Blunt>0.32</ArmorRating_Blunt></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/ArmorRating_Heat</xpath>
+		<value><ArmorRating_Heat>0.08</ArmorRating_Heat></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/Insulation_Cold</xpath>
+		<value><Insulation_Cold>8</Insulation_Cold></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/Insulation_Heat</xpath>
+		<value><Insulation_Heat>8</Insulation_Heat></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases/EquipDelay</xpath>
+		<value><EquipDelay>6</EquipDelay></value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/statBases</xpath>
+		<value>
+			<Bulk>20</Bulk>
+			<WornBulk>5</WornBulk>
+			<StuffEffectMultiplierArmor>4.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/costStuffCount</xpath>
+		<value><costStuffCount>140</costStuffCount></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.03</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/generateCommonality</xpath>
+		<value><generateCommonality>1.7</generateCommonality></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/thingCategories</xpath>
+		<value>
+			<thingCategories>
+				<li>ApparelArmor</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_InfantryArmor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Waist</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+
+	<!-- ========================= -->
+	<!-- Hallowed Knight Armor     -->
+	<!-- ========================= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/WorkToMake</xpath>
+		<value><WorkToMake>11000</WorkToMake></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/MaxHitPoints</xpath>
+		<value><MaxHitPoints>260</MaxHitPoints></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/Mass</xpath>
+		<value><Mass>9.5</Mass></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/ArmorRating_Sharp</xpath>
+		<value><ArmorRating_Sharp>0.30</ArmorRating_Sharp></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/ArmorRating_Blunt</xpath>
+		<value><ArmorRating_Blunt>0.42</ArmorRating_Blunt></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/ArmorRating_Heat</xpath>
+		<value><ArmorRating_Heat>0.06</ArmorRating_Heat></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/Insulation_Cold</xpath>
+		<value><Insulation_Cold>6</Insulation_Cold></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/Insulation_Heat</xpath>
+		<value><Insulation_Heat>4</Insulation_Heat></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases/EquipDelay</xpath>
+		<value><EquipDelay>7</EquipDelay></value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/statBases</xpath>
+		<value>
+			<Bulk>55</Bulk>
+			<WornBulk>8</WornBulk>
+			<StuffEffectMultiplierArmor>2.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/costStuffCount</xpath>
+		<value><costStuffCount>130</costStuffCount></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.08</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/generateCommonality</xpath>
+		<value><generateCommonality>1.1</generateCommonality></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/thingCategories</xpath>
+		<value>
+			<thingCategories>
+				<li>ApparelArmor</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_HallowedKnight"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Arms</li>
+				<li>Waist</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+
+	<!-- ========================= -->
+	<!-- Sovereign Protector Armor -->
+	<!-- ========================= -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/WorkToMake</xpath>
+		<value><WorkToMake>18500</WorkToMake></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/MaxHitPoints</xpath>
+		<value><MaxHitPoints>360</MaxHitPoints></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/Mass</xpath>
+		<value><Mass>14.5</Mass></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/ArmorRating_Sharp</xpath>
+		<value><ArmorRating_Sharp>0.40</ArmorRating_Sharp></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/ArmorRating_Blunt</xpath>
+		<value><ArmorRating_Blunt>0.58</ArmorRating_Blunt></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/ArmorRating_Heat</xpath>
+		<value><ArmorRating_Heat>0.05</ArmorRating_Heat></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/Insulation_Cold</xpath>
+		<value><Insulation_Cold>5</Insulation_Cold></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/Insulation_Heat</xpath>
+		<value><Insulation_Heat>3</Insulation_Heat></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases/EquipDelay</xpath>
+		<value><EquipDelay>8</EquipDelay></value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/statBases</xpath>
+		<value>
+			<Bulk>95</Bulk>
+			<WornBulk>11</WornBulk>
+			<StuffEffectMultiplierArmor>3.5</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/costStuffCount</xpath>
+		<value><costStuffCount>210</costStuffCount></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.13</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/generateCommonality</xpath>
+		<value><generateCommonality>0.45</generateCommonality></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/thingCategories</xpath>
+		<value>
+			<thingCategories>
+				<li>ApparelArmor</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Hands</li>
+				<li>Waist</li>
+				<li>Arms</li>
+				<li>Legs</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtector"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.70</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.70</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.50</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.50</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+
+	<!-- ========================= -->
+	<!-- Paladin Armor             -->
+	<!-- ========================= -->
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/costList</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]</xpath>
+		<value>
+			<stuffCategories>
+				<li>Metallic</li>
+			</stuffCategories>
+			<costStuffCount>260</costStuffCount>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/WorkToMake</xpath>
+		<value><WorkToMake>30000</WorkToMake></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/MaxHitPoints</xpath>
+		<value><MaxHitPoints>480</MaxHitPoints></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/Mass</xpath>
+		<value><Mass>16.5</Mass></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/ArmorRating_Sharp</xpath>
+		<value><ArmorRating_Sharp>0.48</ArmorRating_Sharp></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/ArmorRating_Blunt</xpath>
+		<value><ArmorRating_Blunt>0.70</ArmorRating_Blunt></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/ArmorRating_Heat</xpath>
+		<value><ArmorRating_Heat>0.08</ArmorRating_Heat></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/Insulation_Cold</xpath>
+		<value><Insulation_Cold>6</Insulation_Cold></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/Insulation_Heat</xpath>
+		<value><Insulation_Heat>4</Insulation_Heat></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases/EquipDelay</xpath>
+		<value><EquipDelay>10</EquipDelay></value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/statBases</xpath>
+		<value>
+			<Bulk>105</Bulk>
+			<WornBulk>13</WornBulk>
+			<StuffEffectMultiplierArmor>4.0</StuffEffectMultiplierArmor>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<MeleeDodgeChance>-0.15</MeleeDodgeChance>
+				<PainShockThreshold>0.15</PainShockThreshold>
+				<SocialImpact>0.30</SocialImpact>
+				<SlaveSuppressionOffset MayRequire="Ludeon.RimWorld.Ideology">0.30</SlaveSuppressionOffset>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/generateCommonality</xpath>
+		<value><generateCommonality>0.08</generateCommonality></value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]/apparel/bodyPartGroups</xpath>
+		<value>
+			<bodyPartGroups>
+				<li>Neck</li>
+				<li>Torso</li>
+				<li>Shoulders</li>
+				<li>Hands</li>
+				<li>Waist</li>
+				<li>Arms</li>
+				<li>Legs</li>
+				<li>Feet</li>
+			</bodyPartGroups>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAddModExtension">
+		<xpath>Defs/ThingDef[defName="RofF_Paladin_Armor"]</xpath>
+		<value>
+			<li Class="CombatExtended.PartialArmorExt">
+				<stats>
+					<li>
+						<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.75</ArmorRating_Blunt>
+						<parts>
+							<li>Neck</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.95</ArmorRating_Sharp>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.95</ArmorRating_Blunt>
+						<parts>
+							<li>Leg</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+						<parts>
+							<li>Arm</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Sharp>0.65</ArmorRating_Sharp>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.65</ArmorRating_Blunt>
+						<parts>
+							<li>Hand</li>
+						</parts>
+					</li>
+				</stats>
+			</li>
+		</value>
+	</Operation>
+
+</Patch>
