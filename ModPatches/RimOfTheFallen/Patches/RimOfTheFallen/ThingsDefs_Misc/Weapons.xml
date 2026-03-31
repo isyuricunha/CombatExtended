@@ -739,6 +739,80 @@
 		</value>
 	</Operation>
 
+	<!-- Paladin Sword -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/statBases</xpath>
+		<value>
+			<Bulk>7</Bulk>
+			<MeleeCounterParryBonus>0.95</MeleeCounterParryBonus>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/equippedStatOffsets</xpath>
+		<value>
+			<equippedStatOffsets>
+				<TradePriceImprovement>-0.2</TradePriceImprovement>
+				<NegotiationAbility>-0.2</NegotiationAbility>
+				<SocialImpact>-0.1</SocialImpact>
+				<MeleeCritChance>1.05</MeleeCritChance>
+				<MeleeParryChance>1.15</MeleeParryChance>
+				<MeleeDodgeChance>0.45</MeleeDodgeChance>
+			</equippedStatOffsets>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>handle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>4</power>
+					<cooldownTime>1.40</cooldownTime>
+					<chanceFactor>0.05</chanceFactor>
+					<armorPenetrationBlunt>0.90</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Handle</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>36</power>
+					<cooldownTime>1.45</cooldownTime>
+					<chanceFactor>0.50</chanceFactor>
+					<armorPenetrationBlunt>1.10</armorPenetrationBlunt>
+					<armorPenetrationSharp>3.00</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>56</power>
+					<cooldownTime>1.95</cooldownTime>
+					<chanceFactor>0.45</chanceFactor>
+					<armorPenetrationBlunt>2.40</armorPenetrationBlunt>
+					<armorPenetrationSharp>1.15</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+
 	<!-- ========================= -->
 	<!--Ranged (I forgot about the dif between MO and CE bolts lols -->
 	<!-- ========================= -->
@@ -779,12 +853,18 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="RofF_SentinelsCrossbow"]/equippedStatOffsets</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="RofF_SentinelsCrossbow"]/equippedStatOffsets</xpath>
+		</match>
 	</Operation>
 
-	<Operation Class="PatchOperationRemove">
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="RofF_MiniHwacha"]/equippedStatOffsets</xpath>
+		<match Class="PatchOperationRemove">
+			<xpath>Defs/ThingDef[defName="RofF_MiniHwacha"]/equippedStatOffsets</xpath>
+		</match>
 	</Operation>
 
 	<!-- Sentinels Crossbow -->
