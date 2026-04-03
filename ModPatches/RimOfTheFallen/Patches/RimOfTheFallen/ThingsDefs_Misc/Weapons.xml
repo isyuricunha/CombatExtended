@@ -201,7 +201,6 @@
 		</value>
 	</Operation>
 
-
 	<!-- ========================= -->
 	<!-- Long and special ;D tier 1   -->
 	<!-- ========================= -->
@@ -267,7 +266,6 @@
 			</tools>
 		</value>
 	</Operation>
-
 
 	<!-- ========================= -->
 	<!-- Mid swords/polearms  -->
@@ -538,7 +536,6 @@
 		</value>
 	</Operation>
 
-
 	<!-- ========================= -->
 	<!-- bery good blades              -->
 	<!-- ========================= -->
@@ -748,17 +745,20 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]</xpath>
+			<value><equippedStatOffsets /></value>
+		</nomatch>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<TradePriceImprovement>-0.2</TradePriceImprovement>
-				<NegotiationAbility>-0.2</NegotiationAbility>
-				<SocialImpact>-0.1</SocialImpact>
-				<MeleeCritChance>1.05</MeleeCritChance>
-				<MeleeParryChance>1.15</MeleeParryChance>
-				<MeleeDodgeChance>0.45</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>1.05</MeleeCritChance>
+			<MeleeParryChance>1.15</MeleeParryChance>
+			<MeleeDodgeChance>0.45</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -812,7 +812,6 @@
 		</value>
 	</Operation>
 
-
 	<!-- ========================= -->
 	<!--Ranged (I forgot about the dif between MO and CE bolts lols -->
 	<!-- ========================= -->
@@ -851,20 +850,6 @@
 				</li>
 			</tools>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="RofF_SentinelsCrossbow"]/equippedStatOffsets</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="RofF_SentinelsCrossbow"]/equippedStatOffsets</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="RofF_MiniHwacha"]/equippedStatOffsets</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="RofF_MiniHwacha"]/equippedStatOffsets</xpath>
-		</match>
 	</Operation>
 
 	<!-- Sentinels Crossbow -->
