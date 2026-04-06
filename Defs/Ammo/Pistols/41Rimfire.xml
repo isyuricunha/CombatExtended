@@ -42,7 +42,7 @@
 		<defName>Ammo_41Rimfire_FMJ</defName>
 		<label>.41 Rimfire (FMJ)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Pistol/FMJ</texPath>
+			<texPath>Things/Ammo/Revolver/StraightWall/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>FullMetalJacket</ammoClass>
@@ -53,7 +53,7 @@
 		<defName>Ammo_41Rimfire_AP</defName>
 		<label>.41 Rimfire (AP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Pistol/AP</texPath>
+			<texPath>Things/Ammo/Revolver/StraightWall/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>ArmorPiercing</ammoClass>
@@ -64,7 +64,7 @@
 		<defName>Ammo_41Rimfire_HP</defName>
 		<label>.41 Rimfire (HP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Pistol/HP</texPath>
+			<texPath>Things/Ammo/Revolver/StraightWall/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>HollowPoint</ammoClass>

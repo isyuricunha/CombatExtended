@@ -45,7 +45,7 @@
 		<defName>Ammo_5656Spencer_FMJ</defName>
 		<label>56-56 Spencer (FMJ)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/FMJ</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>FullMetalJacket</ammoClass>
@@ -56,7 +56,7 @@
 		<defName>Ammo_5656Spencer_AP</defName>
 		<label>.56-56 Spencer (AP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/AP</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>ArmorPiercing</ammoClass>
@@ -67,7 +67,7 @@
 		<defName>Ammo_5656Spencer_HP</defName>
 		<label>.56-56 Spencer (HP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/HP</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>HollowPoint</ammoClass>
@@ -78,7 +78,7 @@
 		<defName>Ammo_5656Spencer_Incendiary</defName>
 		<label>.56-56 Spencer (AP-I)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/Incendiary</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/Incendiary</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>IncendiaryAP</ammoClass>
@@ -90,7 +90,7 @@
 		<defName>Ammo_5656Spencer_HE</defName>
 		<label>.56-56 Spencer (AP-HE)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/HE</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>ExplosiveAP</ammoClass>
@@ -102,7 +102,7 @@
 		<defName>Ammo_5656Spencer_Sabot</defName>
 		<label>.56-56 Spencer (Sabot)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/Sabot</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/Sabot</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
