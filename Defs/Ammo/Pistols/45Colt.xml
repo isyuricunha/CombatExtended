@@ -83,7 +83,7 @@
 		<defName>Ammo_45Colt_FMJ</defName>
 		<label>.45 Colt (FMJ)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Revolver/FMJ</texPath>
+			<texPath>Things/Ammo/Revolver/StraightWall/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>FullMetalJacket</ammoClass>
@@ -94,7 +94,7 @@
 		<defName>Ammo_45Colt_AP</defName>
 		<label>.45 Colt (AP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Revolver/AP</texPath>
+			<texPath>Things/Ammo/Revolver/StraightWall/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>ArmorPiercing</ammoClass>
@@ -105,7 +105,7 @@
 		<defName>Ammo_45Colt_HP</defName>
 		<label>.45 Colt (HP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Revolver/HP</texPath>
+			<texPath>Things/Ammo/Revolver/StraightWall/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>HollowPoint</ammoClass>
