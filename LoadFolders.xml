@@ -590,7 +590,7 @@
 		<li IfModActive="PunkyRoo.SlimeRancher">ModPatches/Slime Rancher</li>
 		<li IfModActive="Ayameduki.HARSolark">ModPatches/Solark Race</li>
 		<li IfModActive="det.spacerarsenal">ModPatches/Spacer Arsenal</li>
-		<li IfModActive="notdvd.spacerpack">ModPatches/Spacer Pack</li>
+		<li IfModActive="notdvd.spacerpack2">ModPatches/Spacer Pack</li>
 		<li IfModActive="LTS.PS">ModPatches/Spacer Shields</li>
 		<li IfModActive="Mlie.SpaceWorms">ModPatches/Spaceworm</li>
 		<li IfModActive="HALO.RSF, Mlie.RimworldSpartanFoundry">ModPatches/Spartan Foundry</li>
