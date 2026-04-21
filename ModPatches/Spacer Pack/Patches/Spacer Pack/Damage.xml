@@ -4,7 +4,7 @@
 	<!-- ================== Damages ================== -->
 
 	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/DamageDef[defName="dvd_SkipBolt"]</xpath>
+		<xpath>Defs/DamageDef[defName="dvd_Skipwave"]</xpath>
 		<attribute>ParentName</attribute>
 		<value>Bullet</value>
 	</Operation>
@@ -27,11 +27,6 @@
 		<value>
 			<armorCategory>Blunt</armorCategory>
 		</value>
-	</Operation>
-
-	<!-- Get rid of the unused vanilla projectile to suppress an error. -->
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="dvd_Projectile_RipperRack"]</xpath>
 	</Operation>
 
 </Patch>

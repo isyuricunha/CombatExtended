@@ -216,6 +216,15 @@
 		</value>
 	</Operation>
 
+	<!-- Get rid of the unused vanilla projectile to suppress an error, idk what error is now adding one for acid just to be safe-->
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="dvd_ProjectileRipperBlast"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Anomaly">
+		<xpath>Defs/ThingDef[defName="dvd_ProjectileGrubGlob"]</xpath>
+	</Operation>
+
 	<!-- Med Pack -->
 
 	<Operation Class="PatchOperationReplace">
