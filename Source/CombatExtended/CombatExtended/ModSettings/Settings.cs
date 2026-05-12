@@ -188,6 +188,8 @@ public class Settings : ModSettings, ISettingsCE
 
     #region Compatibility Modsettings
     public bool patchArmorDamage = true;
+    public bool hitRandomVehicleComponents = false;
+    public bool fragmentsFromVehicles = false;
 
     #endregion
 
