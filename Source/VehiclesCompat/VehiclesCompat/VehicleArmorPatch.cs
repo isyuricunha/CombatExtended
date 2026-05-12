@@ -197,6 +197,10 @@ public static class VehicleArmorPatch
                     cidx += cdirection;
                     continue;
                 }
+                if (Controller.settings.fragmentsFromVehicles)
+                {
+                    SpawnFragments(ref dinfo, direction, stats, cell2);
+                }
             }
         }
 
@@ -209,6 +213,24 @@ public static class VehicleArmorPatch
 
         stats.RecalculateHealthPercent();
 
+    private static void SpawnFragments(ref DamageInfo dinfo, Vector3 direction, VehicleStatHandler stats, IntVec2 cell)
+    {
+        var height = new FloatRange(0, new CollisionVertical(stats.vehicle).Max).RandomInRange;
+        var frontArc = new FloatRange(dinfo.Angle + 90, dinfo.Angle + 270);
+        var map = stats.vehicle.Map;
+        Vector3 spawnOffset = Quaternion.Euler(0, dinfo.Angle, 0) * Vector3.forward * Mathf.Max(1, Mathf.Min(stats.vehicle.RotatedSize.x, stats.vehicle.RotatedSize.z) / 2f);
+        ProjectileCE frag = (ProjectileCE)ThingMaker.MakeThing(CE_ThingDefOf.Fragment_Small, null);
+        GenSpawn.Spawn(frag, new IntVec3(cell.x, 0, cell.z), map);
+        frag.Throw(dinfo.Instigator, spawnOffset, new Vector3(Mathf.Sin(frontArc.RandomInRange * Mathf.Deg2Rad), Mathf.Sin(new FloatRange(-5,5).RandomInRange * Mathf.Deg2Rad), Mathf.Cos(frontArc.RandomInRange * Mathf.Deg2Rad)), stats.vehicle);
+        var baseAmount = frag.DamageAmount;
+        var baseMass = frag.mass;
+        frag.mass = new FloatRange(baseMass, baseMass * 10).RandomInRange;
+        frag.DamageAmount = dinfo.Amount;
+        var damageRatio = dinfo.Amount / baseAmount;
+        var keRatio = damageRatio / (frag.mass / baseMass);
+        var baseVel = frag.velocity;
+        frag.velocity *= Mathf.Sqrt(keRatio);
+        frag.initialSpeed = frag.shotSpeed = frag.velocity.magnitude * GenTicks.TicksPerRealSecond;
     }
 
     public static bool TryPenetrateComponents(VehicleStatHandler stats, ref DamageInfo dinfo, List<VehicleComponent> components, VehicleComponent.VehiclePartDepth hitDepth, StringBuilder report)

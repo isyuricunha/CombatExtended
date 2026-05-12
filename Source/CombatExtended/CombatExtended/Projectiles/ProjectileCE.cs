@@ -107,6 +107,10 @@ public abstract class ProjectileCE : ThingWithComps
 
             return ((float)this.damageAmount) * RemainingKineticEnergyPct;
         }
+        set
+        {
+            damageAmount = value;
+        }
     }
     public virtual float PenetrationAmount
     {
