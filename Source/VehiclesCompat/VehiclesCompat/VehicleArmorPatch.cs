@@ -64,6 +64,45 @@ public static class VehicleArmorPatch
             return;
         }
 
+        var unhittableComponents = new List<VehicleComponent>();
+        float unhittableHP = 0;
+        {
+            var max_x = vehicle.VehicleDef.Size.x;
+            var max_z = vehicle.VehicleDef.Size.z;
+            for (int x = 1; x < max_x - 1; x++)
+            {
+                for (int z = 1; z < max_z - 1; z++)
+                {
+                    IntVec2 innerCell = new IntVec2(x, z);
+                    stats.componentLocations.TryGetValue(innerCell, out List<VehicleComponent> maybeUnhittable);
+                    foreach (var comp in maybeUnhittable)
+                    {
+                        if (comp.Depth != VehicleComponent.VehiclePartDepth.External)
+                        {
+                            continue;
+                        }
+                        bool unhittable = true;
+                        foreach (var cell in comp.props.hitbox.Hitbox)
+                        {
+                            if (cell.x == 0 || cell.x == max_z || cell.z == 0 || cell.z == max_x)
+                            {
+                                unhittable = false;
+                                break;
+                            }
+                        }
+                        if (unhittable)
+                        {
+                            if (Controller.settings.hitRandomVehicleComponents)
+                            {
+                                unhittableComponents.Add(comp);
+                            }
+                            unhittableHP += comp.Health;
+                        }
+                    }
+                }
+            }
+        }
+
         dinfo.SetAmount(damage);
         float maxLength = vehicle.VehicleDef.Size.x + vehicle.VehicleDef.Size.z;
         Vector3 direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * dinfo.Angle) * maxLength, 0, Mathf.Cos(Mathf.Deg2Rad * dinfo.Angle) * maxLength);
@@ -197,6 +236,11 @@ public static class VehicleArmorPatch
                     cidx += cdirection;
                     continue;
                 }
+                if (hcount == 1 && Controller.settings.hitRandomVehicleComponents) // our first time through, never hit anything.
+                {
+                    TryPenetrateComponents(stats, ref dinfo, unhittableComponents, hitDepth, report);
+                    break;
+                }
                 if (Controller.settings.fragmentsFromVehicles)
                 {
                     SpawnFragments(ref dinfo, direction, stats, cell2);
@@ -211,7 +255,29 @@ public static class VehicleArmorPatch
             cell = hitCell
         });
 
+        if (!Controller.settings.hitRandomVehicleComponents)
+        {
+            float current = 0;
+            float total = 0;
+            foreach (VehicleComponent component in stats.components)
+            {
+                current += component.Health;
+                total += component.MaxHealth;
+            }
+            current -= unhittableHP;
+            total -= unhittableHP;
+            if (total < 1)
+            {
+                total = 1;
+            }
+            float pct = (current / total);
+            if (pct < 0.01)
+            {
+                vehicle.Kill(dinfo);
+            }
+        }
         stats.RecalculateHealthPercent();
+    }
 
     private static void SpawnFragments(ref DamageInfo dinfo, Vector3 direction, VehicleStatHandler stats, IntVec2 cell)
     {
@@ -221,7 +287,7 @@ public static class VehicleArmorPatch
         Vector3 spawnOffset = Quaternion.Euler(0, dinfo.Angle, 0) * Vector3.forward * Mathf.Max(1, Mathf.Min(stats.vehicle.RotatedSize.x, stats.vehicle.RotatedSize.z) / 2f);
         ProjectileCE frag = (ProjectileCE)ThingMaker.MakeThing(CE_ThingDefOf.Fragment_Small, null);
         GenSpawn.Spawn(frag, new IntVec3(cell.x, 0, cell.z), map);
-        frag.Throw(dinfo.Instigator, spawnOffset, new Vector3(Mathf.Sin(frontArc.RandomInRange * Mathf.Deg2Rad), Mathf.Sin(new FloatRange(-5,5).RandomInRange * Mathf.Deg2Rad), Mathf.Cos(frontArc.RandomInRange * Mathf.Deg2Rad)), stats.vehicle);
+        frag.Throw(dinfo.Instigator, spawnOffset, new Vector3(Mathf.Sin(frontArc.RandomInRange * Mathf.Deg2Rad), Mathf.Sin(new FloatRange(-5, 5).RandomInRange * Mathf.Deg2Rad), Mathf.Cos(frontArc.RandomInRange * Mathf.Deg2Rad)), stats.vehicle);
         var baseAmount = frag.DamageAmount;
         var baseMass = frag.mass;
         frag.mass = new FloatRange(baseMass, baseMass * 10).RandomInRange;
