@@ -308,6 +308,7 @@ GrimWorld 40,000 - Scattered Sons |
 GrimWorld 40,000 - Talons of the Emperor |
 Gulden Mod  |
 Half Dragons    |
+Halo - Rimworld Auxiliary Combat Armory	|
 HALO: UNSC Armoury |
 Halo UNSC Weapon Pack	|
 Heavy Melee Weapons |
@@ -340,11 +341,11 @@ Kemomimihouse Kz |
 Kenshi Armory |
 Kerberos Protect Gears and Firearms	|
 K.L.K - Styles Apparel Pack	|
-Kijin Race 3.0     	|     
+Kijin Race 3.0     	|
 Kill la Kill Styles Pack    |
 Killzone Concept Armor Set  |
 Kit's Gunpowder Weapons |
-Kit's Industrial Weapons |   
+Kit's Industrial Weapons |
 Kit's Roman Weapons |
 Kit's VFE Weapons |
 Kobolds of the Rim  |
@@ -515,7 +516,7 @@ Rim-Effect: N7	|
 Rimedieval - Medieval Royalty   |
 Rimefeller	|
 Rim-Elves   |
-Rim-Gnoblins	| 
+Rim-Gnoblins	|
 Rim-Hivers!	|
 Rim Flood	|
 Rim-Robots_	|

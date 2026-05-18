@@ -23,6 +23,15 @@
 		<similarTo>AmmoSet_LauncherGrenade</similarTo>
 	</CombatExtended.AmmoSetDef>
 
+	<CombatExtended.AmmoSetDef>
+		<defName>AmmoSet_40x46mmOnlyEMP</defName>
+		<label>40x46mm Grenades</label>
+		<ammoTypes>
+			<Ammo_40x46mmGrenade_EMP>Bullet_40x46mmGrenade_EMP</Ammo_40x46mmGrenade_EMP>
+		</ammoTypes>
+		<similarTo>AmmoSet_LauncherGrenade</similarTo>
+	</CombatExtended.AmmoSetDef>
+
 	<!-- ==================== Ammo ========================== -->
 
 	<ThingDef Class="CombatExtended.AmmoDef" Name="40x46mmGrenadeBase" ParentName="MediumAmmoBase" Abstract="True">
