@@ -3,7 +3,7 @@
 
 	<!-- ========== Neutron ========== -->
 
-	<DamageDef ParentName="BluntBase">
+	<DamageDef ParentName="Bullet">
 		<defName>CE_Neutron</defName>
 		<label>neutron particle</label>
 		<deathMessage>{0} has been irradiated to death.</deathMessage>

@@ -87,18 +87,21 @@
 		</graphicData>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<speed>178</speed>
-			<damageDef>Bomb</damageDef>
+			<damageDef>Flame_Secondary_Incendiary</damageDef>
 			<damageAmountBase>2</damageAmountBase>
 			<explosionRadius>0.5</explosionRadius>
 			<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
-			<secondaryDamage>
-				<li>
-					<def>Flame_Secondary_Incendiary</def>
-					<amount>13</amount>
-				</li>
-			</secondaryDamage>
 			<screenShakeFactor>0</screenShakeFactor>
 		</projectile>
+		<comps>
+			<li Class="CombatExtended.CompProperties_ExplosiveCE">
+				<damageAmountBase>12</damageAmountBase>
+				<explosiveDamageType>EMP</explosiveDamageType>
+				<explosiveRadius>0.5</explosiveRadius>
+				<explosionSound>MortarBomb_Explode</explosionSound>
+				<applyDamageToExplosionCellsNeighbors>true</applyDamageToExplosionCellsNeighbors>
+			</li>
+		</comps>
 	</ThingDef>
 
 	<!-- ==================== Recipes ========================== -->
@@ -366,8 +369,8 @@
 		<defName>Bullet_NeutronStreamer</defName>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>4</damageAmountBase>
-			<armorPenetrationSharp>0.001</armorPenetrationSharp>
-			<armorPenetrationBlunt>30</armorPenetrationBlunt>
+			<armorPenetrationSharp>20</armorPenetrationSharp>
+			<armorPenetrationBlunt>0.01</armorPenetrationBlunt>
 		</projectile>
 	</ThingDef>
 
