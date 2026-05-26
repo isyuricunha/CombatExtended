@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- ========================= -->
-	<!-- One-handed			       -->
-	<!-- ========================= -->
-
 	<!-- Piercer Sword -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_PiercerSword"]/statBases</xpath>
 		<value>
@@ -14,15 +11,33 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_PiercerSword"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_PiercerSword"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_PiercerSword"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_PiercerSword"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.28</MeleeCritChance>
-				<MeleeParryChance>0.45</MeleeParryChance>
-				<MeleeDodgeChance>0.24</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.28</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+			<MeleeDodgeChance>0.24</MeleeDodgeChance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_PiercerSword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_PiercerSword"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -76,6 +91,7 @@
 	</Operation>
 
 	<!-- Knight Axe -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_KnightAxe"]/statBases</xpath>
 		<value>
@@ -84,15 +100,33 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_KnightAxe"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_KnightAxe"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_KnightAxe"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_KnightAxe"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.31</MeleeCritChance>
-				<MeleeParryChance>0.22</MeleeParryChance>
-				<MeleeDodgeChance>0.12</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.31</MeleeCritChance>
+			<MeleeParryChance>0.22</MeleeParryChance>
+			<MeleeDodgeChance>0.12</MeleeDodgeChance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_KnightAxe"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_KnightAxe"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -145,6 +179,7 @@
 	</Operation>
 
 	<!-- Skull Crusher Mace -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_SkullCrusherMace"]/statBases</xpath>
 		<value>
@@ -153,15 +188,33 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_SkullCrusherMace"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_SkullCrusherMace"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_SkullCrusherMace"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_SkullCrusherMace"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.48</MeleeCritChance>
-				<MeleeParryChance>0.24</MeleeParryChance>
-				<MeleeDodgeChance>0.16</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.48</MeleeCritChance>
+			<MeleeParryChance>0.24</MeleeParryChance>
+			<MeleeDodgeChance>0.16</MeleeDodgeChance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_SkullCrusherMace"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_SkullCrusherMace"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -201,11 +254,8 @@
 		</value>
 	</Operation>
 
-	<!-- ========================= -->
-	<!-- Long and special ;D tier 1   -->
-	<!-- ========================= -->
+	<!-- Duty's Chime -->
 
-	<!-- Dutys Chime -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_DutysChime"]/statBases</xpath>
 		<value>
@@ -214,14 +264,22 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_DutysChime"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_DutysChime"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_DutysChime"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_DutysChime"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.40</MeleeCritChance>
-				<MeleeParryChance>0.45</MeleeParryChance>
-				<MeleeDodgeChance>0.12</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.40</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+			<MeleeDodgeChance>0.12</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -267,11 +325,8 @@
 		</value>
 	</Operation>
 
-	<!-- ========================= -->
-	<!-- Mid swords/polearms  -->
-	<!-- ========================= -->
+	<!-- Captain's Sword -->
 
-	<!-- Captains Sword -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_CaptainsSword"]/statBases</xpath>
 		<value>
@@ -280,15 +335,33 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_CaptainsSword"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_CaptainsSword"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_CaptainsSword"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_CaptainsSword"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.42</MeleeCritChance>
-				<MeleeParryChance>0.60</MeleeParryChance>
-				<MeleeDodgeChance>0.28</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.42</MeleeCritChance>
+			<MeleeParryChance>0.60</MeleeParryChance>
+			<MeleeDodgeChance>0.28</MeleeDodgeChance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_CaptainsSword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_CaptainsSword"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -342,6 +415,7 @@
 	</Operation>
 
 	<!-- Claymore Rector -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_ClaymoreRector"]/statBases</xpath>
 		<value>
@@ -350,14 +424,22 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_ClaymoreRector"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_ClaymoreRector"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_ClaymoreRector"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_ClaymoreRector"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.75</MeleeCritChance>
-				<MeleeParryChance>0.45</MeleeParryChance>
-				<MeleeDodgeChance>0.16</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.75</MeleeCritChance>
+			<MeleeParryChance>0.45</MeleeParryChance>
+			<MeleeDodgeChance>0.16</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -405,6 +487,7 @@
 	</Operation>
 
 	<!-- Huntress Spear -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_HuntressSpear"]/statBases</xpath>
 		<value>
@@ -413,14 +496,22 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_HuntressSpear"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_HuntressSpear"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_HuntressSpear"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_HuntressSpear"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.20</MeleeCritChance>
-				<MeleeParryChance>0.55</MeleeParryChance>
-				<MeleeDodgeChance>0.22</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.20</MeleeCritChance>
+			<MeleeParryChance>0.55</MeleeParryChance>
+			<MeleeDodgeChance>0.22</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -467,6 +558,7 @@
 	</Operation>
 
 	<!-- Perdam Falchion -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_PerdamFalchion"]/statBases</xpath>
 		<value>
@@ -475,15 +567,33 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_PerdamFalchion"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_PerdamFalchion"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_PerdamFalchion"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_PerdamFalchion"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.18</MeleeCritChance>
-				<MeleeParryChance>0.30</MeleeParryChance>
-				<MeleeDodgeChance>0.32</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.18</MeleeCritChance>
+			<MeleeParryChance>0.30</MeleeParryChance>
+			<MeleeDodgeChance>0.32</MeleeDodgeChance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_PerdamFalchion"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_PerdamFalchion"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -536,11 +646,8 @@
 		</value>
 	</Operation>
 
-	<!-- ========================= -->
-	<!-- bery good blades              -->
-	<!-- ========================= -->
-
 	<!-- El Destripador Sword -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_El_DestripadorSword"]/statBases</xpath>
 		<value>
@@ -549,14 +656,22 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_El_DestripadorSword"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_El_DestripadorSword"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_El_DestripadorSword"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_El_DestripadorSword"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.95</MeleeCritChance>
-				<MeleeParryChance>0.42</MeleeParryChance>
-				<MeleeDodgeChance>0.14</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.95</MeleeCritChance>
+			<MeleeParryChance>0.42</MeleeParryChance>
+			<MeleeDodgeChance>0.14</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -604,6 +719,7 @@
 	</Operation>
 
 	<!-- Justice Greatsword -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_JusticeGreatsword"]/statBases</xpath>
 		<value>
@@ -612,14 +728,22 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_JusticeGreatsword"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_JusticeGreatsword"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_JusticeGreatsword"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_JusticeGreatsword"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.80</MeleeCritChance>
-				<MeleeParryChance>0.50</MeleeParryChance>
-				<MeleeDodgeChance>0.18</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.80</MeleeCritChance>
+			<MeleeParryChance>0.50</MeleeParryChance>
+			<MeleeDodgeChance>0.18</MeleeDodgeChance>
 		</value>
 	</Operation>
 
@@ -667,6 +791,7 @@
 	</Operation>
 
 	<!-- Shadow Needle -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_ShadowNeedle"]/statBases</xpath>
 		<value>
@@ -675,15 +800,33 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_ShadowNeedle"]/equippedStatOffsets</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_ShadowNeedle"]</xpath>
+			<value>
+				<equippedStatOffsets />
+			</value>
+		</nomatch>
+	</Operation>
+
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_ShadowNeedle"]</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_ShadowNeedle"]/equippedStatOffsets</xpath>
 		<value>
-			<equippedStatOffsets>
-				<MeleeCritChance>0.75</MeleeCritChance>
-				<MeleeParryChance>0.55</MeleeParryChance>
-				<MeleeDodgeChance>0.35</MeleeDodgeChance>
-			</equippedStatOffsets>
+			<MeleeCritChance>0.75</MeleeCritChance>
+			<MeleeParryChance>0.55</MeleeParryChance>
+			<MeleeDodgeChance>0.35</MeleeDodgeChance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_ShadowNeedle"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_ShadowNeedle"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -737,6 +880,7 @@
 	</Operation>
 
 	<!-- Paladin Sword -->
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/statBases</xpath>
 		<value>
@@ -749,7 +893,9 @@
 		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/equippedStatOffsets</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]</xpath>
-			<value><equippedStatOffsets /></value>
+			<value>
+				<equippedStatOffsets />
+			</value>
 		</nomatch>
 	</Operation>
 
@@ -760,6 +906,16 @@
 			<MeleeParryChance>1.15</MeleeParryChance>
 			<MeleeDodgeChance>0.45</MeleeDodgeChance>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]/weaponTags</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/ThingDef[defName="RofF_PaladinSword"]</xpath>
+			<value>
+				<weaponTags />
+			</value>
+		</nomatch>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -812,9 +968,7 @@
 		</value>
 	</Operation>
 
-	<!-- ========================= -->
-	<!--Ranged (I forgot about the dif between MO and CE bolts lols -->
-	<!-- ========================= -->
+	<!-- Sentinels Crossbow -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_SentinelsCrossbow"]/tools</xpath>
@@ -834,6 +988,8 @@
 		</value>
 	</Operation>
 
+	<!-- Mini Hwacha -->
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_MiniHwacha"]/tools</xpath>
 		<value>
@@ -852,7 +1008,6 @@
 		</value>
 	</Operation>
 
-	<!-- Sentinels Crossbow -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RofF_SentinelsCrossbow</defName>
 		<statBases>
@@ -862,13 +1017,9 @@
 			<SightsEfficiency>1</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.70</RangedWeapon_Cooldown>
 		</statBases>
-		<costList>
-			<WoodLog>90</WoodLog>
-			<Steel>75</Steel>
-		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
+			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
 			<warmupTime>0.85</warmupTime>
 			<range>20</range>
@@ -888,7 +1039,6 @@
 		</weaponTags>
 	</Operation>
 
-	<!-- Mini Hwacha -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>RofF_MiniHwacha</defName>
 		<statBases>
@@ -898,13 +1048,9 @@
 			<SightsEfficiency>0.85</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.35</RangedWeapon_Cooldown>
 		</statBases>
-		<costList>
-			<WoodLog>120</WoodLog>
-			<Steel>90</Steel>
-		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-			<hasStandardCommand>True</hasStandardCommand>
+			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
 			<warmupTime>0.45</warmupTime>
 			<range>18</range>
@@ -922,4 +1068,5 @@
 			<li>CE_XBow</li>
 		</weaponTags>
 	</Operation>
+
 </Patch>

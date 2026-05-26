@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
 
-	<!-- ========================= -->
-	<!-- Infantry Helmet           -->
-	<!-- ========================= -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/WorkToMake</xpath>
-		<value><WorkToMake>3500</WorkToMake></value>
-	</Operation>
+	<!-- Infantry Helmet -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/MaxHitPoints</xpath>
-		<value><MaxHitPoints>130</MaxHitPoints></value>
+		<value>
+			<MaxHitPoints>130</MaxHitPoints>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/Mass</xpath>
-		<value><Mass>1.9</Mass></value>
+		<value>
+			<Mass>1.9</Mass>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/ArmorRating_Sharp</xpath>
-		<value><ArmorRating_Sharp>0.20</ArmorRating_Sharp></value>
+		<value>
+			<ArmorRating_Sharp>0.20</ArmorRating_Sharp>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/ArmorRating_Blunt</xpath>
-		<value><ArmorRating_Blunt>0.30</ArmorRating_Blunt></value>
+		<value>
+			<ArmorRating_Blunt>0.30</ArmorRating_Blunt>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/ArmorRating_Heat</xpath>
-		<value><ArmorRating_Heat>0.05</ArmorRating_Heat></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/Insulation_Cold</xpath>
-		<value><Insulation_Cold>2</Insulation_Cold></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/Insulation_Heat</xpath>
-		<value><Insulation_Heat>1</Insulation_Heat></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/statBases/EquipDelay</xpath>
-		<value><EquipDelay>4</EquipDelay></value>
+		<value>
+			<ArmorRating_Heat>0.05</ArmorRating_Heat>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -59,16 +47,13 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/costStuffCount</xpath>
-		<value><costStuffCount>45</costStuffCount></value>
-	</Operation>
-
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/equippedStatOffsets</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]</xpath>
-			<value><equippedStatOffsets /></value>
+			<value>
+				<equippedStatOffsets />
+			</value>
 		</nomatch>
 	</Operation>
 
@@ -90,53 +75,41 @@
 		</value>
 	</Operation>
 
-	<!-- ========================= -->
-	<!-- Hallowed Knight Helmet    -->
-	<!-- ========================= -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/WorkToMake</xpath>
-		<value><WorkToMake>6000</WorkToMake></value>
-	</Operation>
+	<!-- Hallowed Knight Helmet -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/MaxHitPoints</xpath>
-		<value><MaxHitPoints>180</MaxHitPoints></value>
+		<value>
+			<MaxHitPoints>180</MaxHitPoints>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/Mass</xpath>
-		<value><Mass>2.6</Mass></value>
+		<value>
+			<Mass>2.6</Mass>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/ArmorRating_Sharp</xpath>
-		<value><ArmorRating_Sharp>0.30</ArmorRating_Sharp></value>
+		<value>
+			<ArmorRating_Sharp>0.30</ArmorRating_Sharp>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/ArmorRating_Blunt</xpath>
-		<value><ArmorRating_Blunt>0.42</ArmorRating_Blunt></value>
+		<value>
+			<ArmorRating_Blunt>0.42</ArmorRating_Blunt>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/ArmorRating_Heat</xpath>
-		<value><ArmorRating_Heat>0.06</ArmorRating_Heat></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/Insulation_Cold</xpath>
-		<value><Insulation_Cold>2</Insulation_Cold></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/Insulation_Heat</xpath>
-		<value><Insulation_Heat>1</Insulation_Heat></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/statBases/EquipDelay</xpath>
-		<value><EquipDelay>5</EquipDelay></value>
+		<value>
+			<ArmorRating_Heat>0.06</ArmorRating_Heat>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -148,16 +121,13 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/costStuffCount</xpath>
-		<value><costStuffCount>60</costStuffCount></value>
-	</Operation>
-
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/equippedStatOffsets</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]</xpath>
-			<value><equippedStatOffsets /></value>
+			<value>
+				<equippedStatOffsets />
+			</value>
 		</nomatch>
 	</Operation>
 
@@ -183,66 +153,58 @@
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
-					<li>
-						<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-						<parts><li>Nose</li></parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
-						<parts><li>Nose</li></parts>
-					</li>
+				<li>
+					<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
+					<parts>
+						<li>Nose</li>
+					</parts>
+				</li>
+				<li>
+					<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
+					<parts>
+						<li>Nose</li>
+					</parts>
+				</li>
 				</stats>
 			</li>
 		</value>
 	</Operation>
 
-	<!-- ========================= -->
-	<!-- Sovereign Protector Helmet-->
-	<!-- ========================= -->
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/WorkToMake</xpath>
-		<value><WorkToMake>9500</WorkToMake></value>
-	</Operation>
+	<!-- Sovereign Protector Helmet -->
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/MaxHitPoints</xpath>
-		<value><MaxHitPoints>240</MaxHitPoints></value>
+		<value>
+			<MaxHitPoints>240</MaxHitPoints>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/Mass</xpath>
-		<value><Mass>3.1</Mass></value>
+		<value>
+			<Mass>3.1</Mass>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/ArmorRating_Sharp</xpath>
-		<value><ArmorRating_Sharp>0.40</ArmorRating_Sharp></value>
+		<value>
+			<ArmorRating_Sharp>0.40</ArmorRating_Sharp>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/ArmorRating_Blunt</xpath>
-		<value><ArmorRating_Blunt>0.56</ArmorRating_Blunt></value>
+		<value>
+			<ArmorRating_Blunt>0.56</ArmorRating_Blunt>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/ArmorRating_Heat</xpath>
-		<value><ArmorRating_Heat>0.07</ArmorRating_Heat></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/Insulation_Cold</xpath>
-		<value><Insulation_Cold>2</Insulation_Cold></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/Insulation_Heat</xpath>
-		<value><Insulation_Heat>1</Insulation_Heat></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/statBases/EquipDelay</xpath>
-		<value><EquipDelay>6</EquipDelay></value>
+		<value>
+			<ArmorRating_Heat>0.07</ArmorRating_Heat>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -254,16 +216,13 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/costStuffCount</xpath>
-		<value><costStuffCount>85</costStuffCount></value>
-	</Operation>
-
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/equippedStatOffsets</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]</xpath>
-			<value><equippedStatOffsets /></value>
+			<value>
+				<equippedStatOffsets />
+			</value>
 		</nomatch>
 	</Operation>
 
@@ -284,15 +243,11 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/apparel/layers/li[text()="StrappedHead"]</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/apparel/layers</xpath>
-			<order>Prepend</order>
-			<value>
-				<li>StrappedHead</li>
-			</value>
-		</nomatch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -300,94 +255,60 @@
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
-					<li>
-						<ArmorRating_Sharp>1.00</ArmorRating_Sharp>
-						<parts><li>Eye</li><li>Nose</li></parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>1.00</ArmorRating_Blunt>
-						<parts><li>Eye</li><li>Nose</li></parts>
-					</li>
+				<li>
+					<ArmorRating_Sharp>1.00</ArmorRating_Sharp>
+					<parts>
+						<li>Eye</li>
+						<li>Nose</li>
+					</parts>
+				</li>
+				<li>
+					<ArmorRating_Blunt>1.00</ArmorRating_Blunt>
+					<parts>
+						<li>Eye</li>
+						<li>Nose</li>
+					</parts>
+				</li>
 				</stats>
 			</li>
 		</value>
 	</Operation>
 
-	<!-- ========================= -->
-	<!-- Paladin Helmet            -->
-	<!-- ========================= -->
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/costList</xpath>
-		<match Class="PatchOperationRemove">
-			<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/costList</xpath>
-		</match>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/stuffCategories</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]</xpath>
-			<value>
-				<stuffCategories>
-					<li>Metallic</li>
-				</stuffCategories>
-			</value>
-		</nomatch>
-	</Operation>
+	<!-- Paladin Helmet -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/stuffCategories</xpath>
+		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/MaxHitPoints</xpath>
 		<value>
-			<stuffCategories>
-				<li>Metallic</li>
-			</stuffCategories>
+			<MaxHitPoints>300</MaxHitPoints>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/WorkToMake</xpath>
-		<value><WorkToMake>14000</WorkToMake></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/MaxHitPoints</xpath>
-		<value><MaxHitPoints>300</MaxHitPoints></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/Mass</xpath>
-		<value><Mass>3.4</Mass></value>
+		<value>
+			<Mass>3.4</Mass>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/ArmorRating_Sharp</xpath>
-		<value><ArmorRating_Sharp>0.52</ArmorRating_Sharp></value>
+		<value>
+			<ArmorRating_Sharp>0.52</ArmorRating_Sharp>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/ArmorRating_Blunt</xpath>
-		<value><ArmorRating_Blunt>0.72</ArmorRating_Blunt></value>
+		<value>
+			<ArmorRating_Blunt>0.72</ArmorRating_Blunt>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/ArmorRating_Heat</xpath>
-		<value><ArmorRating_Heat>0.08</ArmorRating_Heat></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/Insulation_Cold</xpath>
-		<value><Insulation_Cold>2</Insulation_Cold></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/Insulation_Heat</xpath>
-		<value><Insulation_Heat>1</Insulation_Heat></value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/statBases/EquipDelay</xpath>
-		<value><EquipDelay>7</EquipDelay></value>
+		<value>
+			<ArmorRating_Heat>0.08</ArmorRating_Heat>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
@@ -395,30 +316,16 @@
 		<value>
 			<Bulk>5.4</Bulk>
 			<WornBulk>1.1</WornBulk>
-			<StuffEffectMultiplierArmor>4.85</StuffEffectMultiplierArmor>
 		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/costStuffCount</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]</xpath>
-			<value>
-				<costStuffCount>105</costStuffCount>
-			</value>
-		</nomatch>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/costStuffCount</xpath>
-		<value><costStuffCount>105</costStuffCount></value>
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/equippedStatOffsets</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]</xpath>
-			<value><equippedStatOffsets /></value>
+			<value>
+				<equippedStatOffsets />
+			</value>
 		</nomatch>
 	</Operation>
 
@@ -439,15 +346,11 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/apparel/layers/li[text()="StrappedHead"]</xpath>
-		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/apparel/layers</xpath>
-			<order>Prepend</order>
-			<value>
-				<li>StrappedHead</li>
-			</value>
-		</nomatch>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/apparel/layers</xpath>
+		<value>
+			<li>StrappedHead</li>
+		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationAddModExtension">
@@ -455,16 +358,23 @@
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
-					<li>
-						<ArmorRating_Sharp>1.15</ArmorRating_Sharp>
-						<parts><li>Eye</li><li>Nose</li></parts>
-					</li>
-					<li>
-						<ArmorRating_Blunt>1.15</ArmorRating_Blunt>
-						<parts><li>Eye</li><li>Nose</li></parts>
-					</li>
+				<li>
+					<ArmorRating_Sharp>1.15</ArmorRating_Sharp>
+					<parts>
+						<li>Eye</li>
+						<li>Nose</li>
+					</parts>
+				</li>
+				<li>
+					<ArmorRating_Blunt>1.15</ArmorRating_Blunt>
+					<parts>
+						<li>Eye</li>
+						<li>Nose</li>
+					</parts>
+				</li>
 				</stats>
 			</li>
 		</value>
 	</Operation>
+
 </Patch>
