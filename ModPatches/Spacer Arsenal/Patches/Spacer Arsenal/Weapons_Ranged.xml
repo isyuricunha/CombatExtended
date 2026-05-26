@@ -93,9 +93,9 @@
 			<recoilAmount>1.86</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_145x114mm_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_277Fury_FMJ</defaultProjectile>
 			<burstShotCount>10</burstShotCount>
-			<ticksBetweenBurstShots>9</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 			<warmupTime>2.1</warmupTime>
 			<range>60</range>
 			<soundCast>Shot_Autocannon</soundCast>
@@ -105,7 +105,7 @@
 		<AmmoUser>
 			<magazineSize>60</magazineSize>
 			<reloadTime>4.9</reloadTime>
-			<ammoSet>AmmoSet_145x114mm</ammoSet>
+			<ammoSet>AmmoSet_277Fury</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -243,29 +243,29 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_BruteRifle</defName>
 		<statBases>
-			<Bulk>25</Bulk>
-			<SwayFactor>2.07</SwayFactor>
+			<Bulk>8</Bulk>
+			<SwayFactor>1.57</SwayFactor>
 			<ShotSpread>0.07</ShotSpread>
 			<SightsEfficiency>1</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>2.33</recoilAmount>
+			<recoilAmount>1.63</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_50BMG_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_277Fury_FMJ</defaultProjectile>
 			<burstShotCount>4</burstShotCount>
-			<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 			<warmupTime>2.1</warmupTime>
-			<range>40</range>
+			<range>60</range>
 			<soundCast>Shot_Autocannon</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>15</magazineSize>
+			<magazineSize>28</magazineSize>
 			<reloadTime>4.9</reloadTime>
-			<ammoSet>AmmoSet_50BMG</ammoSet>
+			<ammoSet>AmmoSet_277Fury</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiUseBurstMode>true</aiUseBurstMode>
@@ -358,7 +358,7 @@
 			<Bulk>11</Bulk>
 			<SwayFactor>1.68</SwayFactor>
 			<ShotSpread>0.07</ShotSpread>
-			<SightsEfficiency>1</SightsEfficiency>
+			<SightsEfficiency>1.2</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.46</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
@@ -369,7 +369,7 @@
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>7</ticksBetweenBurstShots>
 			<warmupTime>1.2</warmupTime>
-			<range>54</range>
+			<range>55</range>
 			<soundCast>Shot_Minigun</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>9</muzzleFlashScale>
@@ -511,5 +511,5 @@
 			</operations>
 		</match>
 	</Operation>
-	
+
 </Patch>
