@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Nordberg Ranged Harpoon -->
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]</xpath>
+		<attribute>ParentName</attribute>
+		<value>BaseWeapon</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAttributeSet">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]</xpath>
+		<attribute>Class</attribute>
+		<value>CombatExtended.AmmoDef</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]/costList</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]/recipeMaker</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]</xpath>
+		<value>
+			<thingCategories>
+				<li>WeaponsRanged</li>
+			</thingCategories>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]/weaponTags</xpath>
+		<value>
+			<li>CE_OneHandedWeapon</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]/statBases</xpath>
+		<value>
+			<statBases>
+				<SightsEfficiency>1.0</SightsEfficiency>
+				<ShotSpread>1.5</ShotSpread>
+				<SwayFactor>2.5</SwayFactor>
+				<Bulk>4.5</Bulk>
+				<Mass>2</Mass>
+				<RangedWeapon_Cooldown>0.75</RangedWeapon_Cooldown>
+				<WorkToMake>9750</WorkToMake>
+			</statBases>
+			<stackLimit>25</stackLimit>
+			<ammoClass>NordbergHarpoon</ammoClass>
+			<techLevel>Neolithic</techLevel>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]/equippedStatOffsets</xpath>
+		<value>
+			<MeleeCritChance>0.17</MeleeCritChance>
+			<MeleeParryChance>0.5</MeleeParryChance>
+			<MeleeDodgeChance>0.57</MeleeDodgeChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]/verbs</xpath>
+		<value>
+			<verbs>
+				<li Class="CombatExtended.VerbPropertiesCE">
+					<verbClass>CombatExtended.Verb_ShootCEOneUse</verbClass>
+					<hasStandardCommand>true</hasStandardCommand>
+					<defaultProjectile>CE_NordbergHarpoon_Thrown</defaultProjectile>
+					<warmupTime>1.0</warmupTime>
+					<range>11</range>
+					<soundCast>Interact_BeatFire</soundCast>
+				</li>
+			</verbs>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Nordberg_ROE_Harpoon"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>shaft</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>7</power>
+					<cooldownTime>1.95</cooldownTime>
+					<armorPenetrationBlunt>2.20</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Shaft</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>point</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>16</power>
+					<cooldownTime>1.75</cooldownTime>
+					<chanceFactor>1.45</chanceFactor>
+					<armorPenetrationBlunt>2.20</armorPenetrationBlunt>
+					<armorPenetrationSharp>0.85</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Point</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+</Patch>

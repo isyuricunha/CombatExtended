@@ -276,6 +276,7 @@ Fuck it Unboomas Your Lope |
 Gas Traps And Shells	|
 Gestalt Engine  |
 Giddy-Up 2    |
+Girls' Frontline 2 Nagan Apparel    |
 Girls' Frontline Apparel Pack	|
 Girls' Frontline PROJECT NEURAL CLOUD   |
 Girls' Frontline Styles - 404 Team	|
@@ -505,6 +506,7 @@ Remove Industrial Stuff |
 Revia Race |
 Revia Race - biotech |
 Rim Contractors Arsenal	|
+Rim Of Evil: Northern Frontier |
 Rim of Madness - Bones	|
 Rim of Madness - Vampires	|
 Rim of Madness - Werewolves	|

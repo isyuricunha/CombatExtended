@@ -4,6 +4,7 @@ using UnityEngine;
 using Verse;
 using VEF.Apparels;
 namespace CombatExtended.Compatibility;
+
 public class VanillaExpandedFramework : IPatch
 {
     const string ModName = "Vanilla Expanded Framework";
@@ -48,7 +49,6 @@ public class VanillaExpandedFramework : IPatch
         {
             return false;
         }
-        var def = projectile.def;
         Vector3 lastExactPos = projectile.LastPos.Yto0();
         var newExactPos = projectile.ExactPosition.Yto0();
         foreach (var interceptor in interceptors)
@@ -70,7 +70,8 @@ public class VanillaExpandedFramework : IPatch
             projectile.ExactPosition = intersectionPoints.OrderBy(x => (projectile.OriginIV3.ToVector3() - x).sqrMagnitude).First();
             projectile.landed = true;
             projectile.InterceptProjectile(interceptor.HostThing, projectile.ExactPosition, true);
-            interceptor.AbsorbDamage(projectile.DamageAmount, projectile.def.projectile.damageDef, launcher);
+            float damageAmount = CE_Utility.CalculateAbsorbedDamage(projectile);
+            interceptor.AbsorbDamage(damageAmount, projectile.def.projectile.damageDef, launcher);
             return true;
         }
         return false;

@@ -248,6 +248,7 @@
 		<li IfModActive="CVN.BloodPact">ModPatches/Grimworld Sabbats Blight</li>
 		<li IfModActive="grimworld.scatteredsons">ModPatches/GrimWorld Scattered Sons</li>
 		<li IfModActive="grimworld.talonOfTheEmperor">ModPatches/GrimWorld Talons of the Emperor</li>
+		<li IfModActive="RimGFL2.Nagan.Ubludok">ModPatches/Girls Frontline 2 Nagan Apparel</li>
 		<li IfModActive="TenMoe.GFCL">ModPatches/Girls Frontline Apparel Pack</li>
 		<li IfModActive="RicoFox233.GirlsFrontline.404Team">ModPatches/Girls Frontline Styles 404 Team</li>
 		<li IfModActive="RicoFox233.GirlsFrontline.ARTeam">ModPatches/Girls Frontline Styles AR Team</li>
@@ -515,6 +516,7 @@
 		<li IfModActive="zerophoenix.contractorsarsenalfaction">ModPatches/Rim Contractors Arsenal</li>
 		<li IfModActive="Fenn.floodrace,zal.floodrace">ModPatches/Rim Flood</li>
 		<li IfModActive="VexedTrees980.RimGnoblinsBiotech">ModPatches/Rim Gnoblins</li>
+		<li IfModActive="JTC.Nordberg">ModPatches/Rim Of Evil Northern Frontier</li>
 		<li IfModActive="sihv.rombones">ModPatches/Rim of Madness - Bones</li>
 		<li IfModActive="RimOfMadness.Vampires">ModPatches/Rim of Madness - Vampires</li>
 		<li IfModActive="RimofMadness.Werewolves">ModPatches/Rim of Madness - Werewolves</li>
@@ -663,6 +665,7 @@
 		<li IfModActive="VanillaExpanded.VBrewE">ModPatches/Vanilla Brewing Expanded</li>
 		<li IfModActive="VanillaExpanded.VChemfuelE">ModPatches/Vanilla Chemfuel Expanded</li>
 		<li IfModActive="VanillaExpanded.VEE">ModPatches/Vanilla Events Expanded</li>
+		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">ModPatches/Vanilla Expanded Framework</li>
 		<li IfModActive="VanillaExpanded.VFEA">ModPatches/Vanilla Factions Expanded - Ancients</li>
 		<li IfModActive="OskarPotocki.VFE.Classical">ModPatches/Vanilla Factions Expanded - Classical</li>
 		<li IfModActive="OskarPotocki.VFE.Deserters">ModPatches/Vanilla Factions Expanded - Deserters</li>

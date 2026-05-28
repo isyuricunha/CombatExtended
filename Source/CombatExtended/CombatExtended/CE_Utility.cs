@@ -1152,6 +1152,7 @@ public static class CE_Utility
 #endif
         return true;
     }
+
     /// <summary>
     /// Calculates body scale factors based on body type
     /// RacePropertiesExtensionCE determines any factors for size and can override normal sizegen if needed
@@ -1756,6 +1757,49 @@ public static class CE_Utility
         }
 
         return tools;
+    }
+
+    public static float CalculateAbsorbedDamage(ProjectileCE projectile)
+    {
+        float damageAmount = projectile.DamageAmount;
+        ProjectilePropertiesCE projectileProperties = projectile.Props;
+        if (projectileProperties == null)
+        {
+            return damageAmount;
+        }
+        float secondaryShieldDamageAmount = 0f;
+        List<SecondaryDamage> secondaryDamageProperties = projectileProperties?.secondaryDamage;
+        DamageDefExtensionCE damDefCE = projectileProperties.damageDef.GetModExtension<DamageDefExtensionCE>();
+        var shieldDamageMultiplier = projectile.ShieldDamageMultiplier;
+        if (damDefCE != null && damDefCE.shieldDamageMultiplier > projectile.ShieldDamageMultiplier)
+        {
+            shieldDamageMultiplier = damDefCE.shieldDamageMultiplier;
+        }
+
+        if (!secondaryDamageProperties.NullOrEmpty())
+        {
+            foreach (SecondaryDamage secondaryDamageInfo in secondaryDamageProperties)
+            {
+                var secondaryDamageModExt = secondaryDamageInfo.def.GetModExtension<DamageDefExtensionCE>();
+                if ((secondaryDamageInfo.def.harmsHealth || (secondaryDamageModExt?.secondaryDamageShieldOverride ?? false)) && Rand.Chance(secondaryDamageInfo.chance))
+                {
+                    var secondaryDamageMultiplierValue = secondaryDamageInfo.shieldDamageMultiplier;
+                    if (secondaryDamageModExt != null && secondaryDamageModExt.shieldDamageMultiplier != secondaryDamageMultiplierValue)
+                    {
+                        secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
+                    }
+                    secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
+
+                }
+            }
+        }
+        float shieldDamage = damageAmount * shieldDamageMultiplier;
+        int totalShieldDamage = Mathf.FloorToInt(shieldDamage + secondaryShieldDamageAmount);
+        if (Rand.Value > shieldDamage - damageAmount)
+        {
+            totalShieldDamage++;
+        }
+        return totalShieldDamage;
     }
 
     internal static List<Tool> GetTechHediffTools(ThingDef thingDef)

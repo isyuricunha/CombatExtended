@@ -89,7 +89,7 @@ public class Controller : Mod
         }
         foreach (IModPart modPart in modParts)
         {
-            Log.Message("CE: Loading Mod Part");
+            Log.Message("CE: Loading Mod Part" + " - " + modPart.GetType().Name);
             Type settingsType = modPart.GetSettingsType();
             ISettingsCE settings = null;
             if (settingsType != null)
