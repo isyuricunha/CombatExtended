@@ -446,7 +446,7 @@
 			<recoilAmount>2.66</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_40x46mmGrenade_EMP</defaultProjectile>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>40</range>
 			<soundCast>Shot_IncendiaryLauncher</soundCast>
@@ -460,7 +460,7 @@
 		<AmmoUser>
 			<magazineSize>1</magazineSize>
 			<reloadTime>4.5</reloadTime>
-			<ammoSet>AmmoSet_40x46mmOnlyEMP</ammoSet>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiAimMode>SuppressFire</aiAimMode>
@@ -472,13 +472,20 @@
 		<defName>HRACA_Gun_Charge_Launcher</defName>
 		<statBases>
 			<WorkToMake>78000</WorkToMake>
-			<SightsEfficiency>1.10</SightsEfficiency>
+			<SightsEfficiency>1.8</SightsEfficiency>
 			<ShotSpread>0.10</ShotSpread>
 			<SwayFactor>1.30</SwayFactor>
-			<Bulk>15</Bulk>
-			<Mass>7.32</Mass>
-			<RangedWeapon_Cooldown>1.2</RangedWeapon_Cooldown>
+			<Mass>24.0</Mass>
+			<Bulk>16</Bulk>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
 		</statBases>
+		<costList>
+			<Steel>80</Steel>
+			<Plasteel>45</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Chemfuel>15</Chemfuel>
+		</costList>
 		<Properties>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
@@ -502,6 +509,21 @@
 		<FireModes>
 			<aiAimMode>AimedShot</aiAimMode>
 		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HRACA_Gun_Charge_Launcher"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+					<li>120</li>
+					<li>150</li>
+				</chargeSpeeds>
+			</li>
+		</value>
 	</Operation>
 
 	<!-- === Ultratech Ranged === -->
