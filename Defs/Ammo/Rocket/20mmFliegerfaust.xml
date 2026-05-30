@@ -3,7 +3,7 @@
 
 	<ThingCategoryDef>
 		<defName>Ammo20mmFliegerfaust</defName>
-		<label />
+		<label>20mm Fliegerfaust</label>
 		<parent>AmmoRockets</parent>
 		<iconPath>UI/Icons/ThingCategories/CaliberRocket</iconPath>
 	</ThingCategoryDef>
