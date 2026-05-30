@@ -2,7 +2,7 @@
 <Defs>
 
 	<ThingDef ParentName="BaseAutoTurretGun">
-		<defName>Gun_AutoBlasterTurret</defName>
+		<defName>CE_Gun_AutoBlasterTurret</defName>
 		<label>mini-blaster turret gun</label>
 		<graphicData>
 			<texPath>Things/Building/Mech/TurretMechMini_Top</texPath>
@@ -49,7 +49,7 @@
 	<!-- ================== Auto Heavy Charge Blaster ================== -->
 
 	<ThingDef ParentName="BaseAutoTurretGun">
-		<defName>Gun_ChargeBlasterHeavyTurret</defName>
+		<defName>CE_Gun_ChargeBlasterHeavyTurret</defName>
 		<label>light charge blaster turret gun</label>
 		<description>Light charge blaster on a turret mount.</description>
 		<graphicData>
@@ -126,7 +126,7 @@
 	<!-- ================== Auto Inferno Cannon ================== -->
 
 	<ThingDef ParentName="BaseAutoTurretGun">
-		<defName>Gun_InfernoCannonTurret</defName>
+		<defName>CE_Gun_InfernoCannonTurret</defName>
 		<label>auto inferno turret gun</label>
 		<description>An incendiary-shot mini-artillery device on a turret mount.</description>
 		<graphicData>
