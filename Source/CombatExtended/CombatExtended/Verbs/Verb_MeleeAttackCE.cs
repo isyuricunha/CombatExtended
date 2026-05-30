@@ -763,9 +763,10 @@ public class Verb_MeleeAttackCE : Verb_MeleeAttack
                 dinfo.SetBodyRegion(BodyPartHeight.Undefined, BodyPartDepth.Outside);
                 dinfo.SetAngle((CasterPawn.Position - defender.Position).ToVector3());
                 caster.TakeDamage(dinfo);
-                if (!parryThing.Stuff.stuffProps.soundMeleeHitBlunt.NullOrUndefined())
+                var shieldSound = parryThing.Stuff?.stuffProps.soundMeleeHitBlunt;
+                if (!shieldSound.NullOrUndefined())
                 {
-                    sound = parryThing.Stuff.stuffProps.soundMeleeHitBlunt;
+                    sound = shieldSound;
                 }
             }
             else
