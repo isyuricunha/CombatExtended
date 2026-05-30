@@ -288,6 +288,8 @@ public class Settings : ModSettings, ISettingsCE
 
         // Compatibility
         Scribe_Values.Look(ref patchArmorDamage, "patchArmorDamage", true);
+        Scribe_Values.Look(ref hitRandomVehicleComponents, "hitRandomVehicleComponents", true);
+        Scribe_Values.Look(ref fragmentsFromVehicles, "fragmentsFromVehicles", false);
     }
 
     public void DoWindowContents(Listing_Standard list)
@@ -620,6 +622,8 @@ public class Settings : ModSettings, ISettingsCE
 #endif
         // Compatibility Settings
         patchArmorDamage = true;
+        hitRandomVehicleComponents = true;
+        fragmentsFromVehicles = false;
     }
     #endregion
 
