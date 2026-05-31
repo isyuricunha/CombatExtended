@@ -102,7 +102,6 @@ public class Building_AutoloaderCE : Building
 
     public bool CanReplaceAmmo(CompAmmoUser ammoUser)
     {
-        //return shouldReplaceAmmo && ammoUser.Props.ammoSet == CompAmmoUser.Props.ammoSet && ammoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo;
         return shouldReplaceAmmo && ammoUser.CurAmmoSet == CompAmmoUser.CurAmmoSet && ammoUser.CurrentAmmo != CompAmmoUser.CurrentAmmo;
     }
 
@@ -441,22 +440,31 @@ public class Building_AutoloaderCE : Building
         }
 
         bool canReplaceAmmo = CanReplaceAmmo(TurretMagazine);
-
-        if ((TurretMagazine.FullMagazine && !canReplaceAmmo))
+        if (TurretMagazine.SelectedAmmo != CompAmmoUser.CurrentAmmo)
+        {
+            if (shouldReplaceAmmo)
+            {
+                TurretMagazine.SelectedAmmo = CompAmmoUser.CurrentAmmo;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        if (TurretMagazine.FullMagazine && !canReplaceAmmo)
         {
             return false;
         }
-
-        if (TurretMagazine.CurrentAmmo == CompAmmoUser.CurrentAmmo || canReplaceAmmo)
+        if (TurretMagazine.CurrentAmmo != CompAmmoUser.CurrentAmmo && !canReplaceAmmo)
         {
-            TargetTurret = TurretMagazine.turret;
-            ticksToComplete = Mathf.CeilToInt(TurretMagazine.ReloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
-            ticksToCompleteInitial = ticksToComplete;
-            turret.SetReloading(true);
-            return true;
+            return false;
         }
+        TargetTurret = TurretMagazine.turret;
+        ticksToComplete = Mathf.CeilToInt(TurretMagazine.ReloadTime.SecondsToTicks() / this.GetStatValue(CE_StatDefOf.ReloadSpeed));
+        ticksToCompleteInitial = ticksToComplete;
+        turret.SetReloading(true);
+        return true;
 
-        return false;
     }
 
     public bool ReloadFinalize()
