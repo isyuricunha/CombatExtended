@@ -191,7 +191,7 @@
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Turret_AutoInferno"]/building/turretGunDef</xpath>
 		<value>
-			<turretGunDef>CE_Gun_InfernoCannonTurret</turretGunDef>
+			<turretGunDef>Gun_InfernoCannonTurret</turretGunDef>
 		</value>
 	</Operation>
 
