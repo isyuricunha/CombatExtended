@@ -309,20 +309,26 @@ public static class VehicleArmorPatch
         frag.velocity *= Mathf.Sqrt(keRatio);
         frag.initialSpeed = frag.shotSpeed = frag.velocity.magnitude * GenTicks.TicksPerRealSecond;
         frag.ExactPosition = new Vector3(cell.x, height, cell.z);
-        report?.AppendLine($"Spawning fragment");
-        report?.AppendLine($"angle: {frontArc}");
-        report?.AppendLine($"damage: {dinfo.Amount} / {baseAmount}");
-        report?.AppendLine($"mass: {frag.mass} / {baseMass}");
-        report?.AppendLine($"keRatio: {keRatio}");
-        report?.AppendLine($"velocity {frag.velocity} / {baseVel}");
+        if (report != null)
+        {
+            report.AppendLine($"Spawning fragment");
+            report.AppendLine($"angle: {frontArc}");
+            report.AppendLine($"damage: {dinfo.Amount} / {baseAmount}");
+            report.AppendLine($"mass: {frag.mass} / {baseMass}");
+            report.AppendLine($"keRatio: {keRatio}");
+            report.AppendLine($"velocity {frag.velocity} / {baseVel}");
+        }
     }
 
     public static bool TryPenetrateComponents(VehicleStatHandler stats, ref DamageInfo dinfo, List<VehicleComponent> components, VehicleComponent.VehiclePartDepth hitDepth, StringBuilder? report)
     {
         var componentsAtHitDepth = components.Where(comp => comp.Depth == hitDepth && comp.HealthPercent > 0).OrderBy(x => Rand.Value * x.props.hitWeight);
-        report?.AppendLine($"components=({string.Join(",", components.Select(c => c.props.label))})");
-        report?.AppendLine($"hitDepth = {hitDepth}");
-        report?.AppendLine($"components at hitDepth {hitDepth}: ({string.Join(",", componentsAtHitDepth.Select(comp => comp.props.label))})");
+        if (report != null)
+        {
+            report.AppendLine($"components=({string.Join(",", components.Select(c => c.props.label))})");
+            report.AppendLine($"hitDepth = {hitDepth}");
+            report.AppendLine($"components at hitDepth {hitDepth}: ({string.Join(",", componentsAtHitDepth.Select(comp => comp.props.label))})");
+        }
         foreach (var component in componentsAtHitDepth)
         {
             report?.AppendLine($"Hitting Component {component.props.label}");
@@ -384,16 +390,22 @@ public static class VehicleArmorPatch
         float armorDamage = 0;
 
         bool deflected = armorAmount > 0 && DamageArmor(isSharp, armorAmount, ref penAmount, ref dmgAmount, out armorDamage);
-        report?.AppendLine($"deflected by component armor? {deflected}");
-        report?.AppendLine($"Armor Damage: {armorDamage}");
+        if (report != null)
+        {
+            report.AppendLine($"deflected by component armor? {deflected}");
+            report.AppendLine($"Armor Damage: {armorDamage}");
+        }
         dmgAmount += DamageComponent(component, armorDamage, dinfo, deflected ? VehicleComponent.Penetration.Diminished : VehicleComponent.Penetration.Penetrated);
 
         if (!deflected)
         {
             report?.AppendLine($"component health? {component.health}");
             deflected = DamageArmor(isSharp, component.health / 50, ref penAmount, ref dmgAmount, out armorDamage);
-            report?.AppendLine($"deflected by component bulk? {deflected}");
-            report?.AppendLine($"Component Damage: {armorDamage}");
+            if (report != null)
+            {
+                report.AppendLine($"deflected by component bulk? {deflected}");
+                report.AppendLine($"Component Damage: {armorDamage}");
+            }
             dmgAmount += DamageComponent(component, armorDamage, dinfo, VehicleComponent.Penetration.Penetrated);
         }
         dinfo.SetAmount(dmgAmount);
