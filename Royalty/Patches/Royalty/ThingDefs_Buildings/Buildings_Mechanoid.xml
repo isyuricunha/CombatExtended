@@ -4,6 +4,13 @@
 	<!-- ========== Structures ========== -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Defoliator"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Defoliator"]/comps/li[@Class="CompProperties_Explosive"]/wickTicks</xpath>
 		<value>
 			<wickTicks>
