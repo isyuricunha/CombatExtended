@@ -79,13 +79,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_AutoMiniTurret"]/building/turretGunDef</xpath>
-		<value>
-			<turretGunDef>CE_Gun_AutoBlasterTurret</turretGunDef>
-		</value>
-	</Operation>
-
 	<!-- ========== Auto Charge Blaster ========== -->
 
 	<Operation Class="PatchOperationReplace">
@@ -136,13 +129,6 @@
 		<xpath>Defs/ThingDef[defName="Turret_AutoChargeBlaster"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>2.0</turretBurstCooldownTime><!-- Intentionally increased from 1.0s of CE auto turrets-->
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_AutoChargeBlaster"]/building/turretGunDef</xpath>
-		<value>
-			<turretGunDef>CE_Gun_ChargeBlasterHeavyTurret</turretGunDef>
 		</value>
 	</Operation>
 
@@ -205,13 +191,6 @@
 		<xpath>Defs/ThingDef[defName="Turret_AutoInferno"]/building/turretBurstCooldownTime</xpath>
 		<value>
 			<turretBurstCooldownTime>2.52</turretBurstCooldownTime><!-- Intentionally increased from 1.0s of CE auto turrets-->
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Turret_AutoInferno"]/building/turretGunDef</xpath>
-		<value>
-			<turretGunDef>CE_Gun_InfernoCannonTurret</turretGunDef>
 		</value>
 	</Operation>
 
