@@ -199,6 +199,11 @@ public static class VehicleArmorPatch
                         if (hitDepth == VehicleComponent.VehiclePartDepth.External) // Blew a hole out, we're done
                         {
                             report?.AppendLine($"Exiting vehicle");
+                            if (Controller.settings.fragmentsFromVehicles)
+                            {
+                                SpawnFragments(ref dinfo, direction, stats, cell2 + new IntVec2(vehicle.Position.x, vehicle.Position.z), report);
+                            }
+
                             break;
                         }
                         else // Hit any pawns and then move on to the next cell
@@ -247,7 +252,7 @@ public static class VehicleArmorPatch
                 }
                 if (Controller.settings.fragmentsFromVehicles)
                 {
-                    SpawnFragments(ref dinfo, direction, stats, cell2);
+                    SpawnFragments(ref dinfo, direction, stats, cell2 + new IntVec2(vehicle.Position.x, vehicle.Position.z), report);
                 }
             }
         }
@@ -283,15 +288,17 @@ public static class VehicleArmorPatch
         stats.RecalculateHealthPercent();
     }
 
-    private static void SpawnFragments(ref DamageInfo dinfo, Vector3 direction, VehicleStatHandler stats, IntVec2 cell)
+    private static void SpawnFragments(ref DamageInfo dinfo, Vector3 direction, VehicleStatHandler stats, IntVec2 cell, StringBuilder? report)
     {
         var height = new FloatRange(0, new CollisionVertical(stats.vehicle).Max).RandomInRange;
-        var frontArc = new FloatRange(dinfo.Angle + 90, dinfo.Angle + 270);
+        var frontArc = new FloatRange(dinfo.Angle - 15, dinfo.Angle + 15);
+        var rotation = frontArc.RandomInRange * Mathf.Deg2Rad;
         var map = stats.vehicle.Map;
         Vector3 spawnOffset = Quaternion.Euler(0, dinfo.Angle, 0) * Vector3.forward * Mathf.Max(1, Mathf.Min(stats.vehicle.RotatedSize.x, stats.vehicle.RotatedSize.z) / 2f);
-        ProjectileCE frag = (ProjectileCE)ThingMaker.MakeThing(CE_ThingDefOf.Fragment_Small, null);
+        spawnOffset.y = height;
+        ProjectileCE frag = (ProjectileCE)ThingMaker.MakeThing(CE_ThingDefOf.Fragment_Large, null);
         GenSpawn.Spawn(frag, new IntVec3(cell.x, 0, cell.z), map);
-        frag.Throw(dinfo.Instigator, spawnOffset, new Vector3(Mathf.Sin(frontArc.RandomInRange * Mathf.Deg2Rad), Mathf.Sin(new FloatRange(-5, 5).RandomInRange * Mathf.Deg2Rad), Mathf.Cos(frontArc.RandomInRange * Mathf.Deg2Rad)), stats.vehicle);
+        frag.Throw(dinfo.Instigator, spawnOffset, new Vector3(Mathf.Sin(rotation), Mathf.Sin(new FloatRange(-5, 5).RandomInRange * Mathf.Deg2Rad), Mathf.Cos(rotation)), stats.vehicle);
         var baseAmount = frag.DamageAmount;
         var baseMass = frag.mass;
         frag.mass = new FloatRange(baseMass, baseMass * 10).RandomInRange;
@@ -301,6 +308,13 @@ public static class VehicleArmorPatch
         var baseVel = frag.velocity;
         frag.velocity *= Mathf.Sqrt(keRatio);
         frag.initialSpeed = frag.shotSpeed = frag.velocity.magnitude * GenTicks.TicksPerRealSecond;
+        frag.ExactPosition = new Vector3(cell.x, height, cell.z);
+        report?.AppendLine($"Spawning fragment");
+        report?.AppendLine($"angle: {frontArc}");
+        report?.AppendLine($"damage: {dinfo.Amount} / {baseAmount}");
+        report?.AppendLine($"mass: {frag.mass} / {baseMass}");
+        report?.AppendLine($"keRatio: {keRatio}");
+        report?.AppendLine($"velocity {frag.velocity} / {baseVel}");
     }
 
     public static bool TryPenetrateComponents(VehicleStatHandler stats, ref DamageInfo dinfo, List<VehicleComponent> components, VehicleComponent.VehiclePartDepth hitDepth, StringBuilder? report)
