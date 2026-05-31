@@ -31,6 +31,6 @@ public class VehicleSettings : ISettingsCE
         {
             Controller.settings.fragmentsFromVehicles = false;
         }
-    }
 #endif
+    }
 }
