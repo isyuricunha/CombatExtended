@@ -11,7 +11,7 @@ using HarmonyLib;
 using Vehicles;
 using UnityEngine;
 using CombatExtended;
-
+#nullable enable
 
 namespace CombatExtended.Compatibility.VehiclesCompat;
 [HarmonyPatch(typeof(VehicleStatHandler),
@@ -24,8 +24,12 @@ public static class VehicleArmorPatch
         {
             return true;
         }
-        StringBuilder report = VehicleMod.settings.debug.debugLogging ? new StringBuilder() : null;
+        StringBuilder? report = VehicleMod.settings.debug.debugLogging ? new StringBuilder() : null;
         __instance.ApplyDamageCE(ref dinfo, hitCell, report);
+        if (report != null)
+        {
+            Log.Message(report.ToString());
+        }
         return false;
     }
 
@@ -42,7 +46,7 @@ public static class VehicleArmorPatch
       Projectile Inside, is no inner component, is no outer component -- hit outer component on previous cell, direction reversed
       TODO:  Allow non-linear deflections.
      */
-    public static void ApplyDamageCE(this VehicleStatHandler stats, ref DamageInfo dinfo, IntVec2 hitCell, StringBuilder report)
+    public static void ApplyDamageCE(this VehicleStatHandler stats, ref DamageInfo dinfo, IntVec2 hitCell, StringBuilder? report)
     {
         DamageDef def = dinfo.Def;
         VehiclePawn vehicle = stats.vehicle;
@@ -299,7 +303,7 @@ public static class VehicleArmorPatch
         frag.initialSpeed = frag.shotSpeed = frag.velocity.magnitude * GenTicks.TicksPerRealSecond;
     }
 
-    public static bool TryPenetrateComponents(VehicleStatHandler stats, ref DamageInfo dinfo, List<VehicleComponent> components, VehicleComponent.VehiclePartDepth hitDepth, StringBuilder report)
+    public static bool TryPenetrateComponents(VehicleStatHandler stats, ref DamageInfo dinfo, List<VehicleComponent> components, VehicleComponent.VehiclePartDepth hitDepth, StringBuilder? report)
     {
         var componentsAtHitDepth = components.Where(comp => comp.Depth == hitDepth && comp.HealthPercent > 0).OrderBy(x => Rand.Value * x.props.hitWeight);
         report?.AppendLine($"components=({string.Join(",", components.Select(c => c.props.label))})");
@@ -354,7 +358,7 @@ public static class VehicleArmorPatch
         return overdamage;
     }
 
-    public static bool HitComponent(VehicleComponent component, ref DamageInfo dinfo, StringBuilder report)
+    public static bool HitComponent(VehicleComponent component, ref DamageInfo dinfo, StringBuilder? report)
     {
         report?.AppendLine($"Applying Damage = {dinfo.Amount} to {component.props.key}");
 
@@ -409,7 +413,7 @@ public static class VehicleArmorPatch
         return deflected;
     }
 
-    public static float AdjustDamage(float damage, DamageInfo dinfo, StringBuilder report)
+    public static float AdjustDamage(float damage, DamageInfo dinfo, StringBuilder? report)
     {
         if (dinfo.Weapon?.GetModExtension<VehicleDamageMultiplierDefModExtension>() is VehicleDamageMultiplierDefModExtension weaponMultiplier)
         {
@@ -439,3 +443,4 @@ public static class VehicleArmorPatch
         return damage;
     }
 }
+#nullable restore
