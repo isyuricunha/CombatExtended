@@ -121,7 +121,7 @@
 		<label>27x145mm Mauser bullet (AP-I)</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<damageAmountBase>72</damageAmountBase>
-			<armorPenetrationSharp>30</armorPenetrationSharp>
+			<armorPenetrationSharp>60</armorPenetrationSharp>
 			<armorPenetrationBlunt>3146</armorPenetrationBlunt>
 			<secondaryDamage>
 				<li>
