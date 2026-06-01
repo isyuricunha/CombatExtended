@@ -78,29 +78,31 @@ public static class VehicleArmorPatch
                 for (int z = 1; z < max_z - 1; z++)
                 {
                     IntVec2 innerCell = new IntVec2(x, z);
-                    stats.componentLocations.TryGetValue(innerCell, out List<VehicleComponent> maybeUnhittable);
-                    foreach (var comp in maybeUnhittable)
+                    if (stats.componentLocations.TryGetValue(innerCell, out List<VehicleComponent> maybeUnhittable))
                     {
-                        if (comp.Depth != VehicleComponent.VehiclePartDepth.External)
+                        foreach (var comp in maybeUnhittable)
                         {
-                            continue;
-                        }
-                        bool unhittable = true;
-                        foreach (var cell in comp.props.hitbox.Hitbox)
-                        {
-                            if (cell.x == 0 || cell.x == max_z || cell.z == 0 || cell.z == max_x)
+                            if (comp.Depth != VehicleComponent.VehiclePartDepth.External)
                             {
-                                unhittable = false;
-                                break;
+                                continue;
                             }
-                        }
-                        if (unhittable)
-                        {
-                            if (Controller.settings.hitRandomVehicleComponents)
+                            bool unhittable = true;
+                            foreach (var cell in comp.props.hitbox.Hitbox)
                             {
-                                unhittableComponents.Add(comp);
+                                if (cell.x == 0 || cell.x == max_z || cell.z == 0 || cell.z == max_x)
+                                {
+                                    unhittable = false;
+                                    break;
+                                }
                             }
-                            unhittableHP += comp.Health;
+                            if (unhittable)
+                            {
+                                if (Controller.settings.hitRandomVehicleComponents)
+                                {
+                                    unhittableComponents.Add(comp);
+                                }
+                                unhittableHP += comp.Health;
+                            }
                         }
                     }
                 }
