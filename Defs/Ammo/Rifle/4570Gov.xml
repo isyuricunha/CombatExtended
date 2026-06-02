@@ -59,7 +59,7 @@
 		<defName>Ammo_4570Gov_FMJ</defName>
 		<label>.45-70 Government (FMJ)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/FMJ</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/FMJ</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>FullMetalJacket</ammoClass>
@@ -70,7 +70,7 @@
 		<defName>Ammo_4570Gov_AP</defName>
 		<label>.45-70 Government (AP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/AP</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/AP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>ArmorPiercing</ammoClass>
@@ -81,7 +81,7 @@
 		<defName>Ammo_4570Gov_HP</defName>
 		<label>.45-70 Government (HP)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/HP</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/HP</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>HollowPoint</ammoClass>
@@ -92,7 +92,7 @@
 		<defName>Ammo_4570Gov_Incendiary</defName>
 		<label>.45-70 Government (AP-I)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/Incendiary</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/Incendiary</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>IncendiaryAP</ammoClass>
@@ -104,7 +104,7 @@
 		<defName>Ammo_4570Gov_HE</defName>
 		<label>.45-70 Government (AP-HE)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/HE</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/HE</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<ammoClass>ExplosiveAP</ammoClass>
@@ -116,7 +116,7 @@
 		<defName>Ammo_4570Gov_Sabot</defName>
 		<label>.45-70 Government (Sabot)</label>
 		<graphicData>
-			<texPath>Things/Ammo/Rifle/Clip/Sabot</texPath>
+			<texPath>Things/Ammo/Rifle/StraightWall/Sabot</texPath>
 			<graphicClass>Graphic_StackCount</graphicClass>
 		</graphicData>
 		<statBases>
