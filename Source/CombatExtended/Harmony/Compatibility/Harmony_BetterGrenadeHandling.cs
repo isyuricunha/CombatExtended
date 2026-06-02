@@ -32,7 +32,7 @@ public class Harmony_BetterGrenadeHandling
         {
             Pawn targetPawn = target as Pawn;
             __result = targetPawn?.stances?.stunner?.StunFromEMP == false;
-            
+
             return false;
         }
     }
