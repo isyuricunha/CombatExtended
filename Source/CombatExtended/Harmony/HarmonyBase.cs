@@ -66,11 +66,11 @@ public static class HarmonyBase
             {
                 return;
             }
-        
+
             instance.Patch(AccessTools.Method(Harmony_BetterGrenadeHandling.TypeOfBGHUtils, "ShouldBeHitByEMP"),
                 new HarmonyMethod(typeof(Harmony_BetterGrenadeHandling).GetMethod("Prefix")));
         });
-}
+    }
 
     #region Patch helper methods
 
