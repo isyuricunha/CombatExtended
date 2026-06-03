@@ -5,9 +5,9 @@ using Verse;
 
 namespace CombatExtended.HarmonyCE.Compatibility;
 
-public class Harmony_BetterGrenadeHandling
+public class Harmony_BetterGrenadeHandling  //manually patched from HarmonyBase
 {
-    private static Type TypeOfBGHUtils
+    internal static Type TypeOfBGHUtils
     {
         get
         {
@@ -15,25 +15,11 @@ public class Harmony_BetterGrenadeHandling
         }
     }
 
-    [HarmonyPatch]
-    public static class Harmony_ShouldBeHitByEMP
+    public static bool Prefix(Thing target, ref bool __result)
     {
-        public static bool Prepare()
-        {
-            return TypeOfBGHUtils != null;
-        }
+        Pawn targetPawn = target as Pawn;
+        __result = targetPawn?.stances?.stunner?.StunFromEMP == false;
 
-        public static MethodBase TargetMethod()
-        {
-            return AccessTools.Method(TypeOfBGHUtils, "ShouldBeHitByEMP");
-        }
-
-        public static bool Prefix(Thing target, ref bool __result)
-        {
-            Pawn targetPawn = target as Pawn;
-            __result = targetPawn?.stances?.stunner?.StunFromEMP == false;
-
-            return false;
-        }
+        return false;
     }
 }
