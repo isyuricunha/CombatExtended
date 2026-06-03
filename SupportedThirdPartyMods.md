@@ -136,6 +136,7 @@ Beeralope Squad	|
 Beliar Xenotype |
 Beta Anime Hair	|
 Beta Girls und Panzer Hair and Apparel	|
+Better Grenade Handling |
 Better Traders Guild    |
 Better Wool Production - C# Edition	|
 Big and Small - Genes & More	|
