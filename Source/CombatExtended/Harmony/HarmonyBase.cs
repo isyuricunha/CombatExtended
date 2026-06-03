@@ -68,7 +68,7 @@ public static class HarmonyBase
             }
 
             instance.Patch(AccessTools.Method(Harmony_BetterGrenadeHandling.TypeOfBGHUtils, "ShouldBeHitByEMP"),
-                new HarmonyMethod(typeof(Harmony_BetterGrenadeHandling).GetMethod("Prefix")));
+                prefix: new HarmonyMethod(typeof(Harmony_BetterGrenadeHandling).GetMethod("Prefix")));
         });
     }
 
