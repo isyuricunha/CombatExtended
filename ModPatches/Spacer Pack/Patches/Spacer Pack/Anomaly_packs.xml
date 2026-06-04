@@ -8,16 +8,14 @@
 			<operations>
 				<!-- Devourer Grubpack -->
 				<li Class="PatchOperationReplace">
-					<xpath>
-						Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+					<xpath>Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
 					<value>
 						<CarryBulk>70</CarryBulk>
 					</value>
 				</li>
 
 				<li Class="PatchOperationRemove">
-					<xpath>
-						Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/equippedStatOffsets/MoveSpeed</xpath>
+					<xpath>Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/equippedStatOffsets/MoveSpeed</xpath>
 				</li>
 
 				<li Class="PatchOperationReplace">
@@ -55,9 +53,11 @@
 						</verbs>
 					</value>
 				</li>
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="dvd_ProjectileGrubGlob"]</xpath>
 				</li>
+
 			</operations>
 		</match>
 	</Operation>
