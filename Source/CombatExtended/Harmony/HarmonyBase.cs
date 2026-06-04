@@ -5,6 +5,7 @@ using System;
 using System.Reflection.Emit;
 using System.Linq;
 using System.Collections.Generic;
+using CombatExtended.HarmonyCE.Compatibility;
 
 /* Note to those unfamiliar with Reflection/Harmony (like me, ProfoundDarkness), operands have some specific types and it's useful to know these to make good patches (Transpiler).
  * Below I'm noting the operators and what type of operand I've observed.
@@ -57,6 +58,18 @@ public static class HarmonyBase
         Harmony_GenRadial.Patch();
         PawnColumnWorkers_Resize.Patch();
         PawnColumnWorkers_SwapButtons.Patch();
+
+        // Patches that require being ran later into loading
+        LongEventHandler.ExecuteWhenFinished(() =>
+        {
+            if (Harmony_BetterGrenadeHandling.TypeOfBGHUtils == null)
+            {
+                return;
+            }
+
+            instance.Patch(AccessTools.Method(Harmony_BetterGrenadeHandling.TypeOfBGHUtils, "ShouldBeHitByEMP"),
+                prefix: new HarmonyMethod(typeof(Harmony_BetterGrenadeHandling).GetMethod("Prefix")));
+        });
     }
 
     #region Patch helper methods
