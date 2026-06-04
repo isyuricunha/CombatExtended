@@ -569,7 +569,7 @@ Simply More Melee	|
 Slime Rancher	|
 Solark Race |
 Spacer Arsenal  |
-Spacer Pack |
+Spacer Pack - Repackaged |
 Spacer Shields	|
 Space Worms (Continued) |
 Spartan Foundry	|

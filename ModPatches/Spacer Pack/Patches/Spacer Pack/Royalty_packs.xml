@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Royalty</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Hybrid Aeropack -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="dvd_HybridAeropack"]/equippedStatOffsets</xpath>
+					<value>
+						<equippedStatOffsets>
+							<CarryBulk>40</CarryBulk>
+						</equippedStatOffsets>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="dvd_HybridAeropack"]/statBases/Mass</xpath>
+					<value>
+						<Mass>6</Mass>
+						<Bulk>8</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="dvd_HybridAeropack"]/statBases/JumpRange</xpath>
+					<value>
+						<JumpRange>40</JumpRange>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
