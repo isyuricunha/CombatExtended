@@ -8,7 +8,7 @@
 		<li IfModActive="Ludeon.Rimworld.Ideology">Ideology</li>
 		<li IfModActive="Ludeon.Rimworld.Biotech">Biotech</li>
 		<li IfModActive="Ludeon.Rimworld.Anomaly">Anomaly</li>
-		<li IfModActive="Ludeon.Rimworld.Odyssey">Odyssey</li>		
+		<li IfModActive="Ludeon.Rimworld.Odyssey">Odyssey</li>
 		<!-- Mod Patches -->
 		<li IfModActive="Torann.ARimworldOfMagic">ModPatches/A Rimworld of Magic</li>
 		<li IfModActive="ADE.AdvancedTurrets.Mod">ModPatches/ADE Advanced Turrets</li>
@@ -79,7 +79,7 @@
 		<li IfModActive="veltaris.mechtech">ModPatches/AV Mechtech</li>
 		<li IfModActive="veltaris.mechqueen">ModPatches/AV Work Queen</li>
 		<li IfModActive="automatic.autocleaner">ModPatches/Autocleaner</li>
-		<li IfModActive="Bean.TurretPack">ModPatches/Bean's Turret Pack</li>		
+		<li IfModActive="Bean.TurretPack">ModPatches/Bean's Turret Pack</li>
 		<li IfModActive="Heymyteamrules.BeastManTribes">ModPatches/Beast Man Tribes</li>
 		<li IfModActive="Mlem.beeralope">ModPatches/Beeralope Squad</li>
 		<li IfModActive="ElSov.Beliar">ModPatches/Beliar Xenotype</li>
@@ -267,6 +267,7 @@
 		<li IfModActive="spoonshortage.gourimet">ModPatches/GouRIMet</li>
 		<li IfModActive="pphhyy.Gulden">ModPatches/Gulden Mod</li>
 		<li IfModActive="Monti.HalfDragons">ModPatches/Half Dragons</li>
+		<li IfModActive="Mlie.HALORimworldAuxiliaryCombatArmory">ModPatches/Halo - Rimworld Auxiliary Combat Armory</li>
 		<li IfModActive="HLX.RimworldUNSCArmoury">ModPatches/Halo - UNSC Armoury</li>
 		<li IfModActive="TheInfinityIQ.Halo.UNSC">ModPatches/Halo UNSC Weapon Pack</li>
 		<li IfModActive="Mlie.HaloRimworldPsychicPulseArmory">ModPatches/HALO Rimworld Psychic Pulse Armory</li>
@@ -288,7 +289,7 @@
 		<li IfModActive="jemlpro.Infusion2Expansion">ModPatches/Infused 2 Expansion</li>
 		<li IfModActive="latta.infusion">ModPatches/Infusion 2</li>
 		<li IfModActive="SirMashedPotato.InsectsHaveChitin">ModPatches/Insects have chitin</li>
-		<li IfModActive="catachat.inspirationtweaks">ModPatches/Inspiration Tweaks</li>		
+		<li IfModActive="catachat.inspirationtweaks">ModPatches/Inspiration Tweaks</li>
 		<li IfModActive="lts.I">ModPatches/Integrated Implants</li>
 		<li IfModActive="EL.IonWeaponry, zal.ionweaponry">ModPatches/Ion Weaponry</li>
 		<li IfModActive="JangoDsoul.CastleWalls,gideon.castlewalls">ModPatches/JDS Castle Walls</li>
@@ -612,7 +613,7 @@
 		<li IfModActive="Trickity.WC.Rags">ModPatches/T's Wild Child Rags</li>
 		<li IfModActive="balistafreak.TacticalExtremityProtection">ModPatches/Tactical Extremity Protection [BAL]</li>
 		<li IfModActive="TextilesPlus.velcroboy333">ModPatches/Textiles+</li>
-		<li IfModActive="Pyro.TieredMechs">ModPatches/Tiered Mechs</li>		
+		<li IfModActive="Pyro.TieredMechs">ModPatches/Tiered Mechs</li>
 		<li IfModActive="MortStrudel.CorporationFaction">ModPatches/The Corporation - Mort's Factions</li>
 		<li IfModActive="HC.GiantRace">ModPatches/The GiantRace</li>
 		<li IfModActive="sarg.jorisexperience">ModPatches/The Joris Experience</li>
@@ -636,7 +637,7 @@
 		<li IfModActive="eatKenny.leafzxg.TurretCollection">ModPatches/Turret Collection</li>
 		<li IfModActive="Mlie.TwilekRace">ModPatches/Twi'lek Race</li>
 		<li IfModActive="UltraEmailMan.MoreMechanitorMechs">ModPatches/UEM More Mechanitor Mechs</li>
-		<li IfModActive="UNAGI.A.D.coat">ModPatches/UNAGI Another Duster Coat</li>		
+		<li IfModActive="UNAGI.A.D.coat">ModPatches/UNAGI Another Duster Coat</li>
 		<li IfModActive="wool.UselessClothes">ModPatches/Useless Clothes</li>
 		<li IfModActive="Ushanka.GlittertechExpansion">ModPatches/Ushankas Glittertech Expansion</li>
 		<li IfModActive="Kilo.VacSlipsuit">ModPatches/VacSlipsuit</li>
@@ -663,7 +664,7 @@
 		<li IfModActive="VanillaExpanded.BaseGeneration">ModPatches/Vanilla Base Generation Expanded</li>
 		<li IfModActive="VanillaExpanded.VBrewE">ModPatches/Vanilla Brewing Expanded</li>
 		<li IfModActive="VanillaExpanded.VChemfuelE">ModPatches/Vanilla Chemfuel Expanded</li>
-		<li IfModActive="VanillaExpanded.VEE">ModPatches/Vanilla Events Expanded</li>		
+		<li IfModActive="VanillaExpanded.VEE">ModPatches/Vanilla Events Expanded</li>
 		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.Core">ModPatches/Vanilla Expanded Framework</li>
 		<li IfModActive="VanillaExpanded.VFEA">ModPatches/Vanilla Factions Expanded - Ancients</li>
 		<li IfModActive="OskarPotocki.VFE.Classical">ModPatches/Vanilla Factions Expanded - Classical</li>

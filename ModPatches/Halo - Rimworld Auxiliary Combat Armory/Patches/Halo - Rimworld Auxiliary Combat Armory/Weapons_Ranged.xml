@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Tools === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			/Defs/ThingDef[
+			@Name="HRACA_Gun_charge_pistol_base" or
+			defName="HRACA_Gun_Charge_SMG" or
+			defName="HRACA_Gun_Plasma_Pistol"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			/Defs/ThingDef[
+			defName="HRACA_Gun_Charge_Shotgun" or
+			defName="HRACA_Gun_Charge_Rifle" or
+			defName="HRACA_Gun_Charge_BR" or
+			defName="HRACA_Gun_Charge_DMR" or
+			defName="HRACA_Gun_Charge_Sniper" or
+			defName="HRACA_EmpLauncher" or
+			defName="HRACA_Gun_Plasma_Rifle" or
+			defName="HRACA_Gun_Plasma_BR" or
+			defName="HRACA_Gun_Plasma_DMR" or
+			defName="HRACA_Gun_Plasma_Shotgun"]/tools
+		</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/ThingDef[defName="HRACA_Gun_Charge_Launcher"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>2.44</cooldownTime>
+					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Spacer Ranged === -->
+	<!-- == Charge Pistol == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_Pistol</defName>
+		<statBases>
+			<WorkToMake>25500</WorkToMake>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>2.10</Bulk>
+			<Mass>1.05</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<warmupTime>0.5</warmupTime>
+			<range>15</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>1.90</reloadTime>
+			<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_SpacerSidearm</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Charge Magnum == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_Magnum</defName>
+		<statBases>
+			<WorkToMake>25500</WorkToMake>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.10</SwayFactor>
+			<Bulk>2.10</Bulk>
+			<Mass>1.05</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+			<warmupTime>0.7</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>1.90</reloadTime>
+			<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_SpacerSidearm</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Charge SMG == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_SMG</defName>
+		<statBases>
+			<WorkToMake>52000</WorkToMake>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.13</ShotSpread>
+			<SwayFactor>0.80</SwayFactor>
+			<Bulk>5.00</Bulk>
+			<Mass>2.60</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>45</Steel>
+			<Plasteel>25</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<Chemfuel>15</Chemfuel>
+		</costList>
+		<Properties>
+			<recoilAmount>1.60</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x18mmCharged</defaultProjectile>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>0.5</warmupTime>
+			<range>24</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>60</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6x18mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_OneHandedWeapon</li>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Charge Shotgun == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_Shotgun</defName>
+		<statBases>
+			<WorkToMake>44000</WorkToMake>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.9</SwayFactor>
+			<Bulk>9.0</Bulk>
+			<Mass>4.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12GaugeCharged</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>18</range>
+			<soundCast>HRACA_Shot_ChargeShotgun</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>6</reloadTime>
+			<ammoSet>AmmoSet_12GaugeCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SpacerGun</li>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Charge Rifle == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_Rifle</defName>
+		<statBases>
+			<WorkToMake>48000</WorkToMake>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.30</SwayFactor>
+			<Bulk>7</Bulk>
+			<Mass>4.32</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.21</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>1.0</warmupTime>
+			<range>55</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>32</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SpacerGun</li>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Charge BR == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_BR</defName>
+		<statBases>
+			<WorkToMake>48000</WorkToMake>
+			<SightsEfficiency>1.25</SightsEfficiency> <!-- == scope == -->
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>7</Bulk>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.40</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<warmupTime>1</warmupTime>
+			<range>65</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>36</magazineSize>
+			<reloadTime>5.00</reloadTime>
+			<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SpacerGun</li>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Charge DMR == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_DMR</defName>
+		<statBases>
+			<WorkToMake>48000</WorkToMake>
+			<SightsEfficiency>1.5</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.40</SwayFactor>
+			<Bulk>12.0</Bulk>
+			<Mass>6.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_8x35mmCharged</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<recoilAmount>1.82</recoilAmount>
+			<range>74</range>
+			<soundCast>Shot_ChargeRifle</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_8x35mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SpacerGun</li>
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Charge Sniper == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_Sniper</defName>
+		<statBases>
+			<WorkToMake>50500</WorkToMake>
+			<SightsEfficiency>2.6</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.9</SwayFactor>
+			<Bulk>13.0</Bulk>
+			<Mass>7.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>60</Steel>
+			<Plasteel>45</Plasteel>
+			<ComponentIndustrial>10</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Chemfuel>15</Chemfuel>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12x72mmCharged</defaultProjectile>
+			<warmupTime>1.6</warmupTime>
+			<recoilAmount>2.66</recoilAmount>
+			<range>81</range>
+			<soundCast>HRACA_Shot_ChargeSniper</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>10</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_12x72mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>SpacerGun</li>
+			<li>CE_AI_SR</li>
+			<li>Bipod_AMR</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == EMP Launcher == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_EmpLauncher</defName>
+		<statBases>
+			<WorkToMake>25500</WorkToMake>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.4</SwayFactor>
+			<Bulk>5.25</Bulk>
+			<Mass>5.12</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.66</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_40x46mmGrenade_HE</defaultProjectile>
+			<warmupTime>1</warmupTime>
+			<range>40</range>
+			<soundCast>Shot_IncendiaryLauncher</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>4.5</reloadTime>
+			<ammoSet>AmmoSet_40x46mmGrenade</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- == Charge Launcher == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Charge_Launcher</defName>
+		<statBases>
+			<WorkToMake>78000</WorkToMake>
+			<SightsEfficiency>1.8</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.30</SwayFactor>
+			<Mass>24.0</Mass>
+			<Bulk>16</Bulk>
+			<RangedWeapon_Cooldown>2</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>80</Steel>
+			<Plasteel>45</Plasteel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+			<ComponentSpacer>1</ComponentSpacer>
+			<Chemfuel>15</Chemfuel>
+		</costList>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_AntiGrainRocket</defaultProjectile>
+			<warmupTime>2.5</warmupTime>
+			<range>55</range>
+			<soundCast>InfernoCannon_Fire</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<onlyManualCast>true</onlyManualCast>
+			<stopBurstWithoutLos>false</stopBurstWithoutLos>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>2</magazineSize>
+			<reloadTime>10</reloadTime>
+			<ammoSet>AmmoSet_ChargedRockets</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="HRACA_Gun_Charge_Launcher"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_Charges">
+				<chargeSpeeds>
+					<li>50</li>
+					<li>70</li>
+					<li>90</li>
+					<li>120</li>
+					<li>150</li>
+				</chargeSpeeds>
+			</li>
+		</value>
+	</Operation>
+
+	<!-- === Ultratech Ranged === -->
+	<!-- == Plasma Rifle == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Plasma_Rifle</defName>
+		<statBases>
+			<SightsEfficiency>1.10</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.30</SwayFactor>
+			<Bulk>7</Bulk>
+			<Mass>4.32</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.21</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellRifle</defaultProjectile>
+			<burstShotCount>6</burstShotCount>
+			<ticksBetweenBurstShots>5</ticksBetweenBurstShots>
+			<warmupTime>1.0</warmupTime>
+			<range>55</range>
+			<soundCast>HRACA_Shot_Plasma</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>32</magazineSize>
+			<reloadTime>4.2</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+
+	</Operation>
+
+	<!-- == Plasma BR == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Plasma_BR</defName>
+		<statBases>
+			<SightsEfficiency>1.20</SightsEfficiency>
+			<ShotSpread>0.06</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>7</Bulk>
+			<Mass>3</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.20</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellRifle</defaultProjectile>
+			<burstShotCount>3</burstShotCount>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<warmupTime>1</warmupTime>
+			<range>65</range>
+			<soundCast>HRACA_Shot_Plasma</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>36</magazineSize>
+			<reloadTime>5.2</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+
+	</Operation>
+
+	<!-- == Plasma DMR == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Plasma_DMR</defName>
+		<statBases>
+			<SightsEfficiency>1.5</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>1.40</SwayFactor>
+			<Bulk>12.0</Bulk>
+			<Mass>6.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellRifle</defaultProjectile>
+			<warmupTime>1.2</warmupTime>
+			<range>74</range>
+			<soundCast>HRACA_Shot_Plasma</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4.2</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellRifle</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>FALSE</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags Inherit="False">
+			<li>CE_AI_SR</li>
+			<li>Bipod_DMR</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Plasma Shotgun == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Plasma_Shotgun</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.5</SwayFactor>
+			<Bulk>9.0</Bulk>
+			<Mass>4.0</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.36</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellShotgun_HRACA</defaultProjectile>
+			<!-- <burstShotCount>2</burstShotCount> -->
+			<!-- <ticksBetweenBurstShots>9</ticksBetweenBurstShots> -->
+			<warmupTime>0.9</warmupTime>
+			<range>18</range>
+			<soundCast>HRACA_Shot_Plasma</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>20</magazineSize>
+			<reloadTime>6</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellShotgun_HRACA</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiUseBurstMode>true</aiUseBurstMode>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- == Plasma Pistol == -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>HRACA_Gun_Plasma_Pistol</defName>
+		<statBases>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.5</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>2.10</Bulk>
+			<Mass>1.05</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_PlasmaCellPistol</defaultProjectile>
+			<warmupTime>0.5</warmupTime>
+			<range>15</range>
+			<soundCast>HRACA_Shot_Plasma</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>12</magazineSize>
+			<reloadTime>1.90</reloadTime>
+			<ammoSet>AmmoSet_PlasmaCellPistol</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_Sidearm</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>
