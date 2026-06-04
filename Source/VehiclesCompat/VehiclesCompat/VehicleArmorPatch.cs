@@ -11,7 +11,7 @@ using HarmonyLib;
 using Vehicles;
 using UnityEngine;
 using CombatExtended;
-
+#nullable enable
 
 namespace CombatExtended.Compatibility.VehiclesCompat;
 [HarmonyPatch(typeof(VehicleStatHandler),
@@ -24,8 +24,12 @@ public static class VehicleArmorPatch
         {
             return true;
         }
-        StringBuilder report = VehicleMod.settings.debug.debugLogging ? new StringBuilder() : null;
+        StringBuilder? report = VehicleMod.settings.debug.debugLogging ? new StringBuilder() : null;
         __instance.ApplyDamageCE(ref dinfo, hitCell, report);
+        if (report != null)
+        {
+            Log.Message(report.ToString());
+        }
         return false;
     }
 
@@ -42,7 +46,7 @@ public static class VehicleArmorPatch
       Projectile Inside, is no inner component, is no outer component -- hit outer component on previous cell, direction reversed
       TODO:  Allow non-linear deflections.
      */
-    public static void ApplyDamageCE(this VehicleStatHandler stats, ref DamageInfo dinfo, IntVec2 hitCell, StringBuilder report)
+    public static void ApplyDamageCE(this VehicleStatHandler stats, ref DamageInfo dinfo, IntVec2 hitCell, StringBuilder? report)
     {
         DamageDef def = dinfo.Def;
         VehiclePawn vehicle = stats.vehicle;
@@ -62,6 +66,47 @@ public static class VehicleArmorPatch
         {
             report?.AppendLine($"Final Damage = {damage}. Exiting.");
             return;
+        }
+
+        var unhittableComponents = new List<VehicleComponent>();
+        float unhittableHP = 0;
+        {
+            var max_x = vehicle.VehicleDef.Size.x;
+            var max_z = vehicle.VehicleDef.Size.z;
+            for (int x = 1; x < max_x - 1; x++)
+            {
+                for (int z = 1; z < max_z - 1; z++)
+                {
+                    IntVec2 innerCell = new IntVec2(x, z);
+                    if (stats.componentLocations.TryGetValue(innerCell, out List<VehicleComponent> maybeUnhittable))
+                    {
+                        foreach (var comp in maybeUnhittable)
+                        {
+                            if (comp.Depth != VehicleComponent.VehiclePartDepth.External)
+                            {
+                                continue;
+                            }
+                            bool unhittable = true;
+                            foreach (var cell in comp.props.hitbox.Hitbox)
+                            {
+                                if (cell.x == 0 || cell.x == max_z || cell.z == 0 || cell.z == max_x)
+                                {
+                                    unhittable = false;
+                                    break;
+                                }
+                            }
+                            if (unhittable)
+                            {
+                                if (Controller.settings.hitRandomVehicleComponents)
+                                {
+                                    unhittableComponents.Add(comp);
+                                }
+                                unhittableHP += comp.Health;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         dinfo.SetAmount(damage);
@@ -156,6 +201,11 @@ public static class VehicleArmorPatch
                         if (hitDepth == VehicleComponent.VehiclePartDepth.External) // Blew a hole out, we're done
                         {
                             report?.AppendLine($"Exiting vehicle");
+                            if (Controller.settings.fragmentsFromVehicles)
+                            {
+                                SpawnFragments(ref dinfo, direction, stats, cell2 + new IntVec2(vehicle.Position.x, vehicle.Position.z), report);
+                            }
+
                             break;
                         }
                         else // Hit any pawns and then move on to the next cell
@@ -197,6 +247,15 @@ public static class VehicleArmorPatch
                     cidx += cdirection;
                     continue;
                 }
+                if (hcount == 1 && Controller.settings.hitRandomVehicleComponents) // our first time through, never hit anything.
+                {
+                    TryPenetrateComponents(stats, ref dinfo, unhittableComponents, hitDepth, report);
+                    break;
+                }
+                if (Controller.settings.fragmentsFromVehicles)
+                {
+                    SpawnFragments(ref dinfo, direction, stats, cell2 + new IntVec2(vehicle.Position.x, vehicle.Position.z), report);
+                }
             }
         }
 
@@ -207,16 +266,71 @@ public static class VehicleArmorPatch
             cell = hitCell
         });
 
+        if (!Controller.settings.hitRandomVehicleComponents)
+        {
+            float current = 0;
+            float total = 0;
+            foreach (VehicleComponent component in stats.components)
+            {
+                current += component.Health;
+                total += component.MaxHealth;
+            }
+            current -= unhittableHP;
+            total -= unhittableHP;
+            if (total < 1)
+            {
+                total = 1;
+            }
+            float pct = (current / total);
+            if (pct < 0.01)
+            {
+                vehicle.Kill(dinfo);
+            }
+        }
         stats.RecalculateHealthPercent();
-
     }
 
-    public static bool TryPenetrateComponents(VehicleStatHandler stats, ref DamageInfo dinfo, List<VehicleComponent> components, VehicleComponent.VehiclePartDepth hitDepth, StringBuilder report)
+    private static void SpawnFragments(ref DamageInfo dinfo, Vector3 direction, VehicleStatHandler stats, IntVec2 cell, StringBuilder? report)
+    {
+        var height = new FloatRange(0, new CollisionVertical(stats.vehicle).Max).RandomInRange;
+        var frontArc = new FloatRange(dinfo.Angle - 15, dinfo.Angle + 15);
+        var rotation = frontArc.RandomInRange * Mathf.Deg2Rad;
+        var map = stats.vehicle.Map;
+        Vector3 spawnOffset = Quaternion.Euler(0, dinfo.Angle, 0) * Vector3.forward * Mathf.Max(1, Mathf.Min(stats.vehicle.RotatedSize.x, stats.vehicle.RotatedSize.z) / 2f);
+        spawnOffset.y = height;
+        ProjectileCE frag = (ProjectileCE)ThingMaker.MakeThing(CE_ThingDefOf.Fragment_Large, null);
+        GenSpawn.Spawn(frag, new IntVec3(cell.x, 0, cell.z), map);
+        frag.Throw(dinfo.Instigator, spawnOffset, new Vector3(Mathf.Sin(rotation), Mathf.Sin(new FloatRange(-5, 5).RandomInRange * Mathf.Deg2Rad), Mathf.Cos(rotation)), stats.vehicle);
+        var baseAmount = frag.DamageAmount;
+        var baseMass = frag.mass;
+        frag.mass = new FloatRange(baseMass, baseMass * 10).RandomInRange;
+        frag.DamageAmount = dinfo.Amount;
+        var damageRatio = dinfo.Amount / baseAmount;
+        var keRatio = damageRatio / (frag.mass / baseMass);
+        var baseVel = frag.velocity;
+        frag.velocity *= Mathf.Sqrt(keRatio);
+        frag.initialSpeed = frag.shotSpeed = frag.velocity.magnitude * GenTicks.TicksPerRealSecond;
+        frag.ExactPosition = new Vector3(cell.x, height, cell.z);
+        if (report != null)
+        {
+            report.AppendLine($"Spawning fragment");
+            report.AppendLine($"angle: {frontArc}");
+            report.AppendLine($"damage: {dinfo.Amount} / {baseAmount}");
+            report.AppendLine($"mass: {frag.mass} / {baseMass}");
+            report.AppendLine($"keRatio: {keRatio}");
+            report.AppendLine($"velocity {frag.velocity} / {baseVel}");
+        }
+    }
+
+    public static bool TryPenetrateComponents(VehicleStatHandler stats, ref DamageInfo dinfo, List<VehicleComponent> components, VehicleComponent.VehiclePartDepth hitDepth, StringBuilder? report)
     {
         var componentsAtHitDepth = components.Where(comp => comp.Depth == hitDepth && comp.HealthPercent > 0).OrderBy(x => Rand.Value * x.props.hitWeight);
-        report?.AppendLine($"components=({string.Join(",", components.Select(c => c.props.label))})");
-        report?.AppendLine($"hitDepth = {hitDepth}");
-        report?.AppendLine($"components at hitDepth {hitDepth}: ({string.Join(",", componentsAtHitDepth.Select(comp => comp.props.label))})");
+        if (report != null)
+        {
+            report.AppendLine($"components=({string.Join(",", components.Select(c => c.props.label))})");
+            report.AppendLine($"hitDepth = {hitDepth}");
+            report.AppendLine($"components at hitDepth {hitDepth}: ({string.Join(",", componentsAtHitDepth.Select(comp => comp.props.label))})");
+        }
         foreach (var component in componentsAtHitDepth)
         {
             report?.AppendLine($"Hitting Component {component.props.label}");
@@ -266,7 +380,7 @@ public static class VehicleArmorPatch
         return overdamage;
     }
 
-    public static bool HitComponent(VehicleComponent component, ref DamageInfo dinfo, StringBuilder report)
+    public static bool HitComponent(VehicleComponent component, ref DamageInfo dinfo, StringBuilder? report)
     {
         report?.AppendLine($"Applying Damage = {dinfo.Amount} to {component.props.key}");
 
@@ -278,16 +392,22 @@ public static class VehicleArmorPatch
         float armorDamage = 0;
 
         bool deflected = armorAmount > 0 && DamageArmor(isSharp, armorAmount, ref penAmount, ref dmgAmount, out armorDamage);
-        report?.AppendLine($"deflected by component armor? {deflected}");
-        report?.AppendLine($"Armor Damage: {armorDamage}");
+        if (report != null)
+        {
+            report.AppendLine($"deflected by component armor? {deflected}");
+            report.AppendLine($"Armor Damage: {armorDamage}");
+        }
         dmgAmount += DamageComponent(component, armorDamage, dinfo, deflected ? VehicleComponent.Penetration.Diminished : VehicleComponent.Penetration.Penetrated);
 
         if (!deflected)
         {
             report?.AppendLine($"component health? {component.health}");
             deflected = DamageArmor(isSharp, component.health / 50, ref penAmount, ref dmgAmount, out armorDamage);
-            report?.AppendLine($"deflected by component bulk? {deflected}");
-            report?.AppendLine($"Component Damage: {armorDamage}");
+            if (report != null)
+            {
+                report.AppendLine($"deflected by component bulk? {deflected}");
+                report.AppendLine($"Component Damage: {armorDamage}");
+            }
             dmgAmount += DamageComponent(component, armorDamage, dinfo, VehicleComponent.Penetration.Penetrated);
         }
         dinfo.SetAmount(dmgAmount);
@@ -321,7 +441,7 @@ public static class VehicleArmorPatch
         return deflected;
     }
 
-    public static float AdjustDamage(float damage, DamageInfo dinfo, StringBuilder report)
+    public static float AdjustDamage(float damage, DamageInfo dinfo, StringBuilder? report)
     {
         if (dinfo.Weapon?.GetModExtension<VehicleDamageMultiplierDefModExtension>() is VehicleDamageMultiplierDefModExtension weaponMultiplier)
         {
@@ -351,3 +471,4 @@ public static class VehicleArmorPatch
         return damage;
     }
 }
+#nullable restore

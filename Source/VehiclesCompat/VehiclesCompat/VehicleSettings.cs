@@ -21,6 +21,16 @@ public class VehicleSettings : ISettingsCE
         Text.Font = GameFont.Small;
         list.Gap();
         list.CheckboxLabeled("CE_Settings_PatchArmorDamage_Title".Translate(), ref Controller.settings.patchArmorDamage, "CE_Settings_PatchArmorDamage_Desc".Translate());
+        list.CheckboxLabeled("CE_Settings_HitRandomVehicleComponents_Title".Translate(), ref Controller.settings.hitRandomVehicleComponents, "CE_Settings_HitRandomVehicleComponents_Desc".Translate());
+#if DEBUG
+        if (Controller.settings.DebuggingMode)
+        {
+            list.CheckboxLabeled("CE_Settings_FragmentsFromVehicles_Title".Translate(), ref Controller.settings.fragmentsFromVehicles, "CE_Settings_FragmentsFromVehicles_Desc".Translate());
+        }
+        else
+        {
+            Controller.settings.fragmentsFromVehicles = false;
+        }
+#endif
     }
-
 }

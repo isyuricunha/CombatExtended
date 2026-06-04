@@ -162,7 +162,13 @@
 	<CE_Settings_Vehicles>Vehicle settings</CE_Settings_Vehicles>
 
 	<CE_Settings_PatchArmorDamage_Title>Use New Vehicle Armor</CE_Settings_PatchArmorDamage_Title>
-	<CE_Settings_PatchArmorDamage_Desc>Vehicle Armor reduces damage based on relative values, but can be penetrated by high AP attacks..</CE_Settings_PatchArmorDamage_Desc>
+	<CE_Settings_PatchArmorDamage_Desc>Vehicle Armor reduces damage based on relative values, but can be penetrated by high AP attacks.</CE_Settings_PatchArmorDamage_Desc>
+
+	<CE_Settings_HitRandomVehicleComponents_Title>Hit any component</CE_Settings_HitRandomVehicleComponents_Title>
+	<CE_Settings_HitRandomVehicleComponents_Desc>When a vehicle is at low health, projectiles that fail to encounter a surviving component will instead damage a random one.\n\nThis prevents heavily damaged vehicles being kept intact by small, hard-to-hit components.</CE_Settings_HitRandomVehicleComponents_Desc>
+
+	<CE_Settings_FragmentsFromVehicles_Title>Fragments from vehicles</CE_Settings_FragmentsFromVehicles_Title>
+	<CE_Settings_FragmentsFromVehicles_Desc>When a projectile over-penetrates a vehicle, generate a fragments on the far side.</CE_Settings_FragmentsFromVehicles_Desc>
 
 	<!-- ========== Autopatcher settings ========== -->
 
