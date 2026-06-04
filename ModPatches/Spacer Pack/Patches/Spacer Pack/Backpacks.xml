@@ -98,6 +98,7 @@
 		<xpath>Defs/ThingDef[defName="dvd_MechanicalExopack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
 		<value>
 			<CarryBulk>80</CarryBulk>
+			<CarryWeight>10</CarryWeight>
 		</value>
 	</Operation>
 
@@ -175,6 +176,20 @@
 		<xpath>Defs/ThingDef[defName="dvd_VoidsentPulsepack"]/statBases</xpath>
 		<value>
 			<Bulk>4</Bulk>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_VoidsentPulsepack"]/statBases/EnergyShieldRechargeRate</xpath>
+		<value>
+			<EnergyShieldRechargeRate>0.075</EnergyShieldRechargeRate>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="dvd_VoidsentPulsepack"]/statBases/EnergyShieldEnergyMax</xpath>
+		<value>
+			<EnergyShieldEnergyMax>1.35</EnergyShieldEnergyMax>
 		</value>
 	</Operation>
 
