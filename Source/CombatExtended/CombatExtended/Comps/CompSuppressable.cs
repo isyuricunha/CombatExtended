@@ -121,17 +121,21 @@ public class CompSuppressable : ThingComp
     {
         get
         {
-            if (currentSuppression > (SuppressionThreshold * 10) || (ticksHunkered > 0 && ticksHunkered < hunkeringMinDuration))
+            if (currentSuppression > (SuppressionThreshold * 10) || ticksHunkered is > 0 and < hunkeringMinDuration)
             {
                 if (isSuppressed)
                 {
                     return true;
                 }
                 // Removing suppression log
-                else
+                Pawn pawn = parent as Pawn;
+                currentSuppression = 0f;
+                ticksHunkered = 0;
+                if (pawn != null && pawn.CurJob.def == CE_JobDefOf.HunkerDown)
                 {
-                    Log.Error("CE hunkering without suppression, this should never happen");
+                    pawn.CurJob.Clear();
                 }
+                Log.Error($"CE: {pawn?.Name} is hunkering without suppression, this should never happen. Attempting to fix");
             }
             return false;
         }
@@ -162,6 +166,7 @@ public class CompSuppressable : ThingComp
         Scribe_Values.Look(ref isSuppressed, "isSuppressed", false);
         Scribe_Values.Look(ref ticksUntilDecay, "ticksUntilDecay", 0);
         Scribe_Values.Look(ref lastHelpRequestAt, "lastHelpRequestAt", -1);
+        Scribe_Values.Look(ref ticksHunkered, "ticksHunkered", 0);
     }
 
     public void AddSuppression(float amount, IntVec3 origin)
