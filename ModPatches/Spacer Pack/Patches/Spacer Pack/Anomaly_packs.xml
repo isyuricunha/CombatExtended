@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!-- Devourer Grubpack -->
+				<li Class="PatchOperationReplace">
+					<xpath>
+						Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+					<value>
+						<CarryBulk>70</CarryBulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>
+						Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/equippedStatOffsets/MoveSpeed</xpath>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/statBases/Mass</xpath>
+					<value>
+						<Mass>6</Mass>
+						<Bulk>8</Bulk>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/verbs</xpath>
+					<value>
+						<verbs>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<label>splash acid</label>
+								<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
+								<hasStandardCommand>true</hasStandardCommand>
+								<onlyManualCast>True</onlyManualCast>
+								<warmupTime>1.5</warmupTime>
+								<range>35</range>
+								<minRange>5</minRange>
+								<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+								<soundCast>SpitterSpit</soundCast>
+								<soundCastTail>GunTail_Medium</soundCastTail>
+								<muzzleFlashScale>14</muzzleFlashScale>
+								<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
+								<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+								<defaultProjectile>dvd_NeotenicGrubpack_spit_CE</defaultProjectile>
+								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+							</li>
+						</verbs>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="dvd_ProjectileGrubGlob"]</xpath>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

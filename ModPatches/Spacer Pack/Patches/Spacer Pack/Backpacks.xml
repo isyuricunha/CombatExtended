@@ -31,7 +31,7 @@
 	</Operation>
 
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[@Name="BackpackBase"]/tradeTags</xpath>
+		<xpath>Defs/ThingDef[@Name="dvd_BackpackBase"]/tradeTags</xpath>
 		<value>
 			<li>Clothing</li>
 		</value>
@@ -71,96 +71,21 @@
 		</value>
 	</Operation>
 
-	<!-- Hybrid Aeropack -->
-
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="dvd_HybridAeropack"]/equippedStatOffsets</xpath>
-		<value>
-			<equippedStatOffsets>
-				<CarryBulk>40</CarryBulk>
-			</equippedStatOffsets>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="dvd_HybridAeropack"]/statBases/Mass</xpath>
-		<value>
-			<Mass>6</Mass>
-			<Bulk>8</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Royalty">
-		<xpath>Defs/ThingDef[defName="dvd_HybridAeropack"]/statBases/JumpRange</xpath>
-		<value>
-			<JumpRange>40</JumpRange>
-		</value>
-	</Operation>
-
-	<!-- Devourer Grubpack -->
-
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Anomaly">
-		<xpath>Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
-		<value>
-			<CarryBulk>70</CarryBulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Anomaly">
-		<xpath>Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/equippedStatOffsets/MoveSpeed</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Anomaly">
-		<xpath>Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/statBases/Mass</xpath>
-		<value>
-			<Mass>6</Mass>
-			<Bulk>8</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace" MayRequire="Ludeon.RimWorld.Anomaly">
-		<xpath>Defs/ThingDef[defName="dvd_NeotenicGrubpack"]/verbs</xpath>
-		<value>
-			<verbs>
-				<li Class="CombatExtended.VerbPropertiesCE">
-					<label>splash acid</label>
-					<verbClass>CombatExtended.Verb_LaunchProjectileStaticCE</verbClass>
-					<hasStandardCommand>true</hasStandardCommand>
-					<onlyManualCast>True</onlyManualCast>
-					<warmupTime>1.5</warmupTime>
-					<range>35</range>
-					<minRange>5</minRange>
-					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
-					<soundCast>SpitterSpit</soundCast>
-					<soundCastTail>GunTail_Medium</soundCastTail>
-					<muzzleFlashScale>14</muzzleFlashScale>
-					<drawHighlightWithLineOfSight>true</drawHighlightWithLineOfSight>
-					<targetParams>
-						<canTargetLocations>true</canTargetLocations>
-					</targetParams>
-					<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
-					<defaultProjectile>dvd_NeotenicGrubpack_spit_CE</defaultProjectile>
-					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
-				</li>
-			</verbs>
-		</value>
-	</Operation>
-
 	<!-- Spacer Pack -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
+		<xpath>Defs/ThingDef[defName="dvd_SpacerPack"]/equippedStatOffsets/VEF_MassCarryCapacity</xpath>
 		<value>
 			<CarryBulk>80</CarryBulk>
 		</value>
 	</Operation>
 
 	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/equippedStatOffsets/MoveSpeed</xpath>
+		<xpath>Defs/ThingDef[defName="dvd_SpacerPack"]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="dvd_spacerpack"]/statBases/Mass</xpath>
+		<xpath>Defs/ThingDef[defName="dvd_SpacerPack"]/statBases/Mass</xpath>
 		<value>
 			<Mass>4</Mass>
 			<Bulk>5</Bulk>
@@ -198,7 +123,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<onlyManualCast>True</onlyManualCast>
 					<warmupTime>1.0</warmupTime>
-					<range>21</range>
+					<range>35</range>
 					<minRange>6</minRange>
 					<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
 					<soundCast>InfernoCannon_Fire</soundCast>
@@ -219,10 +144,6 @@
 	<!-- Get rid of the unused vanilla projectile to suppress an error, idk what error is now adding one for acid just to be safe-->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="dvd_ProjectileRipperBlast"]</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove" MayRequire="Ludeon.RimWorld.Anomaly">
-		<xpath>Defs/ThingDef[defName="dvd_ProjectileGrubGlob"]</xpath>
 	</Operation>
 
 	<!-- Med Pack -->
@@ -254,13 +175,6 @@
 		<xpath>Defs/ThingDef[defName="dvd_VoidsentPulsepack"]/statBases</xpath>
 		<value>
 			<Bulk>4</Bulk>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="dvd_VoidsentPulsepack"]/comps/li[@Class="VEF.Apparels.CompProperties_ShieldBubble"]/EnergyShieldRechargeRate</xpath>
-		<value>
-			<EnergyShieldRechargeRate>0.075</EnergyShieldRechargeRate>
 		</value>
 	</Operation>
 

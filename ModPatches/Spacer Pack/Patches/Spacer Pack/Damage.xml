@@ -9,24 +9,4 @@
 		<value>Bullet</value>
 	</Operation>
 
-	<Operation Class="PatchOperationAttributeSet">
-		<xpath>Defs/DamageDef[defName="dvd_RipperBomb"]</xpath>
-		<attribute>ParentName</attribute>
-		<value>Bomb</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/DamageDef[defName="dvd_RipperBomb"]/defaultArmorPenetration</xpath>
-		<value>
-			<defaultArmorPenetration>62</defaultArmorPenetration>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/DamageDef[defName="dvd_RipperBomb"]/armorCategory</xpath>
-		<value>
-			<armorCategory>Blunt</armorCategory>
-		</value>
-	</Operation>
-
 </Patch>

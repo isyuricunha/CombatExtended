@@ -45,7 +45,7 @@
 			<dangerFactor>3.0</dangerFactor>
 			<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
 			<suppressionFactor>3.0</suppressionFactor>
-			<explosionRadius>3.9</explosionRadius>
+			<explosionRadius>5</explosionRadius>
 			<filth>dvd_Filth_RipperMechanites</filth>
 			<filthCount>1</filthCount>
 		</projectile>
