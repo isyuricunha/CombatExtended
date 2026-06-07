@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+
+	<!-- VWE Coilgun Odyssey Traits - Combat Extended Compatibility -->
+	<!-- Only applies when Odyssey DLC is loaded -->
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Odyssey</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- VWE_InertialCore: Remove -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InertialCore"]</xpath>
+				</li>
+
+				<!-- VWE_InvertedRailTuning: Remove -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]</xpath>
+				</li>
+
+				<!-- VWE_BypassRelay:remove modExtension patch into cooldown reduction. -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BypassRelay"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BypassRelay"]/description</xpath>
+					<value>
+						<description>This weapon features an optimized charging sequence that halves the charging time between bursts.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_BypassRelay"]</xpath>
+					<value>
+						<statFactors>
+							<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+						</statFactors>
+					</value>
+				</li>
+
+				<!-- VWE_OverdrawnCoils: Add recoil move cooldown damage and armor pen buff out of modExtensions -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]/description</xpath>
+					<value>
+						<description>This weapon draws excessive power from its reserves, taking slightly longer to charge but delivering vastly increased damage.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]</xpath>
+					<value>
+						<statFactors>
+							<CE_RangedWeapon_RecoilMultiplier>1.15</CE_RangedWeapon_RecoilMultiplier>
+							<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
+							<RangedWeapon_DamageMultiplier>0.35</RangedWeapon_DamageMultiplier>
+							<RangedWeapon_ArmorPenetrationMultiplier>0.35</RangedWeapon_ArmorPenetrationMultiplier>
+						</statFactors>
+					</value>
+				</li>
+
+				<!-- VWE_IonizedSabot: Change to add Bomb_Secondary -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_IonizedSabot"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_IonizedSabot"]</xpath>
+					<value>
+						<extraDamages>
+							<li>
+								<def>Bomb_Secondary</def>
+								<amount>5</amount>
+							</li>
+						</extraDamages>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
