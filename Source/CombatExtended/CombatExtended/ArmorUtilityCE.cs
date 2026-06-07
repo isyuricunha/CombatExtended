@@ -83,6 +83,10 @@ public static class ArmorUtilityCE
             var shield = apparel.FirstOrDefault(x => x is Apparel_Shield);
             if (shield != null)
             {
+
+                // Removes shield from list so that the part we use to get it on the apparel list is not calculated armor twice
+                apparel.Swap(apparel.IndexOf(shield), apparel.Count -1);
+                apparel.RemoveLast();
                 // Determine whether the hit is blocked by the shield
                 var blockedByShield = false;
                 if (!(dinfo.Weapon?.IsMeleeWeapon ?? false))
