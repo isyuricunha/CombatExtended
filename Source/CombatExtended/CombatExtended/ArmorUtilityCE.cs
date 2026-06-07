@@ -80,7 +80,16 @@ public static class ArmorUtilityCE
             var apparel = pawn.apparel.WornApparel;
 
             // Check for shields first
-            var shield = apparel.FirstOrDefault(x => x is Apparel_Shield);
+            Apparel_Shield shield = null;
+            for (int i = 0; i < apparel.Count; i++)
+            {
+                if (apparel[i] is Apparel_Shield loopShield)
+                {
+                    shield = loopShield;
+                    break;
+                }
+            }
+
             if (shield != null)
             {
 
