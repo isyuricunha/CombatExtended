@@ -95,8 +95,8 @@ public static class ArmorUtilityCE
 
                 var blockedByShield = false;
 
-                bool isMeleeOrToolAttack = dinfo.Tool != null || (dinfo.Weapon?.IsMeleeWeapon ?? false);
-                if (!isMeleeOrToolAttack)
+                bool isMeleeOrNull = dinfo.Tool != null || (dinfo.Weapon?.IsMeleeWeapon ?? true);
+                if (!isMeleeOrNull)
                 {
                     var shieldDef = shield.def.GetModExtension<ShieldDefExtension>();
                     if (shieldDef == null)
