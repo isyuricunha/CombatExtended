@@ -543,6 +543,10 @@ public class ITab_Inventory : ITab_Pawn_Gear
                 {
                     foreach (Apparel apparel in wornApparel)
                     {
+                        if (apparel == shield)
+                        {
+                            continue;
+                        }
                         armorValue += apparel.PartialStat(stat, part);
                     }
                     if (shield != null)
