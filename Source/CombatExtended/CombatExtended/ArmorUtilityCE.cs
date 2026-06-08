@@ -93,12 +93,10 @@ public static class ArmorUtilityCE
             if (shield != null)
             {
 
-                // Removes shield from list so that the part we use to get it on the apparel list is not calculated armor twice
-                apparel.Swap(apparel.IndexOf(shield), apparel.Count - 1);
-                apparel.RemoveLast();
-                // Determine whether the hit is blocked by the shield
                 var blockedByShield = false;
-                if (!(dinfo.Weapon?.IsMeleeWeapon ?? false))
+
+                bool isMeleeOrToolAttack = dinfo.Tool != null || (dinfo.Weapon?.IsMeleeWeapon ?? false);
+                if (!isMeleeOrToolAttack)
                 {
                     var shieldDef = shield.def.GetModExtension<ShieldDefExtension>();
                     if (shieldDef == null)
@@ -203,9 +201,11 @@ public static class ArmorUtilityCE
             for (var i = apparel.Count - 1; i >= 0; i--)
             {
                 var app = apparel[i];
-                if (app != null
-                        && app.def.apparel.CoversBodyPart(hitPart)
-                        && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
+                if (app == shield)
+                {
+                    continue;
+                }
+                if (app.def.apparel.CoversBodyPart(hitPart) && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
                 {
                     if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
                     {
