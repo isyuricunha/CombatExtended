@@ -36,6 +36,7 @@
 		<description>The volume of items this creature can carry in pockets, bags or otherwise attached to its body.</description>
 		<category>BasicsPawn</category>
 		<defaultBaseValue>20</defaultBaseValue>
+		<minValue>0.5</minValue>
 		<toStringStyle>FloatMaxOne</toStringStyle>
 		<displayPriorityInCategory>10</displayPriorityInCategory>
 		<parts>
