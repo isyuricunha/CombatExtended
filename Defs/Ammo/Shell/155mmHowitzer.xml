@@ -131,6 +131,9 @@
 		<thingSetMakerTags>
 			<li>RewardStandardCore</li>
 		</thingSetMakerTags>
+		<thingCategories Inherit="False">
+			<li>Ammo155mmHowitzerShells</li>
+		</thingCategories>		
 		<tradeTags>
 			<li>CE_AutoEnableTrade_Sellable</li>
 		</tradeTags>

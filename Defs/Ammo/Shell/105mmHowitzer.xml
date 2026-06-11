@@ -151,6 +151,9 @@
 		<tradeTags>
 			<li>CE_AutoEnableTrade_Sellable</li>
 		</tradeTags>
+		<thingCategories Inherit="False">
+			<li>Ammo105mmHowitzerShells</li>
+		</thingCategories>				
 		<ammoClass>Antigrain</ammoClass>
 		<comps>
 			<!-- Vanilla values -->
