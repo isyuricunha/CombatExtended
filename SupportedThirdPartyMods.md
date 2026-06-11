@@ -530,6 +530,7 @@ RimFantasy - Medieval Overhaul Edition   |
 RimFantasy - House Doyle   |
 RimHammer40k - Dreadnought |
 RimNauts 2 |
+RimOfTheFallen |
 Rimrats |
 RimSec Security |
 Rimsenal - Core |
