@@ -65,16 +65,6 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_InfantryHelmet"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<bodyPartGroups>
-				<li>UpperHead</li>
-				<li>Neck</li>
-			</bodyPartGroups>
-		</value>
-	</Operation>
-
 	<!-- Hallowed Knight Helmet -->
 
 	<Operation Class="PatchOperationReplace">
@@ -139,32 +129,23 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="RofF_HallowedKnightHelmet"]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
-				<li>
-					<ArmorRating_Sharp>0.85</ArmorRating_Sharp>
-					<parts>
-						<li>Nose</li>
-					</parts>
-				</li>
-				<li>
-					<ArmorRating_Blunt>0.85</ArmorRating_Blunt>
-					<parts>
-						<li>Nose</li>
-					</parts>
-				</li>
+					<li>
+						<ArmorRating_Sharp>0.60</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.60</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+						</parts>
+					</li>
 				</stats>
 			</li>
 		</value>
@@ -234,41 +215,25 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]/apparel/layers</xpath>
-		<value>
-			<li>StrappedHead</li>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="RofF_SovereignProtectorHelmet"]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
-				<li>
-					<ArmorRating_Sharp>1.00</ArmorRating_Sharp>
-					<parts>
-						<li>Eye</li>
-						<li>Nose</li>
-					</parts>
-				</li>
-				<li>
-					<ArmorRating_Blunt>1.00</ArmorRating_Blunt>
-					<parts>
-						<li>Eye</li>
-						<li>Nose</li>
-					</parts>
-				</li>
+					<li>
+						<ArmorRating_Sharp>0.80</ArmorRating_Sharp>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
+					<li>
+						<ArmorRating_Blunt>0.80</ArmorRating_Blunt>
+						<parts>
+							<li>Eye</li>
+							<li>Nose</li>
+						</parts>
+					</li>
 				</stats>
 			</li>
 		</value>
@@ -337,36 +302,20 @@
 		</value>
 	</Operation>
 
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/apparel/bodyPartGroups</xpath>
-		<value>
-			<bodyPartGroups>
-				<li>FullHead</li>
-			</bodyPartGroups>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]/apparel/layers</xpath>
-		<value>
-			<li>StrappedHead</li>
-		</value>
-	</Operation>
-
 	<Operation Class="PatchOperationAddModExtension">
 		<xpath>Defs/ThingDef[defName="RofF_PaladinHelmet"]</xpath>
 		<value>
 			<li Class="CombatExtended.PartialArmorExt">
 				<stats>
 				<li>
-					<ArmorRating_Sharp>1.15</ArmorRating_Sharp>
+					<ArmorRating_Sharp>0.8</ArmorRating_Sharp>
 					<parts>
 						<li>Eye</li>
 						<li>Nose</li>
 					</parts>
 				</li>
 				<li>
-					<ArmorRating_Blunt>1.15</ArmorRating_Blunt>
+					<ArmorRating_Blunt>0.8</ArmorRating_Blunt>
 					<parts>
 						<li>Eye</li>
 						<li>Nose</li>
