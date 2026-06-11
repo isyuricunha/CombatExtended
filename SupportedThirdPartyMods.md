@@ -218,6 +218,7 @@ Edge of Descension - Monoblades  |
 Edge of Descension - Vanguard   |
 Edo Themed Expansion	|
 Eltex Bodysuit  |
+Eltex Weaponry (Continued)  |
 Enchanted Sword  |
 Epochs - Pyrinth    |
 Epona The centaur race  |
