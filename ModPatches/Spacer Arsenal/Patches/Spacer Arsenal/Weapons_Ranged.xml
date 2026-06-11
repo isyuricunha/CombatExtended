@@ -54,28 +54,38 @@
 		</xpath>
 		<value>
 			<tools>
-			<li Class="CombatExtended.ToolCE">
-				<label>grip</label>
-				<capacities>
-					<li>Blunt</li>
-				</capacities>
-				<power>2</power>
-				<cooldownTime>1.54</cooldownTime>
-				<chanceFactor>1.5</chanceFactor>
-				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
-			</li>
-			<li Class="CombatExtended.ToolCE">
-				<label>muzzle</label>
-				<capacities>
-					<li>Poke</li>
-				</capacities>
-				<power>2</power>
-				<cooldownTime>1.54</cooldownTime>
-				<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
-				<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-			</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="DV_Gun_SonicStunner"]
+		</xpath>
+		<value>
+			<weaponTags>
+				<li>Patched</li>
+			</weaponTags>
 		</value>
 	</Operation>
 
@@ -83,21 +93,22 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>DV_Gun_ClashHMG</defName>
 		<statBases>
-			<Bulk>25</Bulk>
-			<SwayFactor>1.87</SwayFactor>
+			<Bulk>16</Bulk>
+			<Mass>10.70</Mass>
+			<SwayFactor>1.67</SwayFactor>
 			<ShotSpread>0.07</ShotSpread>
 			<SightsEfficiency>1</SightsEfficiency>
 			<RangedWeapon_Cooldown>0.47</RangedWeapon_Cooldown>
 		</statBases>
 		<Properties>
-			<recoilAmount>1.86</recoilAmount>
+			<recoilAmount>1.75</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>True</hasStandardCommand>
-			<defaultProjectile>Bullet_277Fury_FMJ</defaultProjectile>
+			<defaultProjectile>Bullet_338Lapua_FMJ</defaultProjectile>
 			<burstShotCount>10</burstShotCount>
 			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
-			<warmupTime>2.1</warmupTime>
-			<range>60</range>
+			<warmupTime>1.0</warmupTime>
+			<range>75</range>
 			<soundCast>Shot_Autocannon</soundCast>
 			<soundCastTail>GunTail_Medium</soundCastTail>
 			<muzzleFlashScale>12</muzzleFlashScale>
@@ -105,7 +116,7 @@
 		<AmmoUser>
 			<magazineSize>60</magazineSize>
 			<reloadTime>4.9</reloadTime>
-			<ammoSet>AmmoSet_277Fury</ammoSet>
+			<ammoSet>AmmoSet_338Lapua</ammoSet>
 		</AmmoUser>
 		<FireModes>
 			<aiUseBurstMode>FALSE</aiUseBurstMode>
@@ -491,18 +502,18 @@
 				</li>
 
 				<li Class="PatchOperationAddModExtension">
-				  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
-					  <value>
-						  <li Class="EBSGFramework.EquipRestrictExtension">
+					<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+					<value>
+						<li Class="EBSGFramework.EquipRestrictExtension">
 							<requiredGenesToEquip>
 								<li>DV_Farsighted</li>
 							</requiredGenesToEquip>
-						  </li>
-					  </value>
+						</li>
+					</value>
 				</li>
 
 				<li Class="PatchOperationAdd">
-				  <xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
+					<xpath>Defs/ThingDef[defName="DV_Gun_LaserpulseLongrifle"]</xpath>
 					<value>
 						<equippedAngleOffset>45</equippedAngleOffset>
 					</value>

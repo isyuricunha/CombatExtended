@@ -15,7 +15,7 @@
 					<li Class="CombatExtended.CompProperties_AmmoUser">
 						<magazineSize>60</magazineSize>
 						<reloadTime>4.9</reloadTime>
-						<ammoSet>AmmoSet_277Fury</ammoSet>
+						<ammoSet>AmmoSet_338Lapua</ammoSet>
 					</li>
 					<li Class="CombatExtended.CompProperties_FireModes">
 						<aiUseBurstMode>false</aiUseBurstMode>
