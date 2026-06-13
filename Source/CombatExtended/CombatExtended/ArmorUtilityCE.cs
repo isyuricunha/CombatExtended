@@ -80,12 +80,23 @@ public static class ArmorUtilityCE
             var apparel = pawn.apparel.WornApparel;
 
             // Check for shields first
-            var shield = apparel.FirstOrDefault(x => x is Apparel_Shield);
+            Apparel_Shield shield = null;
+            for (int i = 0; i < apparel.Count; i++)
+            {
+                if (apparel[i] is Apparel_Shield loopShield)
+                {
+                    shield = loopShield;
+                    break;
+                }
+            }
+
             if (shield != null)
             {
-                // Determine whether the hit is blocked by the shield
+
                 var blockedByShield = false;
-                if (!(dinfo.Weapon?.IsMeleeWeapon ?? false))
+
+                bool isMeleeOrNull = dinfo.Tool != null || (dinfo.Weapon?.IsMeleeWeapon ?? true);
+                if (!isMeleeOrNull)
                 {
                     var shieldDef = shield.def.GetModExtension<ShieldDefExtension>();
                     if (shieldDef == null)
@@ -190,9 +201,11 @@ public static class ArmorUtilityCE
             for (var i = apparel.Count - 1; i >= 0; i--)
             {
                 var app = apparel[i];
-                if (app != null
-                        && app.def.apparel.CoversBodyPart(hitPart)
-                        && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
+                if (app == shield)
+                {
+                    continue;
+                }
+                if (app.def.apparel.CoversBodyPart(hitPart) && !TryPenetrateArmor(dinfo.Def, app.PartialStat(dinfo.Def.armorCategory.armorRatingStat, hitPart), ref penAmount, ref dmgAmount, app))
                 {
                     if (dinfo.Def.armorCategory.armorRatingStat == StatDefOf.ArmorRating_Sharp)
                     {
