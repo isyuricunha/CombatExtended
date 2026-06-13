@@ -50,8 +50,6 @@ public static class Harmony_CompShieldBubble_Patch
                             secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
                         }
                         secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
-                        dinfo.amountInt += secondaryDamageInfo.amount;
-
                     }
                 }
             }
@@ -80,7 +78,6 @@ public static class Harmony_CompShieldBubble_Patch
         }
         else
         {
-            dinfo.amountInt -= secondaryShieldDamageAmount;
             __instance.AbsorbedDamage(dinfo);
         }
         return false;

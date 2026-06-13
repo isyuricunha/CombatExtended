@@ -66,7 +66,6 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
                             secondaryDamageMultiplierValue = secondaryDamageModExt.shieldDamageMultiplier;
                         }
                         secondaryShieldDamageAmount += (secondaryDamageInfo.amount * secondaryDamageMultiplierValue);
-                        dinfo.amountInt += secondaryDamageInfo.amount;
 
                     }
                 }
@@ -96,7 +95,6 @@ internal static class CompShield_PatchCheckPreAbsorbDamage
         }
         else
         {
-            dinfo.amountInt -= secondaryShieldDamageAmount;
             __instance.AbsorbedDamage(dinfo);
         }
         return false;
