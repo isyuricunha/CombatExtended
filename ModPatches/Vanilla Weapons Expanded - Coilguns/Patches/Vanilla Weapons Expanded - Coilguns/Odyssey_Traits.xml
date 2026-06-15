@@ -62,7 +62,7 @@
 				</li>
 
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/</xpath>
+					<xpath>Defs</xpath>
 					<value>
 						<WeaponTraitDef>
 							<defName>VWE_InvertedRailTuning_longrange</defName>
@@ -123,9 +123,8 @@
 						</statFactors>
 					</value>
 				</li>
-
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]statOffsets</xpath>
+					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]/statOffsets</xpath>
 					<value>
 						<RangedWeapon_DamageMultiplier>0.35</RangedWeapon_DamageMultiplier>
 						<RangedWeapon_ArmorPenetrationMultiplier>0.35</RangedWeapon_ArmorPenetrationMultiplier>
