@@ -11,14 +11,78 @@
 		<match Class="PatchOperationSequence">
 			<operations>
 
-				<!-- VWE_InertialCore: Remove -->
-				<li Class="PatchOperationRemove">
-					<xpath>Defs/WeaponTraitDef[defName="VWE_InertialCore"]</xpath>
+				<!-- VWE_InertialCore: Patch in as pen -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InertialCore"]/description</xpath>
+					<value>
+						<description>This weapon maintains absolute kinetic energy during overcharge, vastly increasing armor penetration.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InertialCore"]/statOffsets</xpath>
+					<value>
+						<RangedWeapon_ArmorPenetrationMultiplier>0.5</RangedWeapon_ArmorPenetrationMultiplier>
+					</value>
 				</li>
 
-				<!-- VWE_InvertedRailTuning: Remove -->
+				<!-- VWE_InvertedRailTuning: patch and add in a revese version -->
 				<li Class="PatchOperationRemove">
-					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]</xpath>
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/modExtensions</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/traitAdjectives</xpath>
+					<value>
+						<traitAdjectives>
+							<li>CQC</li>
+							<li>shortend</li>
+							<li>devastating</li>
+							<li>close-range</li>
+						</traitAdjectives>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/label</xpath>
+					<value>
+						<label>CQC Tuning</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/description</xpath>
+					<value>
+						<description>This weapon is radically tuned to deliver devastating shots at close range.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/statOffsets</xpath>
+					<value>
+						<RangedWeapon_RangeMultiplier>-0.5</RangedWeapon_RangeMultiplier>
+						<RangedWeapon_DamageMultiplier>0.35</RangedWeapon_DamageMultiplier>
+						<RangedWeapon_ArmorPenetrationMultiplier>0.35</RangedWeapon_ArmorPenetrationMultiplier>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/</xpath>
+					<value>
+						<WeaponTraitDef>
+							<defName>VWE_InvertedRailTuning_longrange</defName>
+							<label>Longrange RailTuning</label>
+							<description>This weapon is radically tuned for long-range but less lethal engagements</description>
+							<commonality>1</commonality>
+							<canGenerateAlone>true</canGenerateAlone>
+							<weaponCategory>VWE_Coilguns</weaponCategory>
+							<traitAdjectives>
+								<li>fartuned</li>
+								<li>long-range</li>
+							</traitAdjectives>
+							<statOffsets>
+								<MarketValue>80</MarketValue>
+								<RangedWeapon_RangeMultiplier>0.35</RangedWeapon_RangeMultiplier>
+								<RangedWeapon_DamageMultiplier>-0.35</RangedWeapon_DamageMultiplier>
+								<RangedWeapon_ArmorPenetrationMultiplier>-0.35</RangedWeapon_ArmorPenetrationMultiplier>
+							</statOffsets>
+						</WeaponTraitDef>
+					</value>
 				</li>
 
 				<!-- VWE_BypassRelay:remove modExtension patch into cooldown reduction. -->
@@ -54,11 +118,17 @@
 					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]</xpath>
 					<value>
 						<statFactors>
-							<CE_RangedWeapon_RecoilMultiplier>1.15</CE_RangedWeapon_RecoilMultiplier>
-							<RangedWeapon_Cooldown>1.15</RangedWeapon_Cooldown>
-							<RangedWeapon_DamageMultiplier>0.35</RangedWeapon_DamageMultiplier>
-							<RangedWeapon_ArmorPenetrationMultiplier>0.35</RangedWeapon_ArmorPenetrationMultiplier>
+							<CE_RangedWeapon_RecoilMultiplier>1.35</CE_RangedWeapon_RecoilMultiplier>
+							<RangedWeapon_Cooldown>1.35</RangedWeapon_Cooldown>
 						</statFactors>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]statOffsets</xpath>
+					<value>
+						<RangedWeapon_DamageMultiplier>0.35</RangedWeapon_DamageMultiplier>
+						<RangedWeapon_ArmorPenetrationMultiplier>0.35</RangedWeapon_ArmorPenetrationMultiplier>
 					</value>
 				</li>
 
