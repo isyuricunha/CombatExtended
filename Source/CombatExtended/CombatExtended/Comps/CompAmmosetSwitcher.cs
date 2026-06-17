@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using HarmonyLib;
 using RimWorld;
 using Verse;
 using UnityEngine;
@@ -164,6 +165,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         // Ensures that there should be a burstFire option
         // If set to aimedBurstShotCount, will result in warning and no burst fire mode. Only full auto
         CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.verbPropsUnderBarrel.burstShotCount;
+        Traverse.Create(CompEq.PrimaryVerb).Field("cachedTicksBetweenBurstShots").SetValue(null);
         usingUnderBarrel = true;
         CompFireModes.InitAvailableFireModes();
 
@@ -222,6 +224,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
             }
         }
         CompEq.PrimaryVerb.verbProps.burstShotCount = DefVerbProps.burstShotCount;
+        Traverse.Create(CompEq.PrimaryVerb).Field("cachedTicksBetweenBurstShots").SetValue(null);
         usingUnderBarrel = false;
         CompFireModes.InitAvailableFireModes();
 
