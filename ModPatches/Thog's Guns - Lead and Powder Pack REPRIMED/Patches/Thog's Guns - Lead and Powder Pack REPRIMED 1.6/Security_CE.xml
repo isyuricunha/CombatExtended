@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== Cannon ========== -->
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Artillery_ThogsCannon"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Artillery_ThogsCannon</defName>
+		<statBases>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<ShotSpread>0.10</ShotSpread>
+			<SwayFactor>0.75</SwayFactor>
+			<RangedWeapon_Cooldown>2.5</RangedWeapon_Cooldown>
+			<Mass>100</Mass>
+		</statBases>
+		<Properties>
+			<recoilAmount>5.34</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_CannonBall_Round</defaultProjectile>
+			<warmupTime>3.5</warmupTime>
+			<range>75</range>
+			<minRange>7.9</minRange>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>6.9</reloadTime>
+			<ammoSet>AmmoSet_CannonBall</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+
+	<!-- ========== Old Mortar ========== -->	
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Artillery_ThogsOldMortar"]/comps/li[@Class="CompProperties_ChangeableProjectile"]</xpath>
+	</Operation>
+	
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Artillery_ThogsOldMortar</defName>
+		<statBases>
+			<SightsEfficiency>0.5</SightsEfficiency>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+			<Mass>100</Mass>
+		</statBases>
+		<Properties>
+			<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+			<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+			<hasStandardCommand>true</hasStandardCommand>
+			<requireLineOfSight>false</requireLineOfSight>
+			<defaultProjectile>Bullet_CannonBall_Bursting_Mortar</defaultProjectile>
+			<warmupTime>4.5</warmupTime>
+			<minRange>11.9</minRange>
+			<range>100</range>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>16</muzzleFlashScale>
+			<indirectFirePenalty>0.25</indirectFirePenalty>
+			<circularError>1</circularError>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>6.9</reloadTime>
+			<ammoSet>AmmoSet_CannonBall_Mortar</ammoSet>
+		</AmmoUser>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="Artillery_ThogsOldMortar"]</xpath>
+		<value>
+			<comps>
+				<li Class="CombatExtended.CompProperties_Charges">
+					<chargeSpeeds>
+						<li>30</li>
+						<li>50</li>
+						<li>70</li>
+						<li>90</li>
+					</chargeSpeeds>
+				</li>
+			</comps>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="OldBaseArtilleryBuilding"]/building/turretBurstCooldownTime</xpath>
+		<value>
+			<turretBurstCooldownTime>7</turretBurstCooldownTime>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[@Name="OldBaseArtilleryBuilding"]/building</xpath>
+		<value>
+			<spawnedConceptLearnOpportunity>CE_MortarDirectFire</spawnedConceptLearnOpportunity>
+		</value>
+	</Operation>
+	
+	<!-- ========== Repeating cannon ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ThogsGun_Pucklegun</defName>
+		<statBases>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+			<Mass>100</Mass>
+		</statBases>
+		<Properties>
+			<recoilAmount>1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MiniCannonBall_Round</defaultProjectile>
+			<warmupTime>2.0</warmupTime>
+			<range>55</range>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>12.9</reloadTime>
+			<ammoSet>AmmoSet_MiniCannonBall</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+	</Operation>
+	
+	<!-- ========== Volley cannon ========== -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>ThogsGun_Volleygun</defName>
+		<statBases>
+			<SightsEfficiency>0.7</SightsEfficiency>
+			<RangedWeapon_Cooldown>2.0</RangedWeapon_Cooldown>
+			<Mass>100</Mass>
+		</statBases>
+		<Properties>
+			<recoilAmount>1</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MiniCannonBall_Round</defaultProjectile>
+			<warmupTime>2.0</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>13</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<recoilPattern>Mounted</recoilPattern>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>6</magazineSize>
+			<reloadTime>6.9</reloadTime>
+			<ammoSet>AmmoSet_MiniCannonBall</ammoSet>
+			<reloadOneAtATime>true</reloadOneAtATime>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+			<aiAimMode>Snapshot</aiAimMode>
+			<noSingleShot>true</noSingleShot>
+		</FireModes>
+	</Operation>
+	
+	<!-- ========== All Turrets ========== -->
+	
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[
+			defName="Turret_ThogsCannon" or
+			defName="Turret_ThogsOldMortar" or
+			defName="ThogsTurret_MountedRepeatingCannon" or
+			defName="ThogsTurret_Volleygun"
+			]/comps/li[@Class="CompProperties_Refuelable"]</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Turret_ThogsCannon" or
+			defName="Turret_ThogsOldMortar" or
+			defName="ThogsTurret_MountedRepeatingCannon" or
+			defName="ThogsTurret_Volleygun"
+			]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.85</fillPercent>
+		</value>
+	</Operation>
+	
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="Turret_ThogsCannon" or
+			defName="Turret_ThogsOldMortar" or
+			defName="ThogsTurret_MountedRepeatingCannon" or
+			defName="ThogsTurret_Volleygun"
+			]/thingClass</xpath>
+		<value>
+			<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+		</value>
+	</Operation>
+				
+</Patch>

@@ -3,9 +3,7 @@
 
 	<!-- === Melee Stuff === -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[
-			defName="Gun_FlintlockPistol" or
-			defName="Gun_FlintlockPepperbox"
+		<xpath>Defs/ThingDef[defName="Gun_FlintlockPistol" or defName="Gun_FlintlockPepperbox"
 			]/tools</xpath>
 		<value>
 			<tools>
@@ -78,7 +76,47 @@
 			</tools>
 		</value>
 	</Operation>
-	
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_FlintlockCarbine"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>bayonet</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.79</cooldownTime>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.25</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
 	<!-- === Flintlock Pistol === -->
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_FlintlockPistol</defName>
@@ -244,46 +282,6 @@
 			<li>CE_AI_AR</li>
 		</weaponTags>
 		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
-	</Operation>
-	
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_FlintlockCarbine"]/tools</xpath>
-		<value>
-			<tools>
-				<li Class="CombatExtended.ToolCE">
-					<label>stock</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>8</power>
-					<cooldownTime>1.55</cooldownTime>
-					<chanceFactor>1.5</chanceFactor>
-					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>barrel</label>
-					<capacities>
-						<li>Blunt</li>
-					</capacities>
-					<power>5</power>
-					<cooldownTime>2.02</cooldownTime>
-					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
-					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
-				</li>
-				<li Class="CombatExtended.ToolCE">
-					<label>bayonet</label>
-					<capacities>
-						<li>Stab</li>
-					</capacities>
-					<power>18</power>
-					<cooldownTime>1.79</cooldownTime>
-					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
-					<armorPenetrationSharp>2.25</armorPenetrationSharp>
-					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
-				</li>
-			</tools>
-		</value>
 	</Operation>
 	
 	<!-- === Handgonne === -->
