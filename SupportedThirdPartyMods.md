@@ -602,6 +602,7 @@ The Joris Experience	|
 The Tuffalo |
 The Sims Traits |
 Thog's Armor    |
+Thog's Guns - Lead and Powder Pack REPRIMED 1.6  |
 Thog's Guns - More Brukka Pack  |
 Thrumbo Plushie |
 Titan Vehicles Continued |
