@@ -100,4 +100,18 @@
 		</FireModes>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="HunterDroneTrap"]</xpath>
+		<value>
+			<fillPercent>0.1</fillPercent>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="WaspDroneTrap"]</xpath>
+		<value>
+			<fillPercent>0.1</fillPercent>
+		</value>
+	</Operation>
+
 </Patch>
