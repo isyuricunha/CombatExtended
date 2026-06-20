@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<RecipeDef ParentName="AmmoRecipeBase">
+		<defName>MakeHandbomb</defName>
+		<label>make hand bombs x10</label>
+		<description>Craft 10 hand bombs.</description>
+		<jobString>Making hand bombs.</jobString>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+		<workAmount>2600</workAmount>
+		<recipeUsers>
+			<li>FueledSmithy</li>
+			<li>ElectricSmithy</li>
+		</recipeUsers>		
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>32</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>FSX</li>
+					</thingDefs>
+				</filter>
+				<count>3</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>FSX</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<Weapon_Handbombs>10</Weapon_Handbombs>
+		</products>
+	</RecipeDef>
+
+</Defs>
