@@ -11,6 +11,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithSingleWheel"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -20,6 +21,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithSingleWheel"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -29,6 +31,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithSingleWheel"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -38,6 +41,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<!-- ========== Add armor coverage ========== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithSingleWheel"]/corePart/groups</xpath>
@@ -45,24 +49,28 @@
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithSingleWheel"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithSingleWheel"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithSingleWheel"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<!-- ==================== Drone with wheels ==================== -->
 	<!-- ========== Add groups entry if it doesn't exist already ========== -->
 	<Operation Class="PatchOperationConditional">
@@ -74,6 +82,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithWheels"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -83,6 +92,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithWheels"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -92,6 +102,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithWheels"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -101,6 +112,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<!-- ========== Add armor coverage ========== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithWheels"]/corePart/groups</xpath>
@@ -108,24 +120,28 @@
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithWheels"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithWheels"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithWheels"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<!-- ==================== Drone with treads ==================== -->
 	<!-- ========== Add groups entry if it doesn't exist already ========== -->
 	<Operation Class="PatchOperationConditional">
@@ -137,6 +153,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithTreads"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -146,6 +163,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithTreads"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -155,6 +173,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithTreads"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -164,6 +183,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<!-- ========== Add armor coverage ========== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithTreads"]/corePart/groups</xpath>
@@ -171,24 +191,28 @@
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithTreads"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithTreads"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithTreads"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<!-- ==================== Flying Drone ==================== -->
 	<!-- ========== Add groups entry if it doesn't exist already ========== -->
 	<Operation Class="PatchOperationConditional">
@@ -200,6 +224,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneFlying"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -209,6 +234,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneFlying"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -218,6 +244,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneFlying"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -227,6 +254,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<!-- ========== Add armor coverage ========== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneFlying"]/corePart/groups</xpath>
@@ -234,24 +262,28 @@
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneFlying"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneFlying"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneFlying"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<!-- ==================== Flying Legless ==================== -->
 	<!-- ========== Add groups entry if it doesn't exist already ========== -->
 	<Operation Class="PatchOperationConditional">
@@ -263,6 +295,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneLegless"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -272,6 +305,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneLegless"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -281,6 +315,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneLegless"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -290,6 +325,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<!-- ========== Add armor coverage ========== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneLegless"]/corePart/groups</xpath>
@@ -297,24 +333,28 @@
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneLegless"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneLegless"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneLegless"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<!-- ==================== Flying with Legs ==================== -->
 	<!-- ========== Add groups entry if it doesn't exist already ========== -->
 	<Operation Class="PatchOperationConditional">
@@ -326,6 +366,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -335,6 +376,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -344,6 +386,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -353,6 +396,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/parts/li[def="VQE_DroneLeg"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
@@ -362,6 +406,7 @@
 			</value>
 		</nomatch>
 	</Operation>
+
 	<!-- ========== Add armor coverage ========== -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/groups</xpath>
@@ -369,24 +414,28 @@
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/parts/li[def="VQE_DroneCoreBodyPart"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/parts/li[def="VQE_DroneShellSection"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/parts/li[def="VQE_DroneShellSectionWithSpike"]/groups</xpath>
 		<value>
 			<li>CoveredByNaturalArmor</li>
 		</value>
 	</Operation>
+
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/BodyDef[defName="VQE_DroneWithLegs"]/corePart/parts/li[def="VQE_DroneLeg"]/groups</xpath>
 		<value>
