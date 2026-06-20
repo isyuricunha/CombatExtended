@@ -38,6 +38,16 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="VFEI2_Vilelobber_Gun"]</xpath>
+		<value>
+			<weaponTags>
+				<li>Patched</li>
+			</weaponTags>
+		</value>
+	</Operation>
+
+
 	<!-- Thornworm -->
 
 	<Operation Class="PatchOperationAdd">
