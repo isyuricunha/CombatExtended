@@ -661,6 +661,7 @@ Vanilla Psycasts Expanded - Runesmith   |
 Vanilla Quests Expanded - Ancients  |
 Vanilla Quests Expanded - Cryptoforge  |
 Vanilla Quests Expanded - Deadlife  |
+Vanilla Quests Expanded - Drone Factory  |
 Vanilla Races Expanded - Android  |
 Vanilla Races Expanded - Archon |
 Vanilla Races Expanded - Fungoid |

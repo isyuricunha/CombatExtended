@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<!-- ========== Base Drones ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[@Name="VQED_TrapIEDBase"]/fillPercent</xpath>
+		<value>
+			<fillPercent>0.75</fillPercent>
+		</value>
+	</Operation>
+
+</Patch>
