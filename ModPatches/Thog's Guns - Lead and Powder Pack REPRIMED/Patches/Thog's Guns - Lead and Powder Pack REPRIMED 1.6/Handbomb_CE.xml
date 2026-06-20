@@ -18,9 +18,6 @@
 					<linkedBodyPartsGroup>Base</linkedBodyPartsGroup>
 				</li>
 			</tools>
-			<tradeTags Inherit="False">
-				<li>CE_MediumAmmo</li>
-			</tradeTags>
 			<allowedArchonexusCount>5</allowedArchonexusCount>
 		</value>
 	</Operation>
@@ -128,18 +125,7 @@
 			</li>
 		</value>
 	</Operation>
-	
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Weapon_Handbombs"]/comps</xpath>
-		<value>
-			<li Class="CombatExtended.CompProperties_Fragments">
-				<fragments>
-					<Fragment_Medium>12</Fragment_Medium>
-				</fragments>
-			</li>
-		</value>
-	</Operation>
-	
+
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Weapon_Handbombs</defName>
 		<statBases>

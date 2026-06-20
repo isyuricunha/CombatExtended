@@ -3,8 +3,7 @@
 
 	<!-- === Melee Stuff === -->
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_FlintlockPistol" or defName="Gun_FlintlockPepperbox"
-			]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="Gun_FlintlockPistol" or defName="Gun_FlintlockPepperbox"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -129,10 +128,6 @@
 			<Bulk>3.50</Bulk>
 			<WorkToMake>2500</WorkToMake>
 		</statBases>
-		<costList>
-			<Steel>25</Steel>
-			<WoodLog>5</WoodLog>
-		</costList>
 		<Properties>
 			<recoilAmount>3.59</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -170,10 +165,6 @@
 			<Bulk>4.10</Bulk>
 			<WorkToMake>3500</WorkToMake>
 		</statBases>
-		<costList>
-			<Steel>30</Steel>
-			<WoodLog>5</WoodLog>
-		</costList>
 		<Properties>
 			<recoilAmount>3.59</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -255,10 +246,6 @@
 			<Bulk>10.0</Bulk>
 			<WorkToMake>9500</WorkToMake>
 		</statBases>
-		<costList>
-			<Steel>20</Steel>
-			<WoodLog>5</WoodLog>
-		</costList>
 		<Properties>
 			<recoilAmount>2.79</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -296,10 +283,6 @@
 			<Bulk>8.0</Bulk>
 			<WorkToMake>8000</WorkToMake>
 		</statBases>
-		<costList>
-			<Steel>15</Steel>
-			<WoodLog>5</WoodLog>
-		</costList>
 		<Properties>
 			<recoilAmount>2.79</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -336,10 +319,6 @@
 			<Bulk>8.0</Bulk>
 			<WorkToMake>8000</WorkToMake>
 		</statBases>
-		<costList>
-			<Steel>40</Steel>
-			<WoodLog>10</WoodLog>
-		</costList>
 		<Properties>
 			<recoilAmount>4.18</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
@@ -376,10 +355,6 @@
 			<Bulk>6.5</Bulk>
 			<WorkToMake>7000</WorkToMake>
 		</statBases>
-		<costList>
-			<Steel>35</Steel>
-			<WoodLog>10</WoodLog>
-		</costList>
 		<Properties>
 			<recoilAmount>3.34</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
