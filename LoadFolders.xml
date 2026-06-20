@@ -624,7 +624,7 @@
 		<li IfModActive="TheVanityProject.ShibaInu">ModPatches/The Vanity Project - Shiba Inu</li>
 		<li IfModActive="Serek.TheWildFields">ModPatches/The Wild Fields</li>
 		<li IfModActive="Caninmyham.ThogsArmor">ModPatches/Thog's Armor</li>
-    <li IfModActive="Caninmyham.ThogsGunsLeadAndPowderPackReprimedfixed">ModPatches/Thog's Guns - Lead and Powder Pack REPRIMED</li>
+		<li IfModActive="Caninmyham.ThogsGunsLeadAndPowderPackReprimedfixed">ModPatches/Thog's Guns - Lead and Powder Pack</li>
 		<li IfModActive="Caninmyham.ThogsGun_sBrukkaReprimed">ModPatches/Thog's Guns - More Brukka Pack</li>
 		<li IfModActive="Arquebus.ThrumboPlushie">ModPatches/Thrumbo Plushie</li>
 		<li IfModActive="syrchalis.thrumkin">ModPatches/Thrumkin</li>

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- === Melee Stuff === -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_FlintlockPistol" or defName="Gun_FlintlockPepperbox"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>grip</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Grip</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>2</power>
+					<cooldownTime>1.54</cooldownTime>
+					<armorPenetrationBlunt>0.555</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>
+			Defs/ThingDef[
+			defName="Gun_Handgonne" or
+			defName="Gun_FlintlockRifle" or
+			defName="Gun_FlintlockShotgun" or
+			defName="Gun_HandMortar"
+			]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>muzzle</label>
+					<capacities>
+						<li>Poke</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Gun_FlintlockCarbine"]/tools</xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>stock</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>8</power>
+					<cooldownTime>1.55</cooldownTime>
+					<chanceFactor>1.5</chanceFactor>
+					<armorPenetrationBlunt>2.755</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Stock</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>5</power>
+					<cooldownTime>2.02</cooldownTime>
+					<armorPenetrationBlunt>1.630</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>bayonet</label>
+					<capacities>
+						<li>Stab</li>
+					</capacities>
+					<power>18</power>
+					<cooldownTime>1.79</cooldownTime>
+					<armorPenetrationBlunt>2.25</armorPenetrationBlunt>
+					<armorPenetrationSharp>2.25</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Muzzle</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- === Flintlock Pistol === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_FlintlockPistol</defName>
+		<statBases>
+			<Mass>1.25</Mass>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.5</SightsEfficiency>
+			<ShotSpread>0.42</ShotSpread>
+			<SwayFactor>1.58</SwayFactor>
+			<Bulk>3.50</Bulk>
+			<WorkToMake>2500</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>3.59</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>12</range>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>5.9</reloadTime>
+			<ammoSet>AmmoSet_SlowMusketBall</ammoSet>
+		</AmmoUser>
+		<weaponTags>
+			<li>Gun</li>
+			<li>SimpleGun</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+	</Operation>
+	
+	<!-- === Flintlock Pepperbox === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_FlintlockPepperbox</defName>
+		<statBases>
+			<Mass>1.38</Mass>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.5</SightsEfficiency>
+			<ShotSpread>0.48</ShotSpread>
+			<SwayFactor>1.64</SwayFactor>
+			<Bulk>4.10</Bulk>
+			<WorkToMake>3500</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>3.59</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_SlowMusketBall</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>12</range>
+			<burstShotCount>5</burstShotCount>
+			<ticksBetweenBurstShots>14</ticksBetweenBurstShots>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>5</magazineSize>
+			<reloadTime>5.9</reloadTime>
+			<ammoSet>AmmoSet_SlowMusketBall</ammoSet>
+			<reloadOneAtATime>True</reloadOneAtATime>
+		</AmmoUser>
+		<weaponTags>
+			<li>Gun</li>
+			<li>SimpleGun</li>
+			<li>CE_AI_BROOM</li>
+			<li>CE_OneHandedWeapon</li>
+		</weaponTags>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+	</Operation>
+	
+	<!-- === Flintlock Rifle === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_FlintlockRifle</defName>
+		<statBases>
+			<Mass>4.50</Mass>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.03</ShotSpread>
+			<SwayFactor>1.85</SwayFactor>
+			<Bulk>14.0</Bulk>
+			<WorkToMake>11000</WorkToMake>
+		</statBases>
+		<costList>
+			<Steel>25</Steel>
+			<WoodLog>5</WoodLog>
+		</costList>
+		<Properties>
+			<recoilAmount>2.53</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+			<warmupTime>1.4</warmupTime>
+			<range>35</range>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7.9</reloadTime>
+			<ammoSet>AmmoSet_FastMusketBall</ammoSet>
+		</AmmoUser>
+		<weaponTags>
+			<li>Gun</li>
+			<li>SimpleGun</li>
+			<li>NoSwitch</li>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+	</Operation>
+	
+	<!-- === Flintlock Carbine === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_FlintlockCarbine</defName>
+		<statBases>
+			<Mass>3.80</Mass>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.08</ShotSpread>
+			<SwayFactor>1.75</SwayFactor>
+			<Bulk>10.0</Bulk>
+			<WorkToMake>9500</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.79</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>24</range>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>6.4</reloadTime>
+			<ammoSet>AmmoSet_FastMusketBall</ammoSet>
+		</AmmoUser>
+		<weaponTags>
+			<li>Gun</li>
+			<li>SimpleGun</li>
+			<li>NoSwitch</li>
+			<li>CE_AI_AR</li>
+		</weaponTags>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+	</Operation>
+	
+	<!-- === Handgonne === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_Handgonne</defName>
+		<statBases>
+			<Mass>2.80</Mass>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.5</SightsEfficiency>
+			<ShotSpread>0.42</ShotSpread>
+			<SwayFactor>1.70</SwayFactor>
+			<Bulk>8.0</Bulk>
+			<WorkToMake>8000</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>2.79</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_FastMusketBall</defaultProjectile>
+			<warmupTime>1.1</warmupTime>
+			<range>18</range>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>8.2</reloadTime>
+			<ammoSet>AmmoSet_FastMusketBall</ammoSet>
+		</AmmoUser>
+		<weaponTags>
+			<li>Gun</li>
+			<li>SimpleGun</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+	</Operation>
+	
+	<!-- === Flintlock Shotgun === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_FlintlockShotgun</defName>
+		<statBases>
+			<Mass>3.20</Mass>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.42</ShotSpread>
+			<SwayFactor>1.20</SwayFactor>
+			<Bulk>8.0</Bulk>
+			<WorkToMake>8000</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>4.18</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_BlunderbussShot</defaultProjectile>
+			<warmupTime>0.9</warmupTime>
+			<range>16</range>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>12</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>7.9</reloadTime>
+			<ammoSet>AmmoSet_BlunderbussShot</ammoSet>
+		</AmmoUser>
+		<weaponTags>
+			<li>Gun</li>
+			<li>SimpleGun</li>
+			<li>CE_AI_BROOM</li>
+		</weaponTags>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+	</Operation>
+	
+	<!-- === Hand Mortar === -->
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>Gun_HandMortar</defName>
+		<statBases>
+			<Mass>3.5</Mass>
+			<RangedWeapon_Cooldown>1.06</RangedWeapon_Cooldown>
+			<SightsEfficiency>0.8</SightsEfficiency>
+			<ShotSpread>0.58</ShotSpread>
+			<SwayFactor>1.00</SwayFactor>
+			<Bulk>6.5</Bulk>
+			<WorkToMake>7000</WorkToMake>
+		</statBases>
+		<Properties>
+			<recoilAmount>3.34</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_MortarGrenade</defaultProjectile>
+			<ai_IsBuildingDestroyer>true</ai_IsBuildingDestroyer>
+			<warmupTime>1.4</warmupTime>
+			<range>40</range>
+			<minRange>5</minRange>
+			<targetParams>
+				<canTargetLocations>true</canTargetLocations>
+			</targetParams>
+			<soundCast>Shot_CE_Musket</soundCast>
+			<muzzleFlashScale>14</muzzleFlashScale>
+			<ignorePartialLoSBlocker>true</ignorePartialLoSBlocker>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>1</magazineSize>
+			<reloadTime>6.9</reloadTime>
+			<ammoSet>AmmoSet_MortarGrenade</ammoSet>
+		</AmmoUser>
+		<weaponTags>
+			<li>GunGrenadeLauncher</li>
+			<li>SimpleGun</li>
+			<li>CE_AI_AOE</li>
+		</weaponTags>
+		<researchPrerequisite>CE_Gunpowder</researchPrerequisite>
+	</Operation>
+	
+</Patch>
