@@ -11,4 +11,52 @@
 		</ammoTypes>
 	</CombatExtended.AmmoSetDef>
 
+	<!-- ==================== AmmoSet ========================== -->
+
+	<RecipeDef ParentName="GrenadeRecipeBase">
+		<defName>MakeStunGrenade</defName>
+		<label>make stun grenades x10</label>
+		<description>Craft 10 stun grenades.</description>
+		<jobString>Making stun grenades.</jobString>
+		<researchPrerequisite>Machining</researchPrerequisite>
+		<workAmount>2200</workAmount>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Steel</li>
+					</thingDefs>
+				</filter>
+				<count>6</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Prometheum</li>
+					</thingDefs>
+				</filter>
+				<count>1</count>
+			</li>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>ComponentIndustrial</li>
+					</thingDefs>
+				</filter>
+				<count>2</count>
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Steel</li>
+				<li>Prometheum</li>
+				<li>ComponentIndustrial</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<DV_Weapon_StunGrenades>10</DV_Weapon_StunGrenades>
+		</products>
+	</RecipeDef>
+
+
 </Defs>
