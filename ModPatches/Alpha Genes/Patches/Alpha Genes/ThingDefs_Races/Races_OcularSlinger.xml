@@ -163,28 +163,6 @@
 					</value>
 				</li>
 
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/verbs</xpath>
-					<value>
-						<verbs>
-							<li Class="CombatExtended.VerbPropertiesCE">
-								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
-								<hasStandardCommand>true</hasStandardCommand>
-								<defaultProjectile>AG_EyeProjectile</defaultProjectile>
-								<warmupTime>2</warmupTime>
-								<burstShotCount>3</burstShotCount>
-								<ticksBetweenBurstShots>12</ticksBetweenBurstShots>
-								<minRange>2</minRange>
-								<range>18</range>
-								<soundCast>AG_Throw</soundCast>
-								<muzzleFlashScale>0</muzzleFlashScale>
-								<label>eye</label>
-								<commonality>0.8</commonality>
-							</li>
-						</verbs>
-					</value>
-				</li>
-
 				<li Class="PatchOperationConditional">
 					<xpath>Defs/ThingDef[defName="AG_OcularSlinger"]/comps</xpath>
 					<nomatch Class="PatchOperationAdd">

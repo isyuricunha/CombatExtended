@@ -37,6 +37,9 @@
 				<muzzleFlashScale>12</muzzleFlashScale>
 			</li>
 		</verbs>
+		<weaponTags>
+			<li>Patched</li>
+		</weaponTags>		
 	</ThingDef>
 
 	<!-- Shuttle Turret Projectile -->
