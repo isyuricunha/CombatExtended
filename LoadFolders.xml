@@ -53,6 +53,7 @@
 		<li IfModActive="OhGodSpidersNo.AnimalArmor.Vanilla">ModPatches/Animal Armor - Vanilla</li>
 		<li IfModActive="Owlchemist.AnimalGear.Equipment">ModPatches/Animal Equipment</li>
 		<li IfModActive="ACPteam.ACPVanillaStyle">ModPatches/AnimalCollabProj</li>
+		<li IfModActive="22.AnomalyPortal">ModPatches/Anomaly Portal</li>
 		<li IfModActive="rmk.anthrorace">ModPatches/Anthro Race</li>
 		<li IfModActive="Mlie.Antinium">ModPatches/Antinium</li>
 		<li IfModActive="Roo.AntyRaceMod">ModPatches/Anty the war Ant</li>

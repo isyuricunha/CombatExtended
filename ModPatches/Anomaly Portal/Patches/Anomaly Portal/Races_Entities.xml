@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomaly Portal</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+
+				<!-- ========== AP_MetalStorm ========== -->
+				<li Class="PatchOperationAddModExtension">
+					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]</xpath>
+					<value>
+						<li Class="CombatExtended.RacePropertiesExtensionCE">
+							<bodyShape>Humanoid</bodyShape>
+						</li>
+					</value>
+				</li>
+
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/statBases</xpath>
+					<value>
+						<MeleeDodgeChance>0.08</MeleeDodgeChance>
+						<MeleeCritChance>0.12</MeleeCritChance>
+						<MeleeParryChance>0.06</MeleeParryChance>
+					</value>
+				</li>
+
+				<!-- Vanilla armor is 0.8 sharp / 0.3 blunt (percent). CE expects mm RHA. -->
+				<!-- Boss-tier entity scaled against the Metalhorror CE patch (same body). -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/statBases/ArmorRating_Sharp</xpath>
+					<value>
+						<ArmorRating_Sharp>6</ArmorRating_Sharp>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/statBases/ArmorRating_Blunt</xpath>
+					<value>
+						<ArmorRating_Blunt>12</ArmorRating_Blunt>
+					</value>
+				</li>
+
+				<!-- baseHealthScale 9.6 + combatPower 300 = boss tier; durability mirrors the Metalhorror patch. -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/comps</xpath>
+					<value>
+						<li Class="CombatExtended.CompProperties_ArmorDurability">
+							<Durability>900</Durability>
+							<Regenerates>true</Regenerates>
+							<RegenInterval>600</RegenInterval>
+							<RegenValue>50</RegenValue>
+							<MinArmorPct>0.5</MinArmorPct>
+						</li>
+					</value>
+				</li>
+
+				<!-- Replace vanilla tools with ToolCE entries. Vanilla combines Cut+Stab+AP_Damage_Teleport -->
+				<!-- on each blade and Blunt+AP_Damage_Teleport on the head. CE allows multi-capacity tools, -->
+				<!-- so the AP_Damage_Teleport capacity is preserved on every original tool. -->
+				<!-- AP values are calibrated against the Metalhorror CE patch (same body, Scyther-class blades). -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/tools</xpath>
+					<value>
+						<tools>
+							<li Class="CombatExtended.ToolCE">
+								<label>left blade</label>
+								<labelNoLocation>blade</labelNoLocation>
+								<capacities>
+									<li>Cut</li>
+									<li>AP_Damage_Teleport</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>left blade</label>
+								<labelNoLocation>blade</labelNoLocation>
+								<capacities>
+									<li>Stab</li>
+									<li>AP_Damage_Teleport</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>30</armorPenetrationSharp>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right blade</label>
+								<labelNoLocation>blade</labelNoLocation>
+								<capacities>
+									<li>Cut</li>
+									<li>AP_Damage_Teleport</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>3</armorPenetrationSharp>
+								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>right blade</label>
+								<labelNoLocation>blade</labelNoLocation>
+								<capacities>
+									<li>Stab</li>
+									<li>AP_Damage_Teleport</li>
+								</capacities>
+								<power>20</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
+								<armorPenetrationSharp>30</armorPenetrationSharp>
+								<armorPenetrationBlunt>15</armorPenetrationBlunt>
+								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+							</li>
+							<li Class="CombatExtended.ToolCE">
+								<label>head</label>
+								<capacities>
+									<li>Blunt</li>
+									<li>AP_Damage_Teleport</li>
+								</capacities>
+								<power>9</power>
+								<cooldownTime>2</cooldownTime>
+								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+								<chanceFactor>0.2</chanceFactor>
+								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+							</li>
+						</tools>
+					</value>
+				</li>
+
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>
