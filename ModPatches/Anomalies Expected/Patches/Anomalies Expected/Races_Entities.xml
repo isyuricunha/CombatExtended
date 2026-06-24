@@ -22,6 +22,14 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_SnowMan"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AE_SnowMan"]/tools</xpath>
 		<value>
@@ -98,6 +106,14 @@
 			<MeleeParryChance>0.20</MeleeParryChance>
 			<AimingAccuracy>1.0</AimingAccuracy>
 			<ShootingAccuracyPawn>1.0</ShootingAccuracyPawn>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_SnowGolem"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>1</ArmorRating_Sharp>
+			<ArmorRating_Blunt>6</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -185,6 +201,14 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_SnowSpider"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>2</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AE_SnowSpider"]/tools</xpath>
 		<value>
@@ -258,6 +282,14 @@
 			<MeleeDodgeChance>0.12</MeleeDodgeChance>
 			<MeleeCritChance>0.10</MeleeCritChance>
 			<MeleeParryChance>0.10</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_IceMantis"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>2</ArmorRating_Sharp>
+			<ArmorRating_Blunt>5</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -344,6 +376,14 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_IceMan"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>3</ArmorRating_Blunt>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="AE_IceMan"]/tools</xpath>
 		<value>
@@ -405,6 +445,14 @@
 			<MeleeDodgeChance>0.01</MeleeDodgeChance>
 			<MeleeCritChance>0.30</MeleeCritChance>
 			<MeleeParryChance>0.40</MeleeParryChance>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_BrokenStatue"]/statBases</xpath>
+		<value>
+			<ArmorRating_Sharp>6</ArmorRating_Sharp>
+			<ArmorRating_Blunt>12</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
