@@ -84,7 +84,7 @@
 		<statBases>
 			<Mass>4.0</Mass>
 			<RangedWeapon_Cooldown>3.1</RangedWeapon_Cooldown>
-			<SightsEfficiency>1.20</SightsEfficiency>
+			<SightsEfficiency>1.8</SightsEfficiency>
 			<ShotSpread>0.04</ShotSpread>
 			<SwayFactor>1.55</SwayFactor>
 			<Bulk>9.0</Bulk>
@@ -95,7 +95,7 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_AEIcicle</defaultProjectile>
 			<warmupTime>2.5</warmupTime>
-			<range>40</range>
+			<range>55</range>
 			<soundCast>Shot_SniperRifle</soundCast>
 			<soundCastTail>GunTail_Heavy</soundCastTail>
 			<muzzleFlashScale>0</muzzleFlashScale>
@@ -113,12 +113,12 @@
 	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
 		<defName>Gun_AEPetrificationGun</defName>
 		<statBases>
-			<Mass>16</Mass>
+			<Mass>9</Mass>
 			<RangedWeapon_Cooldown>4.0</RangedWeapon_Cooldown>
 			<SightsEfficiency>1.5</SightsEfficiency>
 			<ShotSpread>0.05</ShotSpread>
 			<SwayFactor>1.40</SwayFactor>
-			<Bulk>14.0</Bulk>
+			<Bulk>10</Bulk>
 		</statBases>
 		<Properties>
 			<recoilAmount>2.80</recoilAmount>
@@ -126,7 +126,7 @@
 			<hasStandardCommand>true</hasStandardCommand>
 			<defaultProjectile>Bullet_AEPetrificationBeam</defaultProjectile>
 			<warmupTime>3.0</warmupTime>
-			<range>21.9</range>
+			<range>35</range>
 			<burstShotCount>6</burstShotCount>
 			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
 			<soundCast>Shot_BeamRepeater</soundCast>
@@ -297,7 +297,7 @@
 					<hasStandardCommand>true</hasStandardCommand>
 					<defaultProjectile>Bullet_AEIcicle</defaultProjectile>
 					<warmupTime>2.3</warmupTime>
-					<range>40</range>
+					<range>28</range>
 					<soundCast>Interact_BeatFire</soundCast>
 					<soundCastTail>GunTail_Heavy</soundCastTail>
 					<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>

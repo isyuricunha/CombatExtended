@@ -94,6 +94,8 @@
 		<value>
 			<li Class="CombatExtended.RacePropertiesExtensionCE">
 				<bodyShape>Quadruped</bodyShape>
+				<canParry>true</canParry>
+				<maxParry>4</maxParry>
 			</li>
 		</value>
 	</Operation>
@@ -112,8 +114,8 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AE_SnowGolem"]/statBases</xpath>
 		<value>
-			<ArmorRating_Sharp>1</ArmorRating_Sharp>
-			<ArmorRating_Blunt>6</ArmorRating_Blunt>
+			<ArmorRating_Sharp>5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>14</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -131,7 +133,7 @@
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>8</armorPenetrationBlunt>
+					<armorPenetrationBlunt>12</armorPenetrationBlunt>
 					<soundMeleeHit>Pawn_Fleshbeast_Attack_Blunt</soundMeleeHit>
 				</li>
 				<li Class="CombatExtended.ToolCE">
@@ -143,7 +145,8 @@
 					<power>12</power>
 					<cooldownTime>2</cooldownTime>
 					<linkedBodyPartsGroup>AE_LeftFHand</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>left rear snow block arm</label>
@@ -154,7 +157,8 @@
 					<power>12</power>
 					<cooldownTime>2</cooldownTime>
 					<linkedBodyPartsGroup>AE_LeftBHand</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right front snow block arm</label>
@@ -165,7 +169,8 @@
 					<power>12</power>
 					<cooldownTime>2</cooldownTime>
 					<linkedBodyPartsGroup>AE_RightFHand</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
 				</li>
 				<li Class="CombatExtended.ToolCE">
 					<label>right rear snow block arm</label>
@@ -176,9 +181,23 @@
 					<power>12</power>
 					<cooldownTime>2</cooldownTime>
 					<linkedBodyPartsGroup>AE_RightBHand</linkedBodyPartsGroup>
-					<armorPenetrationBlunt>5</armorPenetrationBlunt>
+					<chanceFactor>0.4</chanceFactor>
+					<armorPenetrationBlunt>7</armorPenetrationBlunt>
 				</li>
 			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_SnowGolem"]/comps</xpath>
+		<value>
+			<li Class="CombatExtended.CompProperties_ArmorDurability">
+				<Durability>1200</Durability>
+				<Regenerates>true</Regenerates>
+				<RegenInterval>600</RegenInterval>
+				<RegenValue>30</RegenValue>
+				<MinArmorPct>0.5</MinArmorPct>
+			</li>
 		</value>
 	</Operation>
 
@@ -288,8 +307,8 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AE_IceMantis"]/statBases</xpath>
 		<value>
-			<ArmorRating_Sharp>2</ArmorRating_Sharp>
-			<ArmorRating_Blunt>5</ArmorRating_Blunt>
+			<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+			<ArmorRating_Blunt>4</ArmorRating_Blunt>
 		</value>
 	</Operation>
 
@@ -330,7 +349,7 @@
 					<capacities>
 						<li>AEFreezingStab</li>
 					</capacities>
-					<power>9</power>
+					<power>7</power>
 					<cooldownTime>2</cooldownTime>
 					<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
@@ -343,12 +362,12 @@
 					<capacities>
 						<li>Blunt</li>
 					</capacities>
-					<power>18</power>
+					<power>8</power>
 					<cooldownTime>2</cooldownTime>
 					<linkedBodyPartsGroup>Waist</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 					<chanceFactor>0.2</chanceFactor>
-					<armorPenetrationBlunt>3.5</armorPenetrationBlunt>
+					<armorPenetrationBlunt>1.5</armorPenetrationBlunt>
 					<soundMeleeHit>Pawn_Fleshbeast_Attack_Blunt</soundMeleeHit>
 				</li>
 			</tools>
@@ -379,7 +398,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AE_IceMan"]/statBases</xpath>
 		<value>
-			<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
 			<ArmorRating_Blunt>3</ArmorRating_Blunt>
 		</value>
 	</Operation>
@@ -451,8 +470,9 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/ThingDef[defName="AE_BrokenStatue"]/statBases</xpath>
 		<value>
-			<ArmorRating_Sharp>6</ArmorRating_Sharp>
-			<ArmorRating_Blunt>12</ArmorRating_Blunt>
+			<ArmorRating_Sharp>7</ArmorRating_Sharp>
+			<ArmorRating_Blunt>18</ArmorRating_Blunt>
+			<ArmorRating_Heat>3</ArmorRating_Heat>
 		</value>
 	</Operation>
 
@@ -465,12 +485,12 @@
 					<capacities>
 						<li>AEPetrification</li>
 					</capacities>
-					<power>100</power>
-					<cooldownTime>2</cooldownTime>
+					<power>50</power>
+					<cooldownTime>2.5</cooldownTime>
 					<linkedBodyPartsGroup>Torso</linkedBodyPartsGroup>
 					<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-					<armorPenetrationBlunt>100</armorPenetrationBlunt>
-					<armorPenetrationSharp>100</armorPenetrationSharp>
+					<armorPenetrationBlunt>18</armorPenetrationBlunt>
+					<armorPenetrationSharp>8</armorPenetrationSharp>
 				</li>
 			</tools>
 		</value>
@@ -480,7 +500,7 @@
 		<xpath>Defs/ThingDef[defName="AE_BrokenStatue"]/comps</xpath>
 		<value>
 			<li Class="CombatExtended.CompProperties_ArmorDurability">
-				<Durability>2000</Durability>
+				<Durability>3200</Durability>
 				<Regenerates>true</Regenerates>
 				<RegenInterval>600</RegenInterval>
 				<RegenValue>10</RegenValue>

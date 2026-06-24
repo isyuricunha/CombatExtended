@@ -2,24 +2,40 @@
 <Patch>
 
 	<!-- ========== AENitrogen ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AENitrogen"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
 		<value>
-			<armorCategory>Blunt</armorCategory>
 			<defaultArmorPenetration>0.05</defaultArmorPenetration>
 		</value>
 	</Operation>
 
 	<!-- ========== AENitrogenPlayer ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]</xpath>
 		<value>
-			<armorCategory>Blunt</armorCategory>
 			<defaultArmorPenetration>0.05</defaultArmorPenetration>
 		</value>
 	</Operation>
 
 	<!-- ========== AEFreezing ========== -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AEFreezing"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/DamageDef[defName="AEFreezing"]</xpath>
 		<value>
@@ -31,7 +47,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/DamageDef[defName="AEFreezingFragileCut"]</xpath>
 		<value>
-			<defaultArmorPenetration>0.15</defaultArmorPenetration>
+			<defaultArmorPenetration>0.25</defaultArmorPenetration>
 		</value>
 	</Operation>
 
@@ -39,27 +55,25 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/DamageDef[defName="AEFreezingFragileStab"]</xpath>
 		<value>
-			<defaultArmorPenetration>0.20</defaultArmorPenetration>
+			<defaultArmorPenetration>0.30</defaultArmorPenetration>
 		</value>
 	</Operation>
 
 	<!-- ========== AEAging ========== -->
-	<!-- 999 AP: time damage bypasses armor by design. -->
+	<!-- Source has no armorCategory; leave it categoryless. -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/DamageDef[defName="AEAging"]</xpath>
 		<value>
-			<armorCategory>Sharp</armorCategory>
-			<defaultArmorPenetration>999</defaultArmorPenetration>
+			<defaultArmorPenetration>0.5</defaultArmorPenetration>
 		</value>
 	</Operation>
 
 	<!-- ========== AEPetrificationBeam ========== -->
-	<!-- 999 AP: boss armor bypass. -->
+	<!-- Source ParentName=Beam inherits Heat; do not override category. -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>Defs/DamageDef[defName="AEPetrificationBeam"]</xpath>
 		<value>
-			<armorCategory>Sharp</armorCategory>
-			<defaultArmorPenetration>999</defaultArmorPenetration>
+			<defaultArmorPenetration>0.5</defaultArmorPenetration>
 		</value>
 	</Operation>
 

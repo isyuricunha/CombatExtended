@@ -109,8 +109,8 @@
 			<projectile Class="CombatExtended.ProjectilePropertiesCE">
 				<damageDef>AEPetrificationBeam</damageDef>
 				<damageAmountBase>5</damageAmountBase>
-				<armorPenetrationSharp>999</armorPenetrationSharp>
-				<armorPenetrationBlunt>999</armorPenetrationBlunt>
+				<armorPenetrationSharp>3</armorPenetrationSharp>
+				<armorPenetrationBlunt>5</armorPenetrationBlunt>
 				<speed>80</speed>
 				<dangerFactor>1.5</dangerFactor>
 			</projectile>
@@ -162,7 +162,9 @@
 				<speed>22</speed>
 				<explosionRadius>3.5</explosionRadius>
 				<flyOverhead>true</flyOverhead>
-				<dangerFactor>1.2</dangerFactor>
+				<suppressionFactor>2.5</suppressionFactor>
+				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+				<dangerFactor>2.0</dangerFactor>
 			</projectile>
 		</value>
 	</Operation>
