@@ -1,172 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomalies Expected</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<!-- ========== Snowball (entity thrown by AE_SnowMan) ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_AESnowBall_Thrown"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>AEFreezing</damageDef>
-				<damageAmountBase>5</damageAmountBase>
-				<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
-				<speed>30</speed>
-				<suppressionFactor>0.3</suppressionFactor>
-				<dangerFactor>0.8</dangerFactor>
-			</projectile>
-		</value>
+				<!-- ========== Snowball (entity thrown by AE_SnowMan) ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Gun_AESnowBall_Thrown"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AEFreezing</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<armorPenetrationBlunt>0.5</armorPenetrationBlunt>
+							<speed>30</speed>
+							<suppressionFactor>0.3</suppressionFactor>
+							<dangerFactor>0.8</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- ========== Snowball (player snowball gun) ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_AESnowBall"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AEFreezing</damageDef>
+							<damageAmountBase>16</damageAmountBase>
+							<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
+							<speed>35</speed>
+							<suppressionFactor>0.5</suppressionFactor>
+							<dangerFactor>0.9</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- ========== Snow Block (entity siege, AE_SnowGolem) ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AENitrogen</damageDef>
+							<damageAmountBase>10</damageAmountBase>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							<speed>20</speed>
+							<explosionRadius>2.5</explosionRadius>
+							<flyOverhead>true</flyOverhead>
+							<soundExplode>SpitterSpitLands</soundExplode>
+							<filth>Filth_AESpentNitrogen</filth>
+							<filthCount>1</filthCount>
+							<explosionEffect>Shell_AESnowBlockImpact</explosionEffect>
+							<explosionEffectLifetimeTicks>15</explosionEffectLifetimeTicks>
+							<doExplosionVFX>false</doExplosionVFX>
+							<dangerFactor>1.2</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- ========== Icicle (player icicle rifle + entity IceMan) ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_AEIcicle"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>EMP</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							<armorPenetrationSharp>0.20</armorPenetrationSharp>
+							<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
+							<speed>55</speed>
+							<extraDamages>
+								<li>
+									<def>AEFreezing</def>
+									<amount>20</amount>
+									<armorPenetration>0.05</armorPenetration>
+								</li>
+								<li>
+									<def>RangedStab</def>
+									<amount>10</amount>
+									<armorPenetration>0.10</armorPenetration>
+									<chance>0.35</chance>
+								</li>
+								<li>
+									<def>Blunt</def>
+									<amount>10</amount>
+									<armorPenetration>0.10</armorPenetration>
+									<chance>0.35</chance>
+								</li>
+							</extraDamages>
+							<suppressionFactor>0.6</suppressionFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- ========== Petrification Beam (AE_BrokenStatue + petrification gun) ========== -->
+				<!-- BulletCE for ballistics; loses beam visuals. -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_AEPetrificationBeam"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_AEPetrificationBeam"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AEPetrificationBeam</damageDef>
+							<damageAmountBase>5</damageAmountBase>
+							<armorPenetrationSharp>3</armorPenetrationSharp>
+							<armorPenetrationBlunt>5</armorPenetrationBlunt>
+							<speed>80</speed>
+							<dangerFactor>1.5</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- ========== Nitrogen Shell (mortar) ========== -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_Shell_AENitrogen"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Bullet_Shell_AENitrogen"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AENitrogen</damageDef>
+							<damageAmountBase>25</damageAmountBase>
+							<armorPenetrationBlunt>8</armorPenetrationBlunt>
+							<speed>50</speed>
+							<explosionRadius>5.9</explosionRadius>
+							<flyOverhead>true</flyOverhead>
+							<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
+							<soundExplode>Explosion_EMP</soundExplode>
+							<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+							<soundAmbient>MortarRound_Ambient</soundAmbient>
+							<dangerFactor>1.5</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+				<!-- ========== Nitrogen Grenade Projectile ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Proj_AEGrenadeNitrogen"]</xpath>
+					<value>
+						<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="Proj_AEGrenadeNitrogen"]/projectile</xpath>
+					<value>
+						<projectile Class="CombatExtended.ProjectilePropertiesCE">
+							<damageDef>AENitrogen</damageDef>
+							<damageAmountBase>15</damageAmountBase>
+							<armorPenetrationBlunt>4</armorPenetrationBlunt>
+							<speed>22</speed>
+							<explosionRadius>3.5</explosionRadius>
+							<flyOverhead>true</flyOverhead>
+							<suppressionFactor>2.5</suppressionFactor>
+							<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
+							<dangerFactor>2.0</dangerFactor>
+						</projectile>
+					</value>
+				</li>
+
+			</operations>
+		</match>
 	</Operation>
-
-	<!-- ========== Snowball (player snowball gun) ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Bullet_AESnowBall"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>AEFreezing</damageDef>
-				<damageAmountBase>16</damageAmountBase>
-				<armorPenetrationBlunt>1.2</armorPenetrationBlunt>
-				<speed>35</speed>
-				<suppressionFactor>0.5</suppressionFactor>
-				<dangerFactor>0.9</dangerFactor>
-			</projectile>
-		</value>
-	</Operation>
-
-	<!-- ========== Snow Block (entity siege, AE_SnowGolem) ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>AENitrogen</damageDef>
-				<damageAmountBase>10</damageAmountBase>
-				<armorPenetrationBlunt>4</armorPenetrationBlunt>
-				<speed>20</speed>
-				<explosionRadius>2.5</explosionRadius>
-				<flyOverhead>true</flyOverhead>
-				<soundExplode>SpitterSpitLands</soundExplode>
-				<filth>Filth_AESpentNitrogen</filth>
-				<filthCount>1</filthCount>
-				<explosionEffect>Shell_AESnowBlockImpact</explosionEffect>
-				<explosionEffectLifetimeTicks>15</explosionEffectLifetimeTicks>
-				<doExplosionVFX>false</doExplosionVFX>
-				<dangerFactor>1.2</dangerFactor>
-			</projectile>
-		</value>
-	</Operation>
-
-	<!-- ========== Icicle (player icicle rifle + entity IceMan) ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Bullet_AEIcicle"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>EMP</damageDef>
-				<damageAmountBase>15</damageAmountBase>
-				<armorPenetrationSharp>0.20</armorPenetrationSharp>
-				<armorPenetrationBlunt>2.5</armorPenetrationBlunt>
-				<speed>55</speed>
-				<extraDamages>
-					<li>
-						<def>AEFreezing</def>
-						<amount>20</amount>
-						<armorPenetration>0.05</armorPenetration>
-					</li>
-					<li>
-						<def>RangedStab</def>
-						<amount>10</amount>
-						<armorPenetration>0.10</armorPenetration>
-						<chance>0.35</chance>
-					</li>
-					<li>
-						<def>Blunt</def>
-						<amount>10</amount>
-						<armorPenetration>0.10</armorPenetration>
-						<chance>0.35</chance>
-					</li>
-				</extraDamages>
-				<suppressionFactor>0.6</suppressionFactor>
-			</projectile>
-		</value>
-	</Operation>
-
-	<!-- ========== Petrification Beam (AE_BrokenStatue + petrification gun) ========== -->
-	<!-- BulletCE for ballistics; loses beam visuals. -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Bullet_AEPetrificationBeam"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.BulletCE</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Bullet_AEPetrificationBeam"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>AEPetrificationBeam</damageDef>
-				<damageAmountBase>5</damageAmountBase>
-				<armorPenetrationSharp>3</armorPenetrationSharp>
-				<armorPenetrationBlunt>5</armorPenetrationBlunt>
-				<speed>80</speed>
-				<dangerFactor>1.5</dangerFactor>
-			</projectile>
-		</value>
-	</Operation>
-
-	<!-- ========== Nitrogen Shell (mortar) ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Bullet_Shell_AENitrogen"]/thingClass</xpath>
-		<value>
-			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Bullet_Shell_AENitrogen"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>AENitrogen</damageDef>
-				<damageAmountBase>25</damageAmountBase>
-				<armorPenetrationBlunt>8</armorPenetrationBlunt>
-				<speed>50</speed>
-				<explosionRadius>5.9</explosionRadius>
-				<flyOverhead>true</flyOverhead>
-				<soundHitThickRoof>Artillery_HitThickRoof</soundHitThickRoof>
-				<soundExplode>Explosion_EMP</soundExplode>
-				<soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
-				<soundAmbient>MortarRound_Ambient</soundAmbient>
-				<dangerFactor>1.5</dangerFactor>
-			</projectile>
-		</value>
-	</Operation>
-
-	<!-- ========== Nitrogen Grenade Projectile ========== -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[defName="Proj_AEGrenadeNitrogen"]</xpath>
-		<value>
-			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
-		</value>
-	</Operation>
-
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Proj_AEGrenadeNitrogen"]/projectile</xpath>
-		<value>
-			<projectile Class="CombatExtended.ProjectilePropertiesCE">
-				<damageDef>AENitrogen</damageDef>
-				<damageAmountBase>15</damageAmountBase>
-				<armorPenetrationBlunt>4</armorPenetrationBlunt>
-				<speed>22</speed>
-				<explosionRadius>3.5</explosionRadius>
-				<flyOverhead>true</flyOverhead>
-				<suppressionFactor>2.5</suppressionFactor>
-				<airborneSuppressionFactor>0.25</airborneSuppressionFactor>
-				<dangerFactor>2.0</dangerFactor>
-			</projectile>
-		</value>
-	</Operation>
-
 </Patch>

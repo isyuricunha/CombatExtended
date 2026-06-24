@@ -1,80 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Anomalies Expected</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
 
-	<!-- ========== AENitrogen ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/DamageDef[defName="AENitrogen"]/armorCategory</xpath>
-		<value>
-			<armorCategory>Heat</armorCategory>
-		</value>
-	</Operation>
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
-		<value>
-			<defaultArmorPenetration>0.05</defaultArmorPenetration>
-		</value>
-	</Operation>
+				<!-- ========== AENitrogen ========== -->
+				<!-- Source has no armorCategory; use Add not Replace. -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
+					<value>
+						<armorCategory>Heat</armorCategory>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
+					<value>
+						<defaultArmorPenetration>0.05</defaultArmorPenetration>
+					</value>
+				</li>
 
-	<!-- ========== AENitrogenPlayer ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]/armorCategory</xpath>
-		<value>
-			<armorCategory>Heat</armorCategory>
-		</value>
-	</Operation>
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]</xpath>
-		<value>
-			<defaultArmorPenetration>0.05</defaultArmorPenetration>
-		</value>
-	</Operation>
+				<!-- ========== AENitrogenPlayer ========== -->
+				<!-- Source has no armorCategory; use Add not Replace. -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]</xpath>
+					<value>
+						<armorCategory>Heat</armorCategory>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]</xpath>
+					<value>
+						<defaultArmorPenetration>0.05</defaultArmorPenetration>
+					</value>
+				</li>
 
-	<!-- ========== AEFreezing ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/DamageDef[defName="AEFreezing"]/armorCategory</xpath>
-		<value>
-			<armorCategory>Heat</armorCategory>
-		</value>
-	</Operation>
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="AEFreezing"]</xpath>
-		<value>
-			<defaultArmorPenetration>0.05</defaultArmorPenetration>
-		</value>
-	</Operation>
+				<!-- ========== AEFreezing ========== -->
+				<!-- Source declares armorCategory=Blunt; Replace works. -->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/DamageDef[defName="AEFreezing"]/armorCategory</xpath>
+					<value>
+						<armorCategory>Heat</armorCategory>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AEFreezing"]</xpath>
+					<value>
+						<defaultArmorPenetration>0.05</defaultArmorPenetration>
+					</value>
+				</li>
 
-	<!-- ========== AEFreezingFragileCut ========== -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="AEFreezingFragileCut"]</xpath>
-		<value>
-			<defaultArmorPenetration>0.25</defaultArmorPenetration>
-		</value>
-	</Operation>
+				<!-- ========== AEFreezingFragileCut ========== -->
+				<!-- Source declares armorCategory=Sharp locally; keep as-is. -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AEFreezingFragileCut"]</xpath>
+					<value>
+						<defaultArmorPenetration>0.25</defaultArmorPenetration>
+					</value>
+				</li>
 
-	<!-- ========== AEFreezingFragileStab ========== -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="AEFreezingFragileStab"]</xpath>
-		<value>
-			<defaultArmorPenetration>0.30</defaultArmorPenetration>
-		</value>
-	</Operation>
+				<!-- ========== AEFreezingFragileStab ========== -->
+				<!-- Inherits armorCategory=Sharp from AEFreezingFragileBase. -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AEFreezingFragileStab"]</xpath>
+					<value>
+						<defaultArmorPenetration>0.30</defaultArmorPenetration>
+					</value>
+				</li>
 
-	<!-- ========== AEAging ========== -->
-	<!-- Source has no armorCategory; leave it categoryless. -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="AEAging"]</xpath>
-		<value>
-			<defaultArmorPenetration>0.5</defaultArmorPenetration>
-		</value>
-	</Operation>
+				<!-- ========== AEAging ========== -->
+				<!-- Source has no armorCategory; leave it categoryless. -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AEAging"]</xpath>
+					<value>
+						<defaultArmorPenetration>0.5</defaultArmorPenetration>
+					</value>
+				</li>
 
-	<!-- ========== AEPetrificationBeam ========== -->
-	<!-- Source ParentName=Beam inherits Heat; do not override category. -->
-	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/DamageDef[defName="AEPetrificationBeam"]</xpath>
-		<value>
-			<defaultArmorPenetration>0.5</defaultArmorPenetration>
-		</value>
-	</Operation>
+				<!-- ========== AEPetrificationBeam ========== -->
+				<!-- Source ParentName=Beam inherits Heat; do not override category. -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/DamageDef[defName="AEPetrificationBeam"]</xpath>
+					<value>
+						<defaultArmorPenetration>0.5</defaultArmorPenetration>
+					</value>
+				</li>
 
+			</operations>
+		</match>
+	</Operation>
 </Patch>
