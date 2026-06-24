@@ -14,6 +14,8 @@
 					<value>
 						<li Class="CombatExtended.RacePropertiesExtensionCE">
 							<bodyShape>Humanoid</bodyShape>
+							<canParry>true</canParry>
+							<maxParry>5</maxParry>
 						</li>
 					</value>
 				</li>
@@ -21,9 +23,9 @@
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/statBases</xpath>
 					<value>
-						<MeleeDodgeChance>0.08</MeleeDodgeChance>
+						<MeleeDodgeChance>0.16</MeleeDodgeChance>
 						<MeleeCritChance>0.12</MeleeCritChance>
-						<MeleeParryChance>0.06</MeleeParryChance>
+						<MeleeParryChance>0.09</MeleeParryChance>
 					</value>
 				</li>
 
@@ -72,11 +74,11 @@
 									<li>Cut</li>
 									<li>AP_Damage_Teleport</li>
 								</capacities>
-								<power>20</power>
-								<cooldownTime>2</cooldownTime>
+								<power>43</power>
+								<cooldownTime>2.07</cooldownTime>
 								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
-								<armorPenetrationSharp>3</armorPenetrationSharp>
-								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
 								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 							</li>
 							<li Class="CombatExtended.ToolCE">
@@ -86,8 +88,8 @@
 									<li>Stab</li>
 									<li>AP_Damage_Teleport</li>
 								</capacities>
-								<power>20</power>
-								<cooldownTime>2</cooldownTime>
+								<power>24</power>
+								<cooldownTime>1.33</cooldownTime>
 								<linkedBodyPartsGroup>LeftBlade</linkedBodyPartsGroup>
 								<armorPenetrationSharp>30</armorPenetrationSharp>
 								<armorPenetrationBlunt>15</armorPenetrationBlunt>
@@ -100,11 +102,11 @@
 									<li>Cut</li>
 									<li>AP_Damage_Teleport</li>
 								</capacities>
-								<power>20</power>
-								<cooldownTime>2</cooldownTime>
+								<power>43</power>
+								<cooldownTime>2.07</cooldownTime>
 								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
-								<armorPenetrationSharp>3</armorPenetrationSharp>
-								<armorPenetrationBlunt>6</armorPenetrationBlunt>
+								<armorPenetrationSharp>2.16</armorPenetrationSharp>
+								<armorPenetrationBlunt>5.4</armorPenetrationBlunt>
 								<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
 							</li>
 							<li Class="CombatExtended.ToolCE">
@@ -114,8 +116,8 @@
 									<li>Stab</li>
 									<li>AP_Damage_Teleport</li>
 								</capacities>
-								<power>20</power>
-								<cooldownTime>2</cooldownTime>
+								<power>24</power>
+								<cooldownTime>1.33</cooldownTime>
 								<linkedBodyPartsGroup>RightBlade</linkedBodyPartsGroup>
 								<armorPenetrationSharp>30</armorPenetrationSharp>
 								<armorPenetrationBlunt>15</armorPenetrationBlunt>
@@ -127,12 +129,12 @@
 									<li>Blunt</li>
 									<li>AP_Damage_Teleport</li>
 								</capacities>
-								<power>9</power>
-								<cooldownTime>2</cooldownTime>
+								<power>6</power>
+								<cooldownTime>5.9</cooldownTime>
 								<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
 								<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
 								<chanceFactor>0.2</chanceFactor>
-								<armorPenetrationBlunt>3</armorPenetrationBlunt>
+								<armorPenetrationBlunt>1.875</armorPenetrationBlunt>
 							</li>
 						</tools>
 					</value>
