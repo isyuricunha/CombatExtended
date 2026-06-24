@@ -8,7 +8,7 @@ namespace CombatExtended.Compatibility.AnomalyPortalCompat;
 // Port of AnomalyPortal_Library.Projectile_Teleport: applies CE damage, then teleports the hit pawn.
 public class BulletCE_Teleport : BulletCE
 {
-    public float teleportChance = 0.5f;
+    public float teleportChance = 0.3333f;
 
     // Matches AnomalyPortal TeleportUtility.GetDestination radius.
     public float teleportRadius = 24.9f;

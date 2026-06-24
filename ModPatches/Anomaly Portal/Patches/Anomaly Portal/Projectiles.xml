@@ -24,8 +24,8 @@
 							<damageDef>RangedStab</damageDef>
 							<damageAmountBase>12</damageAmountBase>
 							<speed>55</speed>
-							<armorPenetrationSharp>0.10</armorPenetrationSharp>
-							<armorPenetrationBlunt>0.05</armorPenetrationBlunt>
+							<armorPenetrationSharp>4</armorPenetrationSharp>
+							<armorPenetrationBlunt>2</armorPenetrationBlunt>
 							<suppressionFactor>0.5</suppressionFactor>
 							<dangerFactor>1.0</dangerFactor>
 						</projectile>
