@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- ========== AENitrogen ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
+		<value>
+			<armorCategory>Blunt</armorCategory>
+			<defaultArmorPenetration>0.05</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<!-- ========== AENitrogenPlayer ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]</xpath>
+		<value>
+			<armorCategory>Blunt</armorCategory>
+			<defaultArmorPenetration>0.05</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<!-- ========== AEFreezing ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AEFreezing"]</xpath>
+		<value>
+			<defaultArmorPenetration>0.05</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<!-- ========== AEFreezingFragileCut ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AEFreezingFragileCut"]</xpath>
+		<value>
+			<defaultArmorPenetration>0.15</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<!-- ========== AEFreezingFragileStab ========== -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AEFreezingFragileStab"]</xpath>
+		<value>
+			<defaultArmorPenetration>0.20</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<!-- ========== AEAging ========== -->
+	<!-- 999 AP: time damage bypasses armor by design. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AEAging"]</xpath>
+		<value>
+			<armorCategory>Sharp</armorCategory>
+			<defaultArmorPenetration>999</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+	<!-- ========== AEPetrificationBeam ========== -->
+	<!-- 999 AP: boss armor bypass. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AEPetrificationBeam"]</xpath>
+		<value>
+			<armorCategory>Sharp</armorCategory>
+			<defaultArmorPenetration>999</defaultArmorPenetration>
+		</value>
+	</Operation>
+
+</Patch>
