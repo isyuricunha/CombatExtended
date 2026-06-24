@@ -24,7 +24,7 @@ public class BulletCE_Teleport : BulletCE
 
         base.Impact(hitThing);
 
-        if (pawnTarget == null || pawnTarget.Destroyed || !pawnTarget.Spawned || map == null)
+        if (pawnTarget == null || pawnTarget.Destroyed || pawnTarget.Dead || !pawnTarget.Spawned || map == null)
         {
             return;
         }

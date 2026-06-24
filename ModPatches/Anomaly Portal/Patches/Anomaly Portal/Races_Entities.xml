@@ -68,6 +68,7 @@
 					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/tools</xpath>
 					<value>
 						<tools>
+							<!-- Cut tool intentionally has lower AP_Sharp than Stab. Mirrors Metalhorror pattern: Cut is the anti-flesh swing (low Sharp pen, high Blunt force) while Stab is the armor-piercing thrust. -->
 							<li Class="CombatExtended.ToolCE">
 								<label>left blade</label>
 								<labelNoLocation>blade</labelNoLocation>
