@@ -99,8 +99,7 @@
 				</li>
 
 				<!-- ========== Snow Golem (SA-03) ========== -->
-				<!-- Vanilla bug: both arm pairs use AE_Left*Hand; right arms re-routed. -->
-				<!-- CE convention: canParry restricted to Humanoid bipeds with weapon-arms; Quadruped omits it. -->
+				<!-- Vanilla bug: both arm pairs link to AE_Left*Hand; right arms re-routed below. -->
 				<li Class="PatchOperationAddModExtension">
 					<xpath>Defs/ThingDef[defName="AE_SnowGolem"]</xpath>
 					<value>

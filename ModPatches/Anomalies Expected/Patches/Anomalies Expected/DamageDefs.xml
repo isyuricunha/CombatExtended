@@ -8,7 +8,6 @@
 			<operations>
 
 				<!-- ========== AENitrogen ========== -->
-				<!-- Source has no armorCategory; use Add not Replace. -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
 					<value>
@@ -23,7 +22,6 @@
 				</li>
 
 				<!-- ========== AENitrogenPlayer ========== -->
-				<!-- Source has no armorCategory; use Add not Replace. -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]</xpath>
 					<value>
@@ -38,7 +36,6 @@
 				</li>
 
 				<!-- ========== AEFreezing ========== -->
-				<!-- Source declares armorCategory=Blunt; Replace works. -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/DamageDef[defName="AEFreezing"]/armorCategory</xpath>
 					<value>
@@ -53,7 +50,6 @@
 				</li>
 
 				<!-- ========== AEFreezingFragileCut ========== -->
-				<!-- Source declares armorCategory=Sharp locally; keep as-is. -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/DamageDef[defName="AEFreezingFragileCut"]</xpath>
 					<value>
@@ -62,7 +58,6 @@
 				</li>
 
 				<!-- ========== AEFreezingFragileStab ========== -->
-				<!-- Inherits armorCategory=Sharp from AEFreezingFragileBase. -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/DamageDef[defName="AEFreezingFragileStab"]</xpath>
 					<value>
@@ -71,7 +66,6 @@
 				</li>
 
 				<!-- ========== AEAging ========== -->
-				<!-- Source has no armorCategory; leave it categoryless. -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/DamageDef[defName="AEAging"]</xpath>
 					<value>
@@ -80,7 +74,6 @@
 				</li>
 
 				<!-- ========== AEPetrificationBeam ========== -->
-				<!-- Source ParentName=Beam inherits Heat; do not override category. -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/DamageDef[defName="AEPetrificationBeam"]</xpath>
 					<value>
