@@ -5,7 +5,7 @@ using Verse;
 
 namespace CombatExtended.Compatibility.AnomalyPortalCompat;
 
-// Port of AnomalyPortal_Library.Projectile_Teleport: applies CE damage, then teleports the hit pawn.
+// Port of AnomalyPortal_Library.Projectile_Teleport: applies CE damage, then teleports the hit thing.
 public class BulletCE_Teleport : BulletCE
 {
     public float teleportChance = 0.3333f;
@@ -20,11 +20,17 @@ public class BulletCE_Teleport : BulletCE
     {
         // Cache before base.Impact destroys this projectile.
         Map map = hitThing?.Map ?? base.Map;
+        Thing target = hitThing;
         Pawn pawnTarget = hitThing as Pawn;
 
         base.Impact(hitThing);
 
-        if (pawnTarget == null || pawnTarget.Destroyed || pawnTarget.Dead || !pawnTarget.Spawned || map == null)
+        if (target == null || target is Filth || !target.def.useHitPoints || target.Destroyed || !target.Spawned || map == null)
+        {
+            return;
+        }
+
+        if (pawnTarget != null && pawnTarget.Dead)
         {
             return;
         }
@@ -34,17 +40,23 @@ public class BulletCE_Teleport : BulletCE
             return;
         }
 
-        if (!TryGetTeleportDestination(pawnTarget.Position, map, out IntVec3 destination))
+        if (!TryGetTeleportDestination(target.Position, map, out IntVec3 destination))
         {
             return;
         }
 
-        pawnTarget.Position = destination;
-        pawnTarget.Notify_Teleported();
+        target.DeSpawn();
+        GenSpawn.Spawn(target, destination, map);
 
-        if (pawnTarget.Faction == Faction.OfPlayer)
+        if (pawnTarget != null)
         {
-            FloodFillerFog.FloodUnfog(destination, map);
+            pawnTarget.stances?.stunner?.StunFor(Rand.Range(70, 120), launcher, addBattleLog: false, showMote: false);
+            pawnTarget.Notify_Teleported();
+
+            if (pawnTarget.Faction == Faction.OfPlayer)
+            {
+                FloodFillerFog.FloodUnfog(destination, map);
+            }
         }
 
         EffecterDefOf.Skip_Entry.SpawnMaintained(destination, map);

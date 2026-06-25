@@ -66,7 +66,6 @@
 								<labelNoLocation>blade</labelNoLocation>
 								<capacities>
 									<li>Cut</li>
-									<li>AP_Damage_Teleport</li>
 								</capacities>
 								<power>32</power>
 								<cooldownTime>2.5</cooldownTime>
@@ -80,7 +79,6 @@
 								<labelNoLocation>blade</labelNoLocation>
 								<capacities>
 									<li>Stab</li>
-									<li>AP_Damage_Teleport</li>
 								</capacities>
 								<power>18</power>
 								<cooldownTime>1.5</cooldownTime>
@@ -94,7 +92,6 @@
 								<labelNoLocation>blade</labelNoLocation>
 								<capacities>
 									<li>Cut</li>
-									<li>AP_Damage_Teleport</li>
 								</capacities>
 								<power>32</power>
 								<cooldownTime>2.5</cooldownTime>
@@ -108,7 +105,6 @@
 								<labelNoLocation>blade</labelNoLocation>
 								<capacities>
 									<li>Stab</li>
-									<li>AP_Damage_Teleport</li>
 								</capacities>
 								<power>18</power>
 								<cooldownTime>1.5</cooldownTime>
@@ -121,7 +117,6 @@
 								<label>head</label>
 								<capacities>
 									<li>Blunt</li>
-									<li>AP_Damage_Teleport</li>
 								</capacities>
 								<power>9</power>
 								<cooldownTime>5.9</cooldownTime>
