@@ -37,7 +37,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_SnowMan"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>2</ArmorRating_Blunt>
+						<ArmorRating_Blunt>4</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -124,13 +124,13 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_SnowGolem"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>5</ArmorRating_Sharp>
+						<ArmorRating_Sharp>8</ArmorRating_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_SnowGolem"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>14</ArmorRating_Blunt>
+						<ArmorRating_Blunt>22</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -207,7 +207,7 @@
 					<xpath>Defs/ThingDef[defName="AE_SnowGolem"]/comps</xpath>
 					<value>
 						<li Class="CombatExtended.CompProperties_ArmorDurability">
-							<Durability>1200</Durability>
+							<Durability>2400</Durability>
 							<Regenerates>true</Regenerates>
 							<RegenInterval>600</RegenInterval>
 							<RegenValue>30</RegenValue>
@@ -238,13 +238,13 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_SnowSpider"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>0.5</ArmorRating_Sharp>
+						<ArmorRating_Sharp>0.4</ArmorRating_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_SnowSpider"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>2</ArmorRating_Blunt>
+						<ArmorRating_Blunt>1.5</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -327,13 +327,13 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_IceMantis"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>1.5</ArmorRating_Sharp>
+						<ArmorRating_Sharp>4</ArmorRating_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_IceMantis"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>4</ArmorRating_Blunt>
+						<ArmorRating_Blunt>6</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -423,13 +423,13 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_IceMan"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+						<ArmorRating_Sharp>3</ArmorRating_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_IceMan"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>3</ArmorRating_Blunt>
+						<ArmorRating_Blunt>5</ArmorRating_Blunt>
 					</value>
 				</li>
 
@@ -500,13 +500,13 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_BrokenStatue"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
-						<ArmorRating_Sharp>7</ArmorRating_Sharp>
+						<ArmorRating_Sharp>20</ArmorRating_Sharp>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AE_BrokenStatue"]/statBases/ArmorRating_Blunt</xpath>
 					<value>
-						<ArmorRating_Blunt>18</ArmorRating_Blunt>
+						<ArmorRating_Blunt>45</ArmorRating_Blunt>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -540,10 +540,10 @@
 					<xpath>Defs/ThingDef[defName="AE_BrokenStatue"]/comps</xpath>
 					<value>
 						<li Class="CombatExtended.CompProperties_ArmorDurability">
-							<Durability>3200</Durability>
+							<Durability>3660</Durability>
 							<Regenerates>true</Regenerates>
 							<RegenInterval>600</RegenInterval>
-							<RegenValue>10</RegenValue>
+							<RegenValue>20</RegenValue>
 							<MinArmorPct>0.5</MinArmorPct>
 						</li>
 					</value>

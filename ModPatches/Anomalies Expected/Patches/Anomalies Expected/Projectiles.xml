@@ -175,6 +175,14 @@
 					</value>
 				</li>
 
+				<!-- AE_Bullet_Shell_SnowBlockAbility inherits Gun_AESnowBlock_Thrown but its own -->
+				<!-- projectile element needs the CE class attribute to parse the inherited CE fields. -->
+				<li Class="PatchOperationAttributeSet">
+					<xpath>Defs/ThingDef[defName="AE_Bullet_Shell_SnowBlockAbility"]/projectile</xpath>
+					<attribute>Class</attribute>
+					<value>CombatExtended.ProjectilePropertiesCE</value>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
