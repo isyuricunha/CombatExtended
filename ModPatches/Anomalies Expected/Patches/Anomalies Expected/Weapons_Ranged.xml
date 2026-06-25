@@ -238,7 +238,7 @@
 					<xpath>Defs/ThingDef[defName="Gun_AESnowBall"]/verbs</xpath>
 					<value>
 						<verbs>
-							<li>
+							<li Class="CombatExtended.VerbPropertiesCE">
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
 								<defaultProjectile>Gun_AESnowBall_Thrown</defaultProjectile>
@@ -266,8 +266,8 @@
 					<xpath>Defs/ThingDef[defName="Gun_AESnowBlock"]/verbs</xpath>
 					<value>
 						<verbs>
-							<li>
-								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+							<li Class="CombatExtended.VerbPropertiesCE">
+								<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
 								<defaultProjectile>Gun_AESnowBlock_Thrown</defaultProjectile>
 								<forcedMissRadius>3</forcedMissRadius>
@@ -276,8 +276,12 @@
 								<warmupTime>4.0</warmupTime>
 								<minRange>7</minRange>
 								<range>50</range>
+								<indirectFirePenalty>0.25</indirectFirePenalty>
 								<soundCast>Interact_BeatFire</soundCast>
 								<rangedFireRulepack>Combat_RangedFire_Thrown</rangedFireRulepack>
+								<targetParams>
+									<canTargetLocations>true</canTargetLocations>
+								</targetParams>
 							</li>
 						</verbs>
 					</value>
@@ -298,7 +302,7 @@
 					<xpath>Defs/ThingDef[defName="Gun_AEIcicle"]/verbs</xpath>
 					<value>
 						<verbs>
-							<li>
+							<li Class="CombatExtended.VerbPropertiesCE">
 								<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 								<hasStandardCommand>true</hasStandardCommand>
 								<defaultProjectile>Bullet_AEIcicle</defaultProjectile>

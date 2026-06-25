@@ -8,6 +8,13 @@
 			<operations>
 
 				<!-- ========== Snowball (entity thrown by AE_SnowMan) ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Gun_AESnowBall_Thrown"]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Gun_AESnowBall_Thrown"]/projectile</xpath>
 					<value>
@@ -23,6 +30,13 @@
 				</li>
 
 				<!-- ========== Snowball (player snowball gun) ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Bullet_AESnowBall"]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Bullet_AESnowBall"]/projectile</xpath>
 					<value>
@@ -67,6 +81,13 @@
 				</li>
 
 				<!-- ========== Icicle (player icicle rifle + entity IceMan) ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="Bullet_AEIcicle"]</xpath>
+					<value>
+						<thingClass>CombatExtended.BulletCE</thingClass>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="Bullet_AEIcicle"]/projectile</xpath>
 					<value>
@@ -100,26 +121,11 @@
 					</value>
 				</li>
 
-				<!-- ========== Petrification Beam (AE_BrokenStatue + petrification gun) ========== -->
-				<!-- BulletCE for ballistics; loses beam visuals. -->
+				<!-- ========== Petrification Beam ========== -->
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Bullet_AEPetrificationBeam"]/thingClass</xpath>
+					<xpath>Defs/ThingDef[defName="Gun_AEPetrificationGun"]/verbs/li/defaultProjectile</xpath>
 					<value>
-						<thingClass>CombatExtended.BulletCE</thingClass>
-					</value>
-				</li>
-
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="Bullet_AEPetrificationBeam"]/projectile</xpath>
-					<value>
-						<projectile Class="CombatExtended.ProjectilePropertiesCE">
-							<damageDef>AEPetrificationBeam</damageDef>
-							<damageAmountBase>5</damageAmountBase>
-							<armorPenetrationSharp>3</armorPenetrationSharp>
-							<armorPenetrationBlunt>5</armorPenetrationBlunt>
-							<speed>80</speed>
-							<dangerFactor>1.5</dangerFactor>
-						</projectile>
+						<defaultProjectile>Bullet_AEPetrificationBeam_CE</defaultProjectile>
 					</value>
 				</li>
 
