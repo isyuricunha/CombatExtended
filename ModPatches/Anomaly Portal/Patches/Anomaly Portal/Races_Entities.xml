@@ -30,8 +30,6 @@
 					</value>
 				</li>
 
-				<!-- Vanilla armor is 0.8 sharp / 0.3 blunt (percent). CE expects mm RHA. -->
-				<!-- Boss-tier entity scaled against the Metalhorror CE patch (same body). -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/statBases/ArmorRating_Sharp</xpath>
 					<value>
@@ -46,7 +44,6 @@
 					</value>
 				</li>
 
-				<!-- baseHealthScale 9.6 + combatPower 300 = boss tier; durability mirrors the Metalhorror patch. -->
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/comps</xpath>
 					<value>
@@ -60,15 +57,10 @@
 					</value>
 				</li>
 
-				<!-- Replace vanilla tools with ToolCE entries. Vanilla combines Cut+Stab+AP_Damage_Teleport -->
-				<!-- on each blade and Blunt+AP_Damage_Teleport on the head. CE allows multi-capacity tools, -->
-				<!-- so the AP_Damage_Teleport capacity is preserved on every original tool. -->
-				<!-- AP values are calibrated against the Metalhorror CE patch (same body, Scyther-class blades). -->
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/ThingDef[defName="AP_MetalStorm"]/tools</xpath>
 					<value>
 						<tools>
-							<!-- Cut tool intentionally has lower AP_Sharp than Stab. Mirrors Metalhorror pattern: Cut is the anti-flesh swing (low Sharp pen, high Blunt force) while Stab is the armor-piercing thrust. -->
 							<li Class="CombatExtended.ToolCE">
 								<label>left blade</label>
 								<labelNoLocation>blade</labelNoLocation>
