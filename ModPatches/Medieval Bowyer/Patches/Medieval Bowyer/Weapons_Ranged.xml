@@ -11,6 +11,7 @@
 			defName="MB_Hunting_Crossbow" or
 			defName="MB_Watchmen_Crossbow" or
 			defName="MB_War_Crossbow" or
+      defName="MB_Triple_Crossbow" or
 			defName="MB_Garrison_Crossbow"]/tools
 		</xpath>
 		<value>
