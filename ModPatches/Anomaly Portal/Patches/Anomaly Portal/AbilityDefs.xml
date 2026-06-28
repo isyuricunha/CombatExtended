@@ -9,6 +9,13 @@
 			<operations>
 
 				<!-- ========== AP_TeleportSpike ========== -->
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/AbilityDef[defName="AP_TeleportSpike"]</xpath>
+					<value>
+						<label>teleport spike</label>
+					</value>
+				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName="AP_TeleportSpike"]/verbProperties</xpath>
 					<value>
