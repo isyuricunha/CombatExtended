@@ -188,6 +188,16 @@
 					<value>CombatExtended.ProjectilePropertiesCE</value>
 				</li>
 
+				<!-- Vanilla CompProperties_ProjectileEffecter only validates against Verse.Projectile; -->
+				<!-- CE's ProjectileCE_Explosive isn't a subclass so it triggers a config error. Drop the comps. -->
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/comps</xpath>
+				</li>
+
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="AE_Bullet_Shell_SnowBlockAbility"]/comps</xpath>
+				</li>
+
 			</operations>
 		</match>
 	</Operation>
