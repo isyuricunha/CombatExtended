@@ -46,7 +46,7 @@
 		<li IfModActive="bbbbilly.ancienthuman">ModPatches/Ancient Human</li>
 		<li IfModActive="Killathon.AndroidTiersReforged">ModPatches/Android Tiers Reforged</li>
 		<li IfModActive="ChJees.Androids, ChJees.Androids14">ModPatches/Androids</li>
-		<li IfModActive="peptide.androidsexpanded, rielle.androidsexpanded">ModPatches/Androids Expanded</li>
+		<li IfModActive="peptide.androidsexpanded, peptide.androidsexpanded14, rielle.androidsexpanded">ModPatches/Androids Expanded</li>
 		<li IfModActive="hh.xrushha.AnimaAnimalsCombined">ModPatches/Anima Animals - Community Temp</li>
 		<li IfModActive="Seti.Victor.AnimaBodies">ModPatches/Anima Bionics</li>
 		<li IfModActive="xrushha.AnimaGear">ModPatches/Anima Gear</li>
@@ -513,7 +513,7 @@
 		<li IfModActive="mlie.removeindustrialstuff">ModPatches/Remove Industrial Stuff</li>
 		<li IfModActive="FS.ReviaRace">ModPatches/Revia Race</li>
 		<li IfModActive="FS.ReviaRaceBiotech">ModPatches/Revia Race — biotech</li>
-		<li IfModActive="zerophoenix.contractorsarsenalfaction">ModPatches/Rim Contractors Arsenal</li>
+		<li IfModActive="zerophoenix.contractorsarsenalfaction,zal.contractorsarsenal">ModPatches/Rim Contractors Arsenal</li>
 		<li IfModActive="Fenn.floodrace,zal.floodrace">ModPatches/Rim Flood</li>
 		<li IfModActive="VexedTrees980.RimGnoblinsBiotech">ModPatches/Rim Gnoblins</li>
 		<li IfModActive="JTC.Nordberg">ModPatches/Rim Of Evil Northern Frontier</li>
