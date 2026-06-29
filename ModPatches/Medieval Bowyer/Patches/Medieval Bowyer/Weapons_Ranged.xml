@@ -345,6 +345,7 @@
 			<defaultProjectile>Projectile_CrossbowBolt_Steel</defaultProjectile>
 			<warmupTime>1</warmupTime>
 			<range>26</range>
+      <burstShotCount>3</burstShotCount>
 			<soundCast>Bow_Large</soundCast>
 		</Properties>
 		<AmmoUser>
