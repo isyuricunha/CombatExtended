@@ -163,7 +163,7 @@ namespace CombatExtended.HarmonyCE
          */
         private static void LogNotEnoughSquaresError(float radius)
         {
-            Log.Error($"Not enough squares to get to radius {radius}. Max is {MAX_RADIUS}");
+            Log.Warning($"GenRadial.NumCellsInRadius: requested radius {radius} exceeds maximum {MAX_RADIUS}. Radius capped to {MAX_RADIUS}.");
         }
     }
 }
