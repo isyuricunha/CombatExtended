@@ -395,7 +395,7 @@
 		<li IfModActive="noodlesking.MorePsycasts">ModPatches/More Psycasts</li>
 		<li IfModActive="SGC.moreutilitypacks,zal.moreutilitypacks">ModPatches/More Utility Packs</li>
 		<li IfModActive="paradox.morevanillaturrets">ModPatches/More Vanilla Turrets</li>
-		<li IfModActive="Orion.MoreMechanoids">ModPatches/MoreMechanoids</li>
+		<li IfModActive="Orion.MoreMechanoids, zal.moremechanoids">ModPatches/MoreMechanoids</li>
 		<li IfModActive="Morgante.MorganteMafiaWeaponsPack_copy">ModPatches/Morgante Mafia Weapons Pack</li>
 		<li IfModActive="Morgante.WW2ItalianWeapons_copy">ModPatches/Morgante WW2 Italian Weapons</li>
 		<li IfModActive="SirMashedPotato.MorrowRim">ModPatches/MorrowRim</li>
