@@ -131,7 +131,7 @@ public class CompSuppressable : ThingComp
                 Pawn pawn = parent as Pawn;
                 currentSuppression = 0f;
                 ticksHunkered = 0;
-                if (pawn != null && pawn.CurJob.def == CE_JobDefOf.HunkerDown)
+                if (pawn != null && pawn.CurJob?.def == CE_JobDefOf.HunkerDown)
                 {
                     pawn.CurJob.Clear();
                 }
