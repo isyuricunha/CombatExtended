@@ -359,7 +359,7 @@
 		<li IfModActive="Abraxas.MSERevived">ModPatches/Medical System Expansion - Revived</li>
 		<li IfModActive="MSE2.Core">ModPatches/Medical System Expansion 2</li>
 		<li IfModActive="Mlie.MedicalSupplements">ModPatches/Medicine Supplements (Continued)</li>
-		<li IfModActive="Arisher.Medieval.Bowyer">ModPatches/Medieval Bowyer</li>
+		<li IfModActive="zal.medievalbowyer">ModPatches/Medieval Bowyer</li>
 		<li IfModActive="Gerrymon.MCO">ModPatches/Medieval Coastal Outfits</li>
 		<li IfModActive="JoeDaly.MedMeds.MO">ModPatches/Medieval Medicines 1.4 Medieval Overhaul Edition</li>
 		<li IfModActive="DankPyon.Medieval.Overhaul">ModPatches/Medieval Overhaul</li>
