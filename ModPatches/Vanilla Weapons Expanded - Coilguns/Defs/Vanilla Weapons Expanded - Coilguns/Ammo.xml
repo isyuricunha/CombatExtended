@@ -103,7 +103,7 @@
 	<!-- === Highpower ratio the x 0.65 damage and 1.5 sharp pen === -->
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
 		<defName>Bullet_CoilGun_Magnum_HP</defName>
-		<label>highpower gauss magnum shot</label>
+		<label>high-power gauss magnum shot</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<isInstant>true</isInstant>
 			<damageFalloff>False</damageFalloff>
@@ -116,7 +116,7 @@
 
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
 		<defName>Bullet_CoilGun_Rifle_HP</defName>
-		<label>highpower gauss rifle shot</label>
+		<label>high-power gauss rifle shot</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<isInstant>true</isInstant>
 			<damageFalloff>False</damageFalloff>
@@ -129,7 +129,7 @@
 
 	<ThingDef Class="CombatExtended.Lasers.LaserBeamDefCE" ParentName="LaserBulletYellow">
 		<defName>Bullet_CoilGun_Lance_HP</defName>
-		<label>highpower gauss lance shot</label>
+		<label>high-power gauss lance shot</label>
 		<projectile Class="CombatExtended.ProjectilePropertiesCE">
 			<isInstant>true</isInstant>
 			<damageFalloff>False</damageFalloff>

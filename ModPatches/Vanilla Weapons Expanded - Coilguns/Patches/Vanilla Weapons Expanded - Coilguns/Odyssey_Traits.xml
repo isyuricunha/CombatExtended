@@ -18,6 +18,7 @@
 						<description>This weapon maintains absolute kinetic energy during overcharge, vastly increasing armor penetration.</description>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_InertialCore"]/statOffsets</xpath>
 					<value>
@@ -29,6 +30,7 @@
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/modExtensions</xpath>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/traitAdjectives</xpath>
 					<value>
@@ -40,18 +42,21 @@
 						</traitAdjectives>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/label</xpath>
 					<value>
 						<label>CQC Tuning</label>
 					</value>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/description</xpath>
 					<value>
 						<description>This weapon is radically tuned to deliver devastating shots at close range.</description>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_InvertedRailTuning"]/statOffsets</xpath>
 					<value>
@@ -66,7 +71,7 @@
 					<value>
 						<WeaponTraitDef>
 							<defName>VWE_InvertedRailTuning_longrange</defName>
-							<label>Longrange RailTuning</label>
+							<label>Long-range Rail Tuning</label>
 							<description>This weapon is radically tuned for long-range but less lethal engagements</description>
 							<commonality>1</commonality>
 							<canGenerateAlone>true</canGenerateAlone>
@@ -89,12 +94,14 @@
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_BypassRelay"]/modExtensions</xpath>
 				</li>
+
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_BypassRelay"]/description</xpath>
 					<value>
 						<description>This weapon features an optimized charging sequence that halves the charging time between bursts.</description>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_BypassRelay"]</xpath>
 					<value>
@@ -111,9 +118,11 @@
 						<description>This weapon draws excessive power from its reserves, taking slightly longer to charge but delivering vastly increased damage.</description>
 					</value>
 				</li>
+
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]/modExtensions</xpath>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]</xpath>
 					<value>
@@ -123,6 +132,7 @@
 						</statFactors>
 					</value>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_OverdrawnCoils"]/statOffsets</xpath>
 					<value>
@@ -135,6 +145,7 @@
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_IonizedSabot"]/modExtensions</xpath>
 				</li>
+
 				<li Class="PatchOperationAdd">
 					<xpath>Defs/WeaponTraitDef[defName="VWE_IonizedSabot"]</xpath>
 					<value>

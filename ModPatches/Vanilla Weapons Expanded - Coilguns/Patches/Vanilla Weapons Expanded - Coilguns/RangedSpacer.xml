@@ -9,7 +9,7 @@
 	<!-- === Tools === -->
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName ="VWE_Gun_GaussMagnum"]/tools</xpath>
+		<xpath>Defs/ThingDef[defName="VWE_Gun_GaussMagnum"]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -151,7 +151,7 @@
 		<value>
 			<li Class="CombatExtended.CompProperties_UnderBarrel">
 				<standardLabel>switch to standard mode</standardLabel>
-				<underBarrelLabel>switch to highpower mode</underBarrelLabel>
+				<underBarrelLabel>switch to high-power mode</underBarrelLabel>
 				<oneAmmoHolder>True</oneAmmoHolder>
 				<propsUnderBarrel>
 					<magazineSize>8</magazineSize>
@@ -163,6 +163,7 @@
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>True</hasStandardCommand>
 					<defaultProjectile>Bullet_CoilGun_Magnum_HP</defaultProjectile>
+					<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
 					<warmupTime>0.8</warmupTime>
 					<range>15</range>
 					<soundCast>VWE_Shot_GaussMagnum</soundCast>
@@ -221,7 +222,7 @@
 		<value>
 			<li Class="CombatExtended.CompProperties_UnderBarrel">
 				<standardLabel>switch to standard mode</standardLabel>
-				<underBarrelLabel>switch to highpower mode</underBarrelLabel>
+				<underBarrelLabel>switch to high-power mode</underBarrelLabel>
 				<oneAmmoHolder>True</oneAmmoHolder>
 				<propsUnderBarrel>
 					<magazineSize>40</magazineSize>
@@ -233,6 +234,7 @@
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>True</hasStandardCommand>
 					<defaultProjectile>Bullet_CoilGun_Rifle_HP</defaultProjectile>
+					<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
 					<warmupTime>1.1</warmupTime>
 					<range>55</range>
 					<burstShotCount>5</burstShotCount>
@@ -291,7 +293,7 @@
 		<value>
 			<li Class="CombatExtended.CompProperties_UnderBarrel">
 				<standardLabel>switch to standard mode</standardLabel>
-				<underBarrelLabel>switch to highpower mode</underBarrelLabel>
+				<underBarrelLabel>switch to high-power mode</underBarrelLabel>
 				<oneAmmoHolder>True</oneAmmoHolder>
 				<propsUnderBarrel>
 					<magazineSize>10</magazineSize>
@@ -303,6 +305,7 @@
 					<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 					<hasStandardCommand>True</hasStandardCommand>
 					<defaultProjectile>Bullet_CoilGun_Lance_HP</defaultProjectile>
+					<warmupEffecter>VWE_Warmup_Effect</warmupEffecter>
 					<warmupTime>2.4</warmupTime>
 					<range>62</range>
 					<soundCast>VWE_Shot_GaussLance</soundCast>
