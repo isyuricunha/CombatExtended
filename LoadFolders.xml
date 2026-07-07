@@ -739,7 +739,7 @@
 		<li IfModActive="Mlie.WallMountedTurrets">ModPatches/Wall Mounted Turrets</li>
 		<li IfModActive="840.Tach.GWarCasket">ModPatches/WarCasket Barbatos Gundam Addon</li>
 		<li IfModActive="Aoba.WarCasket">ModPatches/WarCasket Expanded</li>
-		<li IfModActive="Buffsboy474.SMWarcaskets.Ideology.Testing">ModPatches/Warcaskets - Adeptus Astartes</li>
+		<li IfModActive="Buffsboy474.SMWarcaskets.Ideology.Testing.cz">ModPatches/Warcaskets - Adeptus Astartes</li>
 		<li IfModActive="Kompadt.Warhammer.Dryad">ModPatches/Warhammer - Dryad</li>
 		<li IfModActive="flangopink.GF40KMaterials">ModPatches/Warhammer 40.000 - Imperium Materials</li>
 		<li IfModActive="GF40K.IoM.Weaponry">ModPatches/Warhammer 40.000 - Imperium Weaponry</li>
