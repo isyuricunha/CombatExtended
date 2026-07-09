@@ -109,8 +109,12 @@ public static class AmmoInjector
         */
 
         // Loop through all weaponDef's unique ammoType.ammo values
+        List<string> craftingTags = [];
+        List<string> extraCraftingOptions = [];
         foreach (AmmoDef ammoDef in ammoDefs)
         {
+            craftingTags.Clear();
+            extraCraftingOptions.Clear();
             //AFTER CE_Utility.allWeaponDefs is initiated, this sets each ammo to list its users & special effects in its DEF DESCRIPTION rather than its THING DESCRIPTION.
             //This is because the THING description ISN'T available during crafting - so people can now figure out what's different between ammo types.
             ammoDef.AddDescriptionParts();
@@ -170,51 +174,64 @@ public static class AmmoInjector
                 }
 
                 // Toggle craftability
-                var craftingTags = ammoDef.tradeTags.Where(t => t.StartsWith(enableCraftingTag));
-                if (craftingTags.Any())
+                foreach (string tag in ammoDef.tradeTags)
                 {
-                    RecipeDef recipe = DefDatabase<RecipeDef>.GetNamed(("Make" + ammoDef.defName), false);
-                    if (recipe == null)
+                    if (BenchesByTag.ContainsKey(tag))
                     {
-                        Log.Error("CE ammo injector found no recipe named Make" + ammoDef.defName);
+                        extraCraftingOptions.Add(tag);
                     }
-                    else
+                    if (tag.StartsWith(enableCraftingTag))
                     {
-                        // Go through all crafting tags and add to the appropriate benches
-                        foreach (string curTag in craftingTags)
+                        craftingTags.Add(tag);
+                    }
+                }
+                if (craftingTags.Count <= 0 && extraCraftingOptions.Count <= 0)
+                {
+                    continue;
+                }
+                RecipeDef recipe = DefDatabase<RecipeDef>.GetNamed(("Make" + ammoDef.defName), false);
+                if (recipe == null)
+                {
+                    Log.Error("CE ammo injector found no recipe named Make" + ammoDef.defName);
+                }
+                else
+                {
+                    foreach (string curTag in extraCraftingOptions)
+                    {
+                        if (!BenchesByTag.TryGetValue(curTag, out HashSet<ThingDef> benchHashSet))
                         {
-                            ThingDef bench;
-                            bool hasBenchToInject = false;
-                            if (BenchesByTag.TryGetValue(curTag, out HashSet<ThingDef> benchHashSet))
-                            {
-                                hasBenchToInject = true;
-                                foreach (ThingDef optionBench in benchHashSet)
-                                {
-                                    ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
-                                }
-                            }
-                            if (curTag == enableCraftingTag)
-                            {
-                                bench = CE_ThingDefOf.AmmoBench;
-                            }
-                            else
-                            {
-                                // Parse tag for bench def
-                                if (curTag.Length <= enableCraftingTag.Length + 1)
-                                {
-                                    Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid crafting tag, valid formats are: " + enableCraftingTag + " and " + enableCraftingTag + "_defNameOfCraftingBench");
-                                    continue;
-                                }
-                                var benchName = curTag.Remove(0, enableCraftingTag.Length + 1);
-                                bench = DefDatabase<ThingDef>.GetNamed(benchName, false);
-                                if (bench == null && !hasBenchToInject)
-                                {
-                                    Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
-                                    continue;
-                                }
-                            }
-                            ToggleRecipeOnBench(recipe, bench, ammoEnabled);
+                            continue;
                         }
+                        foreach (ThingDef optionBench in benchHashSet)
+                        {
+                            ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
+                        }
+                    }
+                    // Go through all crafting tags and add to the appropriate benches
+                    foreach (string curTag in craftingTags)
+                    {
+                        ThingDef bench;
+                        if (curTag == enableCraftingTag)
+                        {
+                            bench = CE_ThingDefOf.AmmoBench;
+                        }
+                        else
+                        {
+                            // Parse tag for bench def
+                            if (curTag.Length <= enableCraftingTag.Length + 1)
+                            {
+                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid crafting tag, valid formats are: " + enableCraftingTag + " and " + enableCraftingTag + "_defNameOfCraftingBench");
+                                continue;
+                            }
+                            var benchName = curTag.Remove(0, enableCraftingTag.Length + 1);
+                            bench = DefDatabase<ThingDef>.GetNamed(benchName, false);
+                            if (bench == null)
+                            {
+                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
+                                continue;
+                            }
+                        }
+                        ToggleRecipeOnBench(recipe, bench, ammoEnabled);
                     }
                 }
             }
