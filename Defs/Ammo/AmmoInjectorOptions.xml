@@ -34,7 +34,7 @@
 				<li MayRequire="grimworld.astramilitarum">HP_AM_MilitarumFabricationBench</li>
 				<li MayRequire="happypurging.ageofdarkness">HP_ImperialFabricationBench</li>
 				<li MayRequire="grimworld.talonoftheemperor">GW_SM_TalonOfTheEmperor_WeaponBench</li>
-			</CE_40k_AmmoBench>
+			</CE_AmmoCrafting_40k>
 
 		</benchesByTag>
 	</CombatExtended.AmmoInjectorOptions>
