@@ -193,46 +193,44 @@ public static class AmmoInjector
                 if (recipe == null)
                 {
                     Log.Error("CE ammo injector found no recipe named Make" + ammoDef.defName);
+                    continue;
                 }
-                else
+                foreach (string curTag in extraCraftingOptions)
                 {
-                    foreach (string curTag in extraCraftingOptions)
+                    if (!BenchesByTag.TryGetValue(curTag, out HashSet<ThingDef> benchHashSet))
                     {
-                        if (!BenchesByTag.TryGetValue(curTag, out HashSet<ThingDef> benchHashSet))
+                        continue;
+                    }
+                    foreach (ThingDef optionBench in benchHashSet)
+                    {
+                        ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
+                    }
+                }
+                // Go through all crafting tags and add to the appropriate benches
+                foreach (string curTag in craftingTags)
+                {
+                    ThingDef bench;
+                    if (curTag == enableCraftingTag)
+                    {
+                        bench = CE_ThingDefOf.AmmoBench;
+                    }
+                    else
+                    {
+                        // Parse tag for bench def
+                        if (curTag.Length <= enableCraftingTag.Length + 1)
                         {
+                            Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid crafting tag, valid formats are: " + enableCraftingTag + " and " + enableCraftingTag + "_defNameOfCraftingBench");
                             continue;
                         }
-                        foreach (ThingDef optionBench in benchHashSet)
+                        var benchName = curTag.Remove(0, enableCraftingTag.Length + 1);
+                        bench = DefDatabase<ThingDef>.GetNamed(benchName, false);
+                        if (bench == null)
                         {
-                            ToggleRecipeOnBench(recipe, optionBench, ammoEnabled);
+                            Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
+                            continue;
                         }
                     }
-                    // Go through all crafting tags and add to the appropriate benches
-                    foreach (string curTag in craftingTags)
-                    {
-                        ThingDef bench;
-                        if (curTag == enableCraftingTag)
-                        {
-                            bench = CE_ThingDefOf.AmmoBench;
-                        }
-                        else
-                        {
-                            // Parse tag for bench def
-                            if (curTag.Length <= enableCraftingTag.Length + 1)
-                            {
-                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but " + curTag + " is not a valid crafting tag, valid formats are: " + enableCraftingTag + " and " + enableCraftingTag + "_defNameOfCraftingBench");
-                                continue;
-                            }
-                            var benchName = curTag.Remove(0, enableCraftingTag.Length + 1);
-                            bench = DefDatabase<ThingDef>.GetNamed(benchName, false);
-                            if (bench == null)
-                            {
-                                Log.Error("Combat Extended :: AmmoInjector trying to inject " + ammoDef.ToString() + " but no crafting bench with defName=" + benchName + " could be found for tag " + curTag);
-                                continue;
-                            }
-                        }
-                        ToggleRecipeOnBench(recipe, bench, ammoEnabled);
-                    }
+                    ToggleRecipeOnBench(recipe, bench, ammoEnabled);
                 }
             }
         }
