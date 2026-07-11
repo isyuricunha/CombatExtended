@@ -124,7 +124,7 @@
 			<recoilAmount>3</recoilAmount>
 			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
 			<hasStandardCommand>true</hasStandardCommand>
-			<defaultProjectile>Bullet_AEPetrificationBeam</defaultProjectile>
+			<defaultProjectile>Bullet_AEPetrificationBeam_CE</defaultProjectile>
 			<warmupTime>3.0</warmupTime>
 			<range>35</range>
 			<burstShotCount>6</burstShotCount>

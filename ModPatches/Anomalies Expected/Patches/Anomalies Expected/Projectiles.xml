@@ -119,13 +119,9 @@
 		</value>
 	</Operation>
 
-	<!-- ========== Petrification Beam ========== -->
-	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Gun_AEPetrificationGun"]/verbs/li/defaultProjectile</xpath>
-		<value>
-			<defaultProjectile>Bullet_AEPetrificationBeam_CE</defaultProjectile>
-		</value>
-	</Operation>
+	<!-- The petrification gun's CE projectile is set in Weapons_Ranged.xml; its
+	     PatchOperationMakeGunCECompatible replaces the vanilla verb entirely, so a
+	     defaultProjectile patch here would be discarded. -->
 
 	<!-- ========== Nitrogen Grenade Projectile ========== -->
 	<Operation Class="PatchOperationAdd">
@@ -159,14 +155,22 @@
 		<value>CombatExtended.ProjectilePropertiesCE</value>
 	</Operation>
 
+	<!-- The siege ability shell is launched by the mod's CompAbilityEffect_SpitLiquid and
+	     HediffComp_SnowBlockCompressor, which hard-cast the spawned thing to Verse.Projectile.
+	     Pin the vanilla thingClass so it does not inherit ProjectileCE_Explosive from its
+	     parent (same treatment CE gives the vanilla Bullet_Shell_AcidSpit). Its own effecter
+	     comps stay valid on the vanilla class. -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/ThingDef[defName="AE_Bullet_Shell_SnowBlockAbility"]</xpath>
+		<value>
+			<thingClass>Projectile_Explosive</thingClass>
+		</value>
+	</Operation>
+
 	<!-- Vanilla CompProperties_ProjectileEffecter only validates against Verse.Projectile; -->
 	<!-- CE's ProjectileCE_Explosive isn't a subclass so it triggers a config error. Drop the comps. -->
 	<Operation Class="PatchOperationRemove">
 		<xpath>Defs/ThingDef[defName="Gun_AESnowBlock_Thrown"]/comps</xpath>
-	</Operation>
-
-	<Operation Class="PatchOperationRemove">
-		<xpath>Defs/ThingDef[defName="AE_Bullet_Shell_SnowBlockAbility"]/comps</xpath>
 	</Operation>
 
 </Patch>
