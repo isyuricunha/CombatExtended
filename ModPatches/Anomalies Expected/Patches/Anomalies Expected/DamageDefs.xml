@@ -20,4 +20,15 @@
 		</value>
 	</Operation>
 
+	<!-- Same treatment CE core gives vanilla AcidBurn. The def inherits Flame's
+	     ambient-damage handling, where a Sharp category pits vanilla-scale pen
+	     against mm RHA armor and the fleshmass spitters deal zero damage to any
+	     armored pawn. Heat armor keeps the vanilla scale. -->
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AcidBurnFleshmass"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
+
 </Patch>
