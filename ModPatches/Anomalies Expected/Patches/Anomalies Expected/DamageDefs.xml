@@ -1,87 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch>
-	<Operation Class="PatchOperationFindMod">
-		<mods>
-			<li>Anomalies Expected</li>
-		</mods>
-		<match Class="PatchOperationSequence">
-			<operations>
 
-				<!-- ========== AENitrogen ========== -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
-					<value>
-						<armorCategory>Heat</armorCategory>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
-					<value>
-						<defaultArmorPenetration>0.05</defaultArmorPenetration>
-					</value>
-				</li>
+	<!-- Freezing damage is resisted by thermal insulation. AENitrogenPlayer inherits
+	     from AENitrogen (Name="AENitrogenBase") and needs no separate patch.
+	     Armor penetration is carried by ToolCE and ProjectilePropertiesCE on every
+	     delivery path, so defaultArmorPenetration is not patched. -->
 
-				<!-- ========== AENitrogenPlayer ========== -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]</xpath>
-					<value>
-						<armorCategory>Heat</armorCategory>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AENitrogenPlayer"]</xpath>
-					<value>
-						<defaultArmorPenetration>0.05</defaultArmorPenetration>
-					</value>
-				</li>
-
-				<!-- ========== AEFreezing ========== -->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/DamageDef[defName="AEFreezing"]/armorCategory</xpath>
-					<value>
-						<armorCategory>Heat</armorCategory>
-					</value>
-				</li>
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AEFreezing"]</xpath>
-					<value>
-						<defaultArmorPenetration>0.05</defaultArmorPenetration>
-					</value>
-				</li>
-
-				<!-- ========== AEFreezingFragileCut ========== -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AEFreezingFragileCut"]</xpath>
-					<value>
-						<defaultArmorPenetration>0.25</defaultArmorPenetration>
-					</value>
-				</li>
-
-				<!-- ========== AEFreezingFragileStab ========== -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AEFreezingFragileStab"]</xpath>
-					<value>
-						<defaultArmorPenetration>0.30</defaultArmorPenetration>
-					</value>
-				</li>
-
-				<!-- ========== AEAging ========== -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AEAging"]</xpath>
-					<value>
-						<defaultArmorPenetration>0.5</defaultArmorPenetration>
-					</value>
-				</li>
-
-				<!-- ========== AEPetrificationBeam ========== -->
-				<li Class="PatchOperationAdd">
-					<xpath>Defs/DamageDef[defName="AEPetrificationBeam"]</xpath>
-					<value>
-						<defaultArmorPenetration>0.5</defaultArmorPenetration>
-					</value>
-				</li>
-
-			</operations>
-		</match>
+	<Operation Class="PatchOperationAdd">
+		<xpath>Defs/DamageDef[defName="AENitrogen"]</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
 	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/DamageDef[defName="AEFreezing"]/armorCategory</xpath>
+		<value>
+			<armorCategory>Heat</armorCategory>
+		</value>
+	</Operation>
+
 </Patch>

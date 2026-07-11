@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<CombatExtended.AmmoCategoryDef>
+		<defName>AENitrogen</defName>
+		<label>nitrogen</label>
+		<description>A charge filled with destabilized ice crystal. Spills freezing nitrogen on detonation, slowing targets and cryogenically bonding mechanical components.</description>
+		<advanced>true</advanced>
+	</CombatExtended.AmmoCategoryDef>
+
+</Defs>
