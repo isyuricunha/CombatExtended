@@ -1035,6 +1035,17 @@
 	<!-- Patch projectile -->
 
 	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/graphicData</xpath>
+		<value>
+			<graphicData>
+				<texPath>Things/Projectile/Rocket/Doomsday</texPath>
+				<graphicClass>Graphic_Single</graphicClass>
+				<drawSize>(1.45,1.45)</drawSize>
+			</graphicData>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="Bullet_DoomsdayRocket"]/thingClass</xpath>
 		<value>
 			<thingClass>CombatExtended.ProjectileCE_Explosive</thingClass>
