@@ -224,7 +224,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
             }
         }
         CompEq.PrimaryVerb.verbProps.burstShotCount = DefVerbProps.burstShotCount;
-        Traverse.Create(CompEq.PrimaryVerb).Field("cachedTicksBetweenBurstShots").SetValue(null);
+        CompEq.PrimaryVerb.cachedTicksBetweenBurstShots = null;
         usingUnderBarrel = false;
         CompFireModes.InitAvailableFireModes();
 
