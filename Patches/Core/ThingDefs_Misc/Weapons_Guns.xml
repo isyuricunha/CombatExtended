@@ -1086,7 +1086,7 @@
 						<emissionsPerTick>7</emissionsPerTick>
 						<flecksPerEmission>3</flecksPerEmission>
 						<scale>2</scale>
-						<cutoffTickRange>25~30</cutoffTickRange>
+						<cutoffTickRange>20~35</cutoffTickRange>
 						<originOffset>0.4</originOffset>
 						<startDelayTick>2</startDelayTick>
 					</li>
@@ -1231,7 +1231,7 @@
 						<emissionsPerTick>7</emissionsPerTick>
 						<flecksPerEmission>3</flecksPerEmission>
 						<scale>1.25</scale>
-						<cutoffTickRange>25~30</cutoffTickRange>
+						<cutoffTickRange>20~25</cutoffTickRange>
 						<originOffset>0.4</originOffset>
 						<startDelayTick>2</startDelayTick>
 					</li>
