@@ -74,7 +74,7 @@ public class Command_ArtilleryTarget : Command
                 {
                     RoofDef roof = map.roofGrid.RoofAt(target.Cell);
                     if ((roof == null || roof == RoofDefOf.RoofConstructed) &&
-                            target.Cell.GetFirstThing<ArtilleryMarker>(map) != null)
+                            (!Controller.settings.RequireArtilleryMarkerForOffMapArtillery || target.Cell.GetFirstThing<ArtilleryMarker>(map) != null))
                     {
                         return true;
                     }
