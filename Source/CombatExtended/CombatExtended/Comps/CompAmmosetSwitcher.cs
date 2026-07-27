@@ -165,7 +165,7 @@ public class CompUnderBarrel : CompRangedGizmoGiver
         // Ensures that there should be a burstFire option
         // If set to aimedBurstShotCount, will result in warning and no burst fire mode. Only full auto
         CompEq.PrimaryVerb.verbProps.burstShotCount = this.Props.verbPropsUnderBarrel.burstShotCount;
-        Traverse.Create(CompEq.PrimaryVerb).Field("cachedTicksBetweenBurstShots").SetValue(null);
+        CompEq.PrimaryVerb.cachedTicksBetweenBurstShots = null;
         usingUnderBarrel = true;
         CompFireModes.InitAvailableFireModes();
 
