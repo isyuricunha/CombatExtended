@@ -51,19 +51,19 @@ public static class CE_DebugUtility
     private static void SetSuppressionZero(Pawn p)
     {
         CompSuppressable comp = p.TryGetComp<CompSuppressable>();
-        comp?.SetSuppression(0);
+        comp?.DebugSetSuppression(0);
     }
     [DebugAction("CE", "Set Suppression: 50%", false, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
     private static void SetSuppressionHalf(Pawn p)
     {
         CompSuppressable comp = p.TryGetComp<CompSuppressable>();
-        comp?.SetSuppression(comp.SuppressionThreshold);
+        comp?.DebugSetSuppression(comp.SuppressionThreshold);
     }
 
     [DebugAction("CE", "Set Suppression: 100%", false, false, false, false, false, 0, false, actionType = DebugActionType.ToolMapForPawns, allowedGameStates = AllowedGameStates.PlayingOnMap)]
     private static void SetSuppressionMax(Pawn p)
     {
         CompSuppressable comp = p.TryGetComp<CompSuppressable>();
-        comp?.SetSuppression(1050f);
+        comp?.DebugSetSuppression(1050f);
     }
 }

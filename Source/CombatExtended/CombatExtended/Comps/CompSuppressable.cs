@@ -165,7 +165,7 @@ public class CompSuppressable : ThingComp
         Scribe_Values.Look(ref ticksHunkered, "ticksHunkered", 0);
     }
 
-    public void SetSuppression(float amount)
+    public void DebugSetSuppression(float amount)
     {
         currentSuppression = 0f;
         AddSuppression(amount, parent.positionInt);
