@@ -591,6 +591,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 Tiered Mechs    |
 The Corporation - Mort's Factions   |
+The Cosmic Odyssey - Blessings of the Machine God   |
 The Mantodean insectoid race	|
 The Profaned	|
 The REAL flamberg	|
