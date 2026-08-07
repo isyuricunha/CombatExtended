@@ -58,37 +58,6 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
         }
         // Fallback to launcher's faction if no configured faction or faction not found
 
-
-        if (alwaysHostile)
-        {
-            Faction bestCandidate = null;
-            float bestScore = float.MinValue;
-            foreach (Faction candidate in Find.FactionManager.AllFactionsListForReading)
-            {
-                if (candidate == Faction.OfPlayer || candidate.defeated || !candidate.HostileTo(Faction.OfPlayer))
-                {
-                    continue;
-                }
-                // Ensure faction compatibility with pawn kind
-                if (spawnsPawnKind?.RaceProps?.Humanlike != candidate.def.humanlikeFaction)
-                {
-                    continue;
-                }
-                // Inverse scoring since lower goodwill is better
-                float score = -candidate.PlayerGoodwill;
-
-                if (score > bestScore)
-                {
-                    bestScore = score;
-                    bestCandidate = candidate;
-                }
-            }
-            if (bestCandidate != null)
-            {
-                faction = bestCandidate;
-            }
-        }
-
         faction ??= this.launcher?.Faction;
 
         PlanetTile? tile = null;
@@ -120,6 +89,11 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
         if (pawn.Faction != faction && pawn.def.CanHaveFaction)
         {
             pawn.SetFaction(faction);
+        }
+
+        if (alwaysHostile && pawn.mindState != null)
+        {
+            pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.BerserkPermanent);
         }
     }
 }
