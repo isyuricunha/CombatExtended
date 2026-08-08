@@ -22,7 +22,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
         {
             return;
         }
-        
+
         PawnKindDef spawnsPawnKind = props.spawnsPawnKind;
 
         if (spawnsPawnKind == null)
