@@ -22,8 +22,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
         {
             return;
         }
-
-        bool alwaysHostile = props.alwaysHostile;
+        
         PawnKindDef spawnsPawnKind = props.spawnsPawnKind;
 
         if (spawnsPawnKind == null)
@@ -44,8 +43,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
                 }
             }
         }
-
-        // Use configured faction if specified, otherwise use launcher's faction
+        // Fallback to launcher's faction if no configured faction or faction not found
         Faction faction = null;
 
         if (props.factionDef != null)
@@ -56,7 +54,6 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
                 Log.Warning($"Could not find faction {props.factionDef.defName} for projectile {this.def.defName}");
             }
         }
-        // Fallback to launcher's faction if no configured faction or faction not found
 
         faction ??= this.launcher?.Faction;
 
@@ -86,12 +83,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
         }
 
         GenSpawn.Spawn(pawn, loc, map);
-        if (pawn.Faction != faction && pawn.def.CanHaveFaction)
-        {
-            pawn.SetFaction(faction);
-        }
-
-        if (alwaysHostile && pawn.mindState != null)
+        if (props.alwaysHostile && pawn.mindState != null)
         {
             pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.BerserkPermanent);
         }
