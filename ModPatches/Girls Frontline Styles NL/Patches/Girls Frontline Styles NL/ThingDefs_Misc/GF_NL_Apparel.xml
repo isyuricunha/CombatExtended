@@ -30,7 +30,7 @@
 		<xpath>Defs/ThingDef[defName="NLgf_SVDhat"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
-			<AimingAccuracy>0.015</AimingAccuracy>
+			<AimingAccuracy>0.15</AimingAccuracy>
 		</value>
 	</Operation>
 
@@ -67,7 +67,7 @@
 		<xpath>Defs/ThingDef[defName="NLgf_MDRhat"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
-			<AimingAccuracy>0.015</AimingAccuracy>
+			<AimingAccuracy>0.15</AimingAccuracy>
 		</value>
 	</Operation>
 
@@ -104,7 +104,7 @@
 		<xpath>Defs/ThingDef[defName="NLgf_Kar98hat"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
-			<AimingAccuracy>0.015</AimingAccuracy>
+			<AimingAccuracy>0.15</AimingAccuracy>
 		</value>
 	</Operation>
 
@@ -141,7 +141,7 @@
 		<xpath>Defs/ThingDef[defName="NLgf_M1hat"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
-			<AimingAccuracy>0.015</AimingAccuracy>
+			<AimingAccuracy>0.15</AimingAccuracy>
 		</value>
 	</Operation>
 
@@ -178,7 +178,7 @@
 		<xpath>Defs/ThingDef[defName="NLgf_HazeHeadwear"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
-			<AimingAccuracy>0.015</AimingAccuracy>
+			<AimingAccuracy>0.15</AimingAccuracy>
 		</value>
 	</Operation>
 
@@ -215,7 +215,7 @@
 		<xpath>Defs/ThingDef[defName="NLgf_GrozaTH"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
-			<AimingAccuracy>0.015</AimingAccuracy>
+			<AimingAccuracy>0.15</AimingAccuracy>
 		</value>
 	</Operation>
 
@@ -252,7 +252,7 @@
 		<xpath>Defs/ThingDef[defName="NLgf_79type_hat"]/equippedStatOffsets/ShootingAccuracyPawn</xpath>
 		<value>
 			<ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
-			<AimingAccuracy>0.015</AimingAccuracy>
+			<AimingAccuracy>0.15</AimingAccuracy>
 		</value>
 	</Operation>
 
@@ -279,9 +279,7 @@
 
 	<!-- ============================ Belt ============================ -->
 	<Operation Class="PatchOperationAdd">
-		<xpath>Defs/ThingDef[
-			defName="NLgf_DP12_shield"
-			]/statBases</xpath>
+		<xpath>Defs/ThingDef[defName="NLgf_DP12_shield"]/statBases</xpath>
 		<value>
 			<Bulk>8</Bulk>
 			<WornBulk>3</WornBulk>
