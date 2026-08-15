@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using RimWorld;
 using RimWorld.Planet;
-using UnityEngine;
 using Verse;
-using Verse.Sound;
 
 namespace CombatExtended;
 public class ProjectileCE_SpawnPawnkind : ProjectileCE
@@ -82,10 +76,12 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
             return;
         }
 
+        MentalStateDef mentalStateDef = props.mentalStateDef;
         GenSpawn.Spawn(pawn, loc, map);
-        if (props.alwaysHostile && pawn.mindState != null)
+        if (props.forceMentalState && props.mentalStateDef != null && pawn.mindState != null)
         {
-            pawn.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.BerserkPermanent);
+            pawn.mindState.mentalStateHandler.TryStartMentalState(mentalStateDef);
         }
+
     }
 }

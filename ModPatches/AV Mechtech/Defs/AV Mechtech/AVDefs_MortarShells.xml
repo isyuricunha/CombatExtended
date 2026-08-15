@@ -328,7 +328,8 @@
 			<!-- Proper pawn spawning properties -->
 			<spawnsPawnKind>Mech_WarUrchin</spawnsPawnKind>
 			<tryAdjacentFreeSpaces>true</tryAdjacentFreeSpaces>
-			<alwaysHostile>true</alwaysHostile>
+			<forceMentalState>true</forceMentalState>
+			<mentalStateDef>BerserkPermanent</mentalStateDef>
 			<!-- Post-explosion effects -->
 			<postExplosionSpawnThingDef>AV_Shell_Deploy_Releasing</postExplosionSpawnThingDef>
 			<postExplosionSpawnThingDefWater>AV_Shell_Deploy_Releasing_Water</postExplosionSpawnThingDefWater>
