@@ -78,7 +78,7 @@ public class ProjectileCE_SpawnPawnkind : ProjectileCE
 
         MentalStateDef mentalStateDef = props.mentalStateDef;
         GenSpawn.Spawn(pawn, loc, map);
-        if (props.forceMentalState && props.mentalStateDef != null && pawn.mindState != null)
+        if (props.forceMentalState && mentalStateDef != null && pawn.mindState != null)
         {
             pawn.mindState.mentalStateHandler.TryStartMentalState(mentalStateDef);
         }
