@@ -72,9 +72,14 @@ public class Command_ArtilleryTarget : Command
                     GenDraw.DrawTargetHighlight(target);
                 }, targetValidator: (target) =>
                 {
+                    if (!Controller.settings.RequireArtilleryMarkerForOffMapArtillery)
+                    {
+                        return true;
+                    }
+
                     RoofDef roof = map.roofGrid.RoofAt(target.Cell);
                     if ((roof == null || roof == RoofDefOf.RoofConstructed) &&
-                            (!Controller.settings.RequireArtilleryMarkerForOffMapArtillery || target.Cell.GetFirstThing<ArtilleryMarker>(map) != null))
+                            target.Cell.GetFirstThing<ArtilleryMarker>(map) != null)
                     {
                         return true;
                     }

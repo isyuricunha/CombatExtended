@@ -223,7 +223,7 @@ public class Settings : ModSettings, ISettingsCE
         Scribe_Values.Look(ref variedHumanHeight, "variedHumanHeight", false);
         Scribe_Values.Look(ref logUnpatchedDefs, "logUnpatchedDefs", false);
         Scribe_Values.Look(ref realWeaponNames, "realWeaponNames", true);
-        Scribe_Values.Look(ref requireArtilleryMarkerForOffMapArtillery, nameof(requireArtilleryMarkerForOffMapArtillery), true);
+        Scribe_Values.Look(ref requireArtilleryMarkerForOffMapArtillery, "requireArtilleryMarkerForOffMapArtillery", true);
 
 #if DEBUG
         // Debug settings
