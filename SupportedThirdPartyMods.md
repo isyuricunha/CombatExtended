@@ -106,6 +106,7 @@ Animal Collab Project Vanilla-Style |
 Animal Armor: Vanilla	|
 Animal Equipment	|
 Anomalies Expected |
+Anomalies Expected Addon |
 Anthro Race |
 Antinium    |
 Anty the War Ant Race |
