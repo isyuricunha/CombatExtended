@@ -149,7 +149,6 @@
 	</Operation>
 
 	<!-- ========== Nitrogen Grenade ========== -->
-
 	<Operation Class="PatchOperationAttributeSet">
 		<xpath>Defs/ThingDef[defName="Weapon_AEGrenadeNitrogen"]</xpath>
 		<attribute>ParentName</attribute>
