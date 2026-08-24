@@ -105,6 +105,7 @@ Anima Gear  |
 Animal Collab Project Vanilla-Style |
 Animal Armor: Vanilla	|
 Animal Equipment	|
+Anomalies Expected |
 Anomalies Expected Addon |
 Anthro Race |
 Antinium    |
@@ -592,6 +593,7 @@ Tactical Extremity Protection [BAL] |
 Textiles+ (continued)   |
 Tiered Mechs    |
 The Corporation - Mort's Factions   |
+The Cosmic Odyssey - Blessings of the Machine God   |
 The Mantodean insectoid race	|
 The Profaned	|
 The REAL flamberg	|
