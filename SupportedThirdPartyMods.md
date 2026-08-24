@@ -107,6 +107,7 @@ Animal Armor: Vanilla	|
 Animal Equipment	|
 Anomalies Expected |
 Anomalies Expected Addon |
+Anomaly Portal |
 Anthro Race |
 Antinium    |
 Anty the War Ant Race |
