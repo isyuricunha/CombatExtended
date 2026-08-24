@@ -46,7 +46,7 @@
 		<li IfModActive="bbbbilly.ancienthuman">ModPatches/Ancient Human</li>
 		<li IfModActive="Killathon.AndroidTiersReforged">ModPatches/Android Tiers Reforged</li>
 		<li IfModActive="ChJees.Androids, ChJees.Androids14">ModPatches/Androids</li>
-		<li IfModActive="peptide.androidsexpanded, rielle.androidsexpanded">ModPatches/Androids Expanded</li>
+		<li IfModActive="peptide.androidsexpanded, peptide.androidsexpanded14, rielle.androidsexpanded">ModPatches/Androids Expanded</li>
 		<li IfModActive="hh.xrushha.AnimaAnimalsCombined">ModPatches/Anima Animals - Community Temp</li>
 		<li IfModActive="Seti.Victor.AnimaBodies">ModPatches/Anima Bionics</li>
 		<li IfModActive="xrushha.AnimaGear">ModPatches/Anima Gear</li>
@@ -361,7 +361,7 @@
 		<li IfModActive="Abraxas.MSERevived">ModPatches/Medical System Expansion - Revived</li>
 		<li IfModActive="MSE2.Core">ModPatches/Medical System Expansion 2</li>
 		<li IfModActive="Mlie.MedicalSupplements">ModPatches/Medicine Supplements (Continued)</li>
-		<li IfModActive="Arisher.Medieval.Bowyer">ModPatches/Medieval Bowyer</li>
+		<li IfModActive="zal.medievalbowyer">ModPatches/Medieval Bowyer</li>
 		<li IfModActive="Gerrymon.MCO">ModPatches/Medieval Coastal Outfits</li>
 		<li IfModActive="JoeDaly.MedMeds.MO">ModPatches/Medieval Medicines 1.4 Medieval Overhaul Edition</li>
 		<li IfModActive="DankPyon.Medieval.Overhaul">ModPatches/Medieval Overhaul</li>
@@ -397,7 +397,7 @@
 		<li IfModActive="noodlesking.MorePsycasts">ModPatches/More Psycasts</li>
 		<li IfModActive="SGC.moreutilitypacks,zal.moreutilitypacks">ModPatches/More Utility Packs</li>
 		<li IfModActive="paradox.morevanillaturrets">ModPatches/More Vanilla Turrets</li>
-		<li IfModActive="Orion.MoreMechanoids">ModPatches/MoreMechanoids</li>
+		<li IfModActive="Orion.MoreMechanoids, zal.moremechanoids">ModPatches/MoreMechanoids</li>
 		<li IfModActive="Morgante.MorganteMafiaWeaponsPack_copy">ModPatches/Morgante Mafia Weapons Pack</li>
 		<li IfModActive="Morgante.WW2ItalianWeapons_copy">ModPatches/Morgante WW2 Italian Weapons</li>
 		<li IfModActive="SirMashedPotato.MorrowRim">ModPatches/MorrowRim</li>
@@ -466,8 +466,8 @@
 		<li IfModActive="Pratt.RaW.WWIIWeaponsPackVanilla">ModPatches/Pratt WWII Weapons Pack</li>
 		<li IfModActive="Kilo.PrestigeVacSet">ModPatches/Prestige Vacsuit Set</li>
 		<li IfModActive="PrestigePhoenix.maltum">ModPatches/Prestige Specialist Armor</li>
-		<li IfModActive="PrimitiveCore.velcroboy333">ModPatches/Primitive Core</li>
-		<li IfModActive="primitiveproduction.velcroboy333">ModPatches/Primitive Workbenches</li>
+		<li IfModActive="PrimitiveCore.velcroboy333, zal.primitivecore">ModPatches/Primitive Core</li>
+		<li IfModActive="primitiveproduction.velcroboy333, zal.primitiveproduction">ModPatches/Primitive Workbenches</li>
 		<li IfModActive="botchjob.profaned">ModPatches/Profaned</li>
 		<li IfModActive="PRF.Materials">ModPatches/Project RimFactory - Materials</li>
 		<li IfModActive="DimonSever000.ProsthesesPlus13.Specific">ModPatches/Prostheses+</li>
@@ -515,7 +515,7 @@
 		<li IfModActive="mlie.removeindustrialstuff">ModPatches/Remove Industrial Stuff</li>
 		<li IfModActive="FS.ReviaRace">ModPatches/Revia Race</li>
 		<li IfModActive="FS.ReviaRaceBiotech">ModPatches/Revia Race — biotech</li>
-		<li IfModActive="zerophoenix.contractorsarsenalfaction">ModPatches/Rim Contractors Arsenal</li>
+		<li IfModActive="zerophoenix.contractorsarsenalfaction,zal.contractorsarsenal">ModPatches/Rim Contractors Arsenal</li>
 		<li IfModActive="Fenn.floodrace,zal.floodrace">ModPatches/Rim Flood</li>
 		<li IfModActive="VexedTrees980.RimGnoblinsBiotech">ModPatches/Rim Gnoblins</li>
 		<li IfModActive="JTC.Nordberg">ModPatches/Rim Of Evil Northern Frontier</li>
@@ -618,6 +618,7 @@
 		<li IfModActive="TextilesPlus.velcroboy333">ModPatches/Textiles+</li>
 		<li IfModActive="Pyro.TieredMechs">ModPatches/Tiered Mechs</li>
 		<li IfModActive="MortStrudel.CorporationFaction">ModPatches/The Corporation - Mort's Factions</li>
+		<li IfModActive="Akarthus.TheCosmicOdyssey.BlessOfTheMachineGod">ModPatches/The Cosmic Odyssey - Blessings of the Machine God</li>
 		<li IfModActive="HC.GiantRace">ModPatches/The GiantRace</li>
 		<li IfModActive="sarg.jorisexperience">ModPatches/The Joris Experience</li>
 		<li IfModActive="LeveFUN.TheREALflamberg">ModPatches/The REAL flamberg</li>
@@ -741,7 +742,7 @@
 		<li IfModActive="Mlie.WallMountedTurrets">ModPatches/Wall Mounted Turrets</li>
 		<li IfModActive="840.Tach.GWarCasket">ModPatches/WarCasket Barbatos Gundam Addon</li>
 		<li IfModActive="Aoba.WarCasket">ModPatches/WarCasket Expanded</li>
-		<li IfModActive="Buffsboy474.SMWarcaskets.Ideology.Testing">ModPatches/Warcaskets - Adeptus Astartes</li>
+		<li IfModActive="Buffsboy474.SMWarcaskets.Ideology.Testing.cz">ModPatches/Warcaskets - Adeptus Astartes</li>
 		<li IfModActive="Kompadt.Warhammer.Dryad">ModPatches/Warhammer - Dryad</li>
 		<li IfModActive="flangopink.GF40KMaterials">ModPatches/Warhammer 40.000 - Imperium Materials</li>
 		<li IfModActive="GF40K.IoM.Weaponry">ModPatches/Warhammer 40.000 - Imperium Weaponry</li>
