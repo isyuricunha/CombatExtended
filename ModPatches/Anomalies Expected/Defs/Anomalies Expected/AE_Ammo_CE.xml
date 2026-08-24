@@ -22,7 +22,7 @@
 			<Bulk>8.17</Bulk>
 		</statBases>
 		<ammoClass>AENitrogen</ammoClass>
-		<detonateProjectile>Bullet_Shell_AENitrogen</detonateProjectile>
+		<detonateProjectile>Bullet_Shell_AENitrogen_CE</detonateProjectile>
 		<destroyOnDrop>False</destroyOnDrop>
 		<genericMarketSellable>false</genericMarketSellable>
 		<tradeability>Sellable</tradeability>
