@@ -52,7 +52,7 @@
 		<li>sarg.alphabiomes</li>
 		<li>accurex.medievalempireoverhaul</li>
 		<li>BlackMarket420.Kerberos</li>
-		<li>van.beasts</li>	
+		<li>van.beasts</li>
 	</loadBefore>
 	<loadAfter>
 		<li>brrainz.harmony</li>
