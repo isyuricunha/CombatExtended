@@ -670,4 +670,20 @@
 		</value>
 	</Operation>
 
+<!-- TrapIED_HighExplosive: specialDisplayRadius -->
+<Operation Class="PatchOperationReplace">
+  <xpath>Defs/ThingDef[defName="TrapIED_HighExplosive"]/specialDisplayRadius</xpath>
+  <value>
+    <specialDisplayRadius>4.5</specialDisplayRadius>
+  </value>
+</Operation>
+
+<!-- TrapIED_Incendiary: specialDisplayRadius -->
+<Operation Class="PatchOperationReplace">
+  <xpath>Defs/ThingDef[defName="TrapIED_Incendiary"]/specialDisplayRadius</xpath>
+  <value>
+    <specialDisplayRadius>5</specialDisplayRadius>
+  </value>
+</Operation>
+  
 </Patch>
