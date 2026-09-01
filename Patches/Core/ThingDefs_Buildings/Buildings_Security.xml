@@ -609,7 +609,7 @@
 		</value>
 	</Operation>
 
-	<!-- Incendiary Explosive -->
+	<!-- ========== Explosive IED ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="TrapIED_HighExplosive"]/specialDisplayRadius</xpath>
 		<value>
@@ -644,7 +644,7 @@
 		</value>
 	</Operation>
 
-	<!-- Incendiary IED -->
+	<!-- ========== Incendiary IED ========== -->
 	<Operation Class="PatchOperationReplace">
 		<xpath>Defs/ThingDef[defName="TrapIED_Incendiary"]/specialDisplayRadius</xpath>
 		<value>
