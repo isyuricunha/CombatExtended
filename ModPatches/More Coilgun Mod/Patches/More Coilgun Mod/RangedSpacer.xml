@@ -10,7 +10,11 @@
 
 
 	<Operation Class="PatchOperationReplace">
-		<xpath>Defs/ThingDef[defName="Aqued_Gun_GaussSlugger" or defName="Aqued_Gun_GaussDMR" or defName="Aqued_Gun_GaussSAW"]/tools</xpath>
+		<xpath>Defs/ThingDef[
+			defName="Aqued_Gun_GaussSlugger" or
+			defName="Aqued_Gun_GaussDMR" or
+			defName="Aqued_Gun_GaussSAW"
+		]/tools</xpath>
 		<value>
 			<tools>
 				<li Class="CombatExtended.ToolCE">
@@ -241,6 +245,10 @@
 				</propsFireModesUnderBarrel>
 			</li>
 		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationRemove">
+		<xpath>Defs/ThingDef[defName="Aqued_Gun_GaussSAW"]/equippedStatOffsets/MoveSpeed</xpath>
 	</Operation>
 
 	<!-- === Gauss DMR === -->

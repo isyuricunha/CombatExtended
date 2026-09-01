@@ -23,7 +23,7 @@
 
 	<CombatExtended.AmmoSetDef>
 		<defName>AmmoSet_Railgun_12gauge_HP</defName>
-		<label>Railshot(high power)</label>
+		<label>Railshot (high power)</label>
 		<ammoTypes>
 			<Ammo_Railgun_12gauge_Slug>Bullet_CoilGun_12gauge_Slug_HP</Ammo_Railgun_12gauge_Slug>
 			<Ammo_Railgun_12gauge_Shard>Bullet_CoilGun_12gauge_Shard_HP</Ammo_Railgun_12gauge_Shard>
