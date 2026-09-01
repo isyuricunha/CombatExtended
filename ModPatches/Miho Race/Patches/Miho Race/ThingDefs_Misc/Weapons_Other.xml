@@ -135,7 +135,7 @@
 			</targetParams>
 		</Properties>
 		<AmmoUser>
-			<magazineSize>25</magazineSize>
+			<magazineSize>5</magazineSize>
 			<reloadTime>12</reloadTime>
 			<ammoSet>AmmoSet_57x280mmR</ammoSet>
 		</AmmoUser>
